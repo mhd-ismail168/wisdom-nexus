@@ -1,0 +1,87 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary-base: #2aa5ae;
+  --color-primary-mid: #3bb3bc;
+  --color-accent-yellow: #FA9C0F;
+  --color-accent-yellow-light: #FFB340;
+  --color-bg-page: #FAF9F6;
+  --color-text-dark: #111111;
+  --color-text-gray: #444444;
+  --color-btn-primary: #FA9C0F;
+  --color-btn-hover: #FFB340;
+}
+
+@layer utilities {
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-[var(--color-primary-base)] to-[var(--color-accent-yellow)];
+  }
+}
+
+body {
+  background-color: var(--color-bg-page);
+  color: var(--color-text-dark);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.font-\[family-name\:var\(--font-heading\)\] {
+  letter-spacing: -0.02em;
+  font-weight: 800;
+  color: var(--color-text-dark);
+}
+
+p,
+.text-gray-600,
+.text-gray-500 {
+  color: var(--color-text-gray) !important;
+  font-weight: 500;
+}
+
+.text-white {
+  color: #ffffff !important;
+}
+
+.underline-drawn {
+  position: relative;
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.underline-drawn::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 12px;
+  bottom: -4px;
+  left: 0;
+  background-image: url('data:image/svg+xml;utf8,<svg preserveAspectRatio="none" viewBox="0 0 100 15" xmlns="http://www.w3.org/2000/svg"><path d="M2,10 Q50,0 98,12" stroke="%23FA9C0F" stroke-width="4" fill="none" stroke-linecap="round"/></svg>');
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  z-index: -1;
+}
+
+.underline-drawn-double {
+  position: relative;
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.underline-drawn-double::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 18px;
+  bottom: -8px;
+  left: 0;
+  background-image: url('data:image/svg+xml;utf8,<svg preserveAspectRatio="none" viewBox="0 0 100 20" xmlns="http://www.w3.org/2000/svg"><path d="M5,12 Q50,2 95,14 M10,18 Q50,10 90,19" stroke="%23FA9C0F" stroke-width="3" fill="none" stroke-linecap="round"/></svg>');
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  z-index: -1;
+}
