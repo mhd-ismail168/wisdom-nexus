@@ -1,28 +1,111 @@
 @import "tailwindcss";
 
 @theme {
-  --color-primary-base: #2aa5ae;
-  --color-primary-mid: #3bb3bc;
-  --color-accent-yellow: #FA9C0F;
-  --color-accent-yellow-light: #FFB340;
-  --color-bg-page: #FAF9F6;
-  --color-text-dark: #111111;
-  --color-text-gray: #444444;
-  --color-btn-primary: #FA9C0F;
-  --color-btn-hover: #FFB340;
+  --color-bg-primary: #000000;
+  --color-bg-section: #0A0A0A;
+  --color-text-primary: #F1F1F1;
+  --color-text-secondary: #8A8A8A;
+  --color-text-muted: #6E6E6E;
+  --color-accent-gold: #C5A55A;
+  --color-accent-gold-dim: #8A7535;
+  --color-surface: #121212;
+  --color-border: #1C1C1C;
+
+  /* Footer-specific warm tones */
+  --color-footer-bg: #0C0A07;
+  --color-footer-surface: #161310;
+  --color-footer-border: #2A2520;
+  --color-footer-text: #A89880;
+
+  /* shadcn-compatible tokens for expandable-tabs */
+  --color-background: #000000;
+  --color-foreground: #F1F1F1;
+  --color-muted: #121212;
+  --color-muted-foreground: #8A8A8A;
+  --color-primary: #C5A55A;
+  --color-border: #1C1C1C;
 }
 
-@layer utilities {
-  .text-gradient {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-[var(--color-primary-base)] to-[var(--color-accent-yellow)];
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background-color: var(--color-bg-page);
-  color: var(--color-text-dark);
+  background-color: var(--color-bg-primary);
+  color: var(--color-text-primary);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.font-serif-heading {
+  font-family: 'Great Vibes', cursive;
+}
+
+.font-orbitron {
+  font-family: 'Orbitron', sans-serif;
+}
+
+.gold-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--color-accent-gold) 20%, var(--color-accent-gold) 80%, transparent);
+  opacity: 0.3;
+}
+
+.text-gold-glow {
+  color: var(--color-accent-gold);
+}
+
+.btn-primary {
+  background-color: transparent;
+  border: 1px solid var(--color-accent-gold);
+  color: var(--color-text-primary);
+  transition: all 0.3s ease;
+}
+.btn-primary:hover {
+  background-color: rgba(184, 156, 74, 0.08);
+  border-color: var(--color-accent-gold);
+  box-shadow: 0 0 20px rgba(184, 156, 74, 0.1);
+}
+
+.panel-hover {
+  transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.panel-hover:hover {
+  border-color: rgba(184, 156, 74, 0.4);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 30px rgba(184, 156, 74, 0.06);
+}
+
+::selection {
+  background-color: rgba(184, 156, 74, 0.2);
+  color: var(--color-text-primary);
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #000000;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-accent-gold-dim);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto !important;
+  }
+  *,
+  ::before,
+  ::after {
+    transition-property: opacity, background-color, color, border-color !important;
+    transform: none !important;
+    animation-duration: 0.01ms !important;
+  }
 }
 
 h1,

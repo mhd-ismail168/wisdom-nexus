@@ -13,26 +13,30 @@ export default function CollegesPage() {
     const colleges = collegesData;
 
     return (
-        <div className="min-h-screen bg-[--color-bg-light]">
+        <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.4 }}
+            className="min-h-screen bg-[var(--color-bg-primary)]"
+        >
             {/* Hero Section */}
-            <section className="relative w-full min-h-[50vh] md:min-h-[60vh] flex items-center bg-[--color-bg-page] mt-20 overflow-hidden">
-                {/* Background Image shifted left */}
-                <div
-                    className="absolute inset-0 z-0 bg-no-repeat bg-cover bg-[position:center_top] md:bg-[position:left_center] w-full"
-                    style={{ backgroundImage: "url('/university_header.jpg')" }}
-                >
-                </div>
-
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10 flex justify-end">
-                    {/* Emptied hero overlay container as requested */}
+            <section className="relative w-full pt-32 pb-20 md:pb-28 bg-[var(--color-bg-section)] border-b border-[var(--color-border)]">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                    <p className="text-[var(--color-accent-gold)] tracking-[0.3em] uppercase text-xs mb-4">Curated Network</p>
+                    <h1 className="font-serif-heading text-3xl sm:text-3xl md:text-4xl text-gold-glow tracking-wide">
+                        Academic Institutions
+                    </h1>
+                    <p className="text-[var(--color-text-muted)] mt-4 max-w-lg mx-auto text-sm leading-relaxed">
+                        Explore our verified network of elite academic institutions across India.
+                    </p>
                 </div>
             </section>
 
             <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
                 {/* Filters */}
-                <div className="glass p-6 rounded-2xl mb-10 flex flex-col md:flex-row gap-4 items-center justify-between">
+                <div className="border border-[var(--color-border)] bg-[var(--color-bg-section)] p-6 mb-10 flex flex-col md:flex-row gap-4 items-center justify-between">
                     <div className="flex gap-4 w-full md:w-auto">
-                        <select className="bg-white/5 border border-gray-200 text-gray-700 rounded-lg px-4 py-2 w-full md:w-48 outline-none focus:ring-2 focus:ring-[--color-accent-cyan]">
+                        <select className="bg-[var(--color-bg-primary)] border border-[var(--color-border)] text-[var(--color-text-secondary)] px-4 py-2.5 w-full md:w-48 outline-none focus:border-[var(--color-accent-gold)] transition-colors text-sm">
                             <option value="">Filter by Location</option>
                             <option value="Bengaluru">Bengaluru</option>
                             <option value="Mangaluru">Mangaluru</option>
@@ -41,120 +45,127 @@ export default function CollegesPage() {
                             <option value="Kalaburagi">Kalaburagi</option>
                             <option value="Dharwad">Dharwad</option>
                         </select>
-                        <select className="bg-white/5 border border-gray-200 text-gray-700 rounded-lg px-4 py-2 w-full md:w-48 outline-none focus:ring-2 focus:ring-[--color-accent-cyan]">
+                        <select className="bg-[var(--color-bg-primary)] border border-[var(--color-border)] text-[var(--color-text-secondary)] px-4 py-2.5 w-full md:w-48 outline-none focus:border-[var(--color-accent-gold)] transition-colors text-sm">
                             <option value="">Course</option>
                             <option value="Eng">Engineering</option>
                             <option value="Med">Medical</option>
                         </select>
-                        <select className="bg-white/5 border border-gray-200 text-gray-700 rounded-lg px-4 py-2 w-full md:w-48 outline-none focus:ring-2 focus:ring-[--color-accent-cyan]">
+                        <select className="bg-[var(--color-bg-primary)] border border-[var(--color-border)] text-[var(--color-text-secondary)] px-4 py-2.5 w-full md:w-48 outline-none focus:border-[var(--color-accent-gold)] transition-colors text-sm">
                             <option value="">Budget</option>
                             <option value="low">&lt; 2 Lakhs/yr</option>
                             <option value="med">2 - 5 Lakhs/yr</option>
                         </select>
                     </div>
-                    <button className="bg-[--color-btn-primary] text-[#111] font-bold px-6 py-2 rounded-lg hover:bg-[--color-btn-hover] hover:shadow-lg transition-all border border-transparent w-full md:w-auto">Search</button>
+                    <button className="btn-primary px-6 py-2.5 text-xs tracking-[0.15em] uppercase w-full md:w-auto">Search</button>
                 </div>
 
                 {/* College Cards Grid */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
                     {colleges.slice(0, visibleCount).map((college) => (
-                        <motion.div
-                            key={college.id} layout
-                            className="glass !bg-white rounded-3xl overflow-hidden shadow-lg border border-gray-100 relative group cursor-pointer hover:shadow-[0_0_15px_rgba(127,90,240,0.15)] transition-all duration-300"
-                            onClick={() => setExpandedId(expandedId === college.id ? null : college.id)}
+                        <div
+                            key={college.id}
+                            className={`panel-hover bg-[var(--color-bg-section)] overflow-hidden border cursor-pointer ${expandedId === college.id ? 'border-[var(--color-accent-gold)]/30' : 'border-[var(--color-border)]'}`}
+                            onClick={() => {
+                                setExpandedId(expandedId !== college.id ? college.id : null);
+                            }}
                         >
-                            <div className="h-48 bg-white relative overflow-hidden flex items-center justify-center border-b border-gray-50">
+                            <div className="h-44 bg-[var(--color-surface)] relative overflow-hidden flex items-center justify-center border-b border-[var(--color-border)]">
                                 <div className="absolute top-4 left-4 z-10">
-                                    <span className="bg-gradient-to-r from-[--color-accent-violet] to-[--color-accent-cyan] text-white px-3 py-1 rounded-full text-xs font-bold shadow-md">
+                                    <span className="bg-[var(--color-bg-primary)] border border-[var(--color-border)] text-[var(--color-accent-gold)] px-3 py-1 text-[10px] tracking-[0.15em] uppercase">
                                         {college.tag}
                                     </span>
                                 </div>
                                 {college.logoUrl ? (
-                                    <Image src={college.logoUrl} alt={`${college.name} logo`} fill className="object-contain p-8 group-hover:scale-105 transition-transform duration-500" sizes="(max-width: 768px) 100vw, 500px" loading="lazy" />
+                                    <Image src={college.logoUrl} alt={`${college.name} logo`} fill className="object-contain p-8 transition-transform duration-700 group-hover:scale-105" sizes="(max-width: 768px) 100vw, 500px" loading="lazy" />
                                 ) : (
-                                    <div className="text-gray-300 font-bold text-3xl">{college.logo}</div>
+                                    <div className="text-[var(--color-text-muted)] font-serif-heading text-3xl">{college.logo}</div>
                                 )}
                             </div>
 
-                            <div className="p-6 relative">
-                                <h3 className="text-2xl font-bold text-[--color-primary-base] mb-2 font-[family-name:var(--font-heading)]">{college.name}</h3>
+                            <div className="p-6 md:p-8">
+                                <h3 className="text-lg font-medium text-[var(--color-text-primary)] mb-2">{college.name}</h3>
 
-                                <div className="flex gap-4 mb-4 text-sm text-gray-600">
-                                    <span className="flex items-center gap-1"><MapPin size={14} /> {college.location}, {college.state}</span>
-                                    <span className="flex items-center gap-1 text-[--color-accent-violet] font-medium"><Star size={14} /> {college.placement}</span>
+                                <div className="flex gap-4 mb-4 text-sm text-[var(--color-text-muted)]">
+                                    <span className="flex items-center gap-1"><MapPin size={14} className="text-[var(--color-accent-gold)]" /> {college.location}, {college.state}</span>
+                                    <span className="flex items-center gap-1 text-[var(--color-accent-gold)]"><Star size={14} strokeWidth={2} /> {college.placement}</span>
                                 </div>
 
-                                <motion.div
-                                    initial={false}
-                                    animate={{ height: expandedId === college.id ? "auto" : 0, opacity: expandedId === college.id ? 1 : 0 }}
-                                    transition={{ duration: 0.3, ease: "easeInOut" }}
-                                    className="overflow-hidden"
-                                >
-                                    <div className="pt-4 border-t border-gray-100 mt-4">
-                                        <p className="text-gray-600 text-sm leading-relaxed mb-6 italic border-l-2 border-[--color-accent-violet] pl-3">
-                                            {college.description}
-                                        </p>
-                                        <div className="grid grid-cols-2 gap-4">
-                                            <div className="flex items-start gap-2">
-                                                <BookOpen size={18} className="text-[--color-accent-violet] mt-0.5" />
-                                                <div>
-                                                    <p className="text-xs text-gray-500 font-medium">Courses</p>
-                                                    <p className="text-sm font-semibold">{college.course}</p>
-                                                </div>
-                                            </div>
-                                            <div className="flex items-start gap-2">
-                                                <IndianRupee size={18} className="text-[--color-accent-violet] mt-0.5" />
-                                                <div>
-                                                    <p className="text-xs text-gray-500 font-medium">Fee Range</p>
-                                                    <p className="text-sm font-semibold">{college.fee}</p>
-                                                </div>
-                                            </div>
-                                            <div className="flex items-start gap-2">
-                                                <Building size={18} className="text-[--color-accent-violet] mt-0.5" />
-                                                <div>
-                                                    <p className="text-xs text-gray-500 font-medium">Hostel</p>
-                                                    <p className="text-sm font-semibold">{college.hostel}</p>
-                                                </div>
-                                            </div>
+                                <AnimatePresence>
+                                    {expandedId === college.id && (
+                                        <motion.div
+                                            initial={{ height: 0, opacity: 0 }}
+                                            animate={{ height: "auto", opacity: 1 }}
+                                            exit={{ height: 0, opacity: 0 }}
+                                            transition={{ height: { duration: 0.4,  ease: [0.25, 0.1, 0.25, 1] }, opacity: { duration: 0.3 } }}
+                                            className="overflow-hidden"
+                                        >
+                                            <div className="pt-4 border-t border-[var(--color-border)] mt-4">
+                                                <p className="text-[var(--color-text-muted)] text-sm leading-relaxed mb-6 border-l border-[var(--color-accent-gold)] pl-4 italic">
+                                                    {college.description}
+                                                </p>
+                                                <div className="grid grid-cols-2 gap-6">
+                                                    <div className="flex items-start gap-3">
+                                                        <BookOpen size={16} className="text-[var(--color-accent-gold)] mt-0.5" />
+                                                        <div>
+                                                            <p className="text-[10px] text-[var(--color-text-muted)] uppercase tracking-[0.15em] mb-0.5">Courses</p>
+                                                            <p className="text-sm text-[var(--color-text-primary)]">{college.course}</p>
+                                                        </div>
+                                                    </div>
+                                                    <div className="flex items-start gap-3">
+                                                        <IndianRupee size={16} className="text-[var(--color-accent-gold)] mt-0.5" />
+                                                        <div>
+                                                            <p className="text-[10px] text-[var(--color-text-muted)] uppercase tracking-[0.15em] mb-0.5">Fee Range</p>
+                                                            <p className="text-sm text-[var(--color-text-primary)]">{college.fee}</p>
+                                                        </div>
+                                                    </div>
+                                                    <div className="flex items-start gap-3">
+                                                        <Building size={16} className="text-[var(--color-accent-gold)] mt-0.5" />
+                                                        <div>
+                                                            <p className="text-[10px] text-[var(--color-text-muted)] uppercase tracking-[0.15em] mb-0.5">Hostel</p>
+                                                            <p className="text-sm text-[var(--color-text-primary)]">{college.hostel}</p>
+                                                        </div>
+                                                    </div>
 
-                                            <div className="col-span-2 flex gap-3 mt-4">
-                                                <button className="flex-1 bg-[--color-btn-primary] text-[#111] py-3 rounded-lg font-bold hover:bg-[--color-btn-hover] shadow-lg hover:shadow-xl transition-all border border-transparent">
-                                                    Apply Now
-                                                </button>
-                                                <button className="flex-1 bg-white text-gray-800 hover:bg-gray-50 hover:text-[--color-btn-primary] py-3 rounded-lg font-bold transition-all border-2 border-gray-200 hover:border-[--color-btn-primary] shadow-sm">
-                                                    Download Brochure
-                                                </button>
+                                                    <div className="col-span-2 flex flex-col sm:flex-row gap-3 mt-4">
+                                                        <button className="flex-1 btn-primary py-3 text-xs tracking-[0.15em] uppercase text-center">
+                                                            Apply Now
+                                                        </button>
+                                                        <button className="flex-1 border border-[var(--color-border)] text-[var(--color-text-secondary)] py-3 text-xs tracking-[0.15em] uppercase hover:border-[var(--color-text-muted)] transition-colors">
+                                                            Download Brochure
+                                                        </button>
+                                                    </div>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </div>
-                                </motion.div>
+                                        </motion.div>
+                                    )}
+                                </AnimatePresence>
 
                                 {expandedId !== college.id && (
-                                    <div className="mt-4 flex justify-center text-gray-400 group-hover:text-[--color-accent-cyan] transition-colors">
-                                        <ChevronDown size={24} />
+                                    <div className="mt-4 flex justify-center text-[var(--color-text-muted)]">
+                                        <ChevronDown size={20} />
                                     </div>
                                 )}
                                 {expandedId === college.id && (
-                                    <div className="mt-4 flex justify-center text-[--color-accent-cyan] transition-colors">
-                                        <ChevronDown size={24} className="rotate-180 transition-transform" />
+                                    <div className="mt-4 flex justify-center text-[var(--color-accent-gold)]">
+                                        <ChevronDown size={20} className="rotate-180 transition-transform duration-300" />
                                     </div>
                                 )}
                             </div>
-                        </motion.div>
+                        </div>
                     ))}
                 </div>
 
                 {visibleCount < colleges.length && (
-                    <div className="mt-16 flex justify-center relative z-10">
+                    <div className="mt-16 flex justify-center">
                         <button
                             onClick={() => setVisibleCount(prev => prev + 10)}
-                            className="bg-[--color-btn-primary] text-[#111] px-8 py-3 rounded-xl font-bold hover:bg-[--color-btn-hover] hover:-translate-y-1 transition-all shadow-lg flex items-center justify-center gap-2"
+                            className="btn-primary px-8 py-3 text-xs tracking-[0.15em] uppercase"
                         >
-                            Load More Colleges
+                            Load More Institutions
                         </button>
                     </div>
                 )}
             </section>
-        </div>
+        </motion.div>
     );
 }

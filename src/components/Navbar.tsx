@@ -1,102 +1,109 @@
 "use client";
 
+import { useRouter, usePathname } from "next/navigation";
+import { useCallback, useEffect, useState, useRef } from "react";
+import {
+  Home,
+  GraduationCap,
+  Globe,
+  BrainCircuit,
+  Info,
+  Mail,
+} from "lucide-react";
+import { ExpandableTabs } from "@/components/ui/expandable-tabs";
+import { motion, useScroll, useMotionValueEvent } from "motion/react";
 import Link from "next/link";
-import { useState, useEffect } from "react";
-import { usePathname } from "next/navigation";
-import { Menu, X } from "lucide-react";
-import { motion, AnimatePresence } from "motion/react";
+
+const navItems = [
+  { href: "/", title: "Home", icon: Home },
+  { href: "/colleges", title: "Institutions", icon: GraduationCap },
+  { href: "/study-abroad", title: "Global Strategy", icon: Globe },
+  { type: "separator" as const },
+  { href: "/dmit", title: "Aptitude Mapping", icon: BrainCircuit },
+  { href: "/about", title: "About", icon: Info },
+  { href: "/contact", title: "Contact", icon: Mail },
+];
+
+// Build the tabs array for ExpandableTabs (strip href)
+const tabs = navItems.map((item) => {
+  if ("type" in item && item.type === "separator") {
+    return { type: "separator" as const };
+  }
+  return { title: item.title!, icon: item.icon! };
+});
+
+// Map from tab *clickable* index → href
+const clickableItems = navItems.filter(
+  (item) => !("type" in item && item.type === "separator")
+);
+
+function hrefFromTabIndex(tabIndex: number): string | null {
+  // tabIndex is the index in the full tabs array (including separators)
+  let clickableCount = 0;
+  for (let i = 0; i <= tabIndex; i++) {
+    const t = navItems[i];
+    if ("type" in t && t.type === "separator") continue;
+    if (i === tabIndex) return (t as { href: string }).href;
+    clickableCount++;
+  }
+  return null;
+}
+
+function getActiveTabIndex(pathname: string): number | null {
+  for (let i = 0; i < navItems.length; i++) {
+    const item = navItems[i];
+    if ("type" in item && item.type === "separator") continue;
+    const href = (item as { href: string }).href;
+    if (href === "/" && pathname === "/") return i;
+    if (href !== "/" && pathname.startsWith(href)) return i;
+  }
+  return null;
+}
 
 export default function Navbar() {
-  const [isOpen, setIsOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
+  const router = useRouter();
   const pathname = usePathname();
-  const isActive = (path: string) => pathname === path || (path !== '/' && pathname.startsWith(path));
+  const [isScrolled, setIsScrolled] = useState(false);
+  const { scrollY } = useScroll();
 
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 100) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
-    };
+  useMotionValueEvent(scrollY, "change", (latest) => {
+    setIsScrolled(latest > 20);
+  });
 
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  const handleChange = useCallback(
+    (index: number | null) => {
+      if (index === null) return;
+      const href = hrefFromTabIndex(index);
+      if (href) router.push(href);
+    },
+    [router]
+  );
+
+  const activeTabIndex = getActiveTabIndex(pathname);
 
   return (
-    <nav className={`fixed w-full z-50 bg-[--color-bg-page]/90 backdrop-blur-md border-b border-gray-200 transition-transform duration-300 ${isScrolled ? '-translate-y-full' : 'translate-y-0'}`}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-20 relative z-50">
-          <div className="flex-shrink-0 flex items-center gap-2">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M4 12C4 7.58172 7.58172 4 12 4V12H4Z" fill="#111111" />
-              <path d="M4 12H12V20C7.58172 20 4 16.4183 4 12Z" fill="#2D7A73" />
-            </svg>
-            <Link href="/" className="text-2xl font-black tracking-tight text-[--color-text-dark]">
-              Edu<span className="text-[#2aa5ae]">Learn</span>
-            </Link>
-          </div>
-          <div className="hidden md:flex space-x-8 items-center">
-            <Link href="/" className={`transition-colors font-bold text-sm ${isActive("/") ? "text-[#2aa5ae]" : "text-[--color-text-gray] hover:text-[#2aa5ae]"}`}>Home</Link>
-            <Link href="/colleges" className={`transition-colors font-bold text-sm ${isActive("/colleges") ? "text-[#2aa5ae]" : "text-[--color-text-gray] hover:text-[#2aa5ae]"}`}>Colleges</Link>
-            <Link href="/study-abroad" className={`transition-colors font-bold text-sm ${isActive("/study-abroad") ? "text-[#2aa5ae]" : "text-[--color-text-gray] hover:text-[#2aa5ae]"}`}>Study Abroad</Link>
-            <Link href="/dmit" className={`transition-colors font-bold text-sm ${isActive("/dmit") ? "text-[#2aa5ae]" : "text-[--color-text-gray] hover:text-[#2aa5ae]"}`}>DMIT Assessment</Link>
-            <Link href="/about" className={`transition-colors font-bold text-sm ${isActive("/about") ? "text-[#2aa5ae]" : "text-[--color-text-gray] hover:text-[#2aa5ae]"}`}>About Us</Link>
-            <Link href="/contact" className={`transition-colors font-bold text-sm ${isActive("/contact") ? "text-[#2aa5ae]" : "text-[--color-text-gray] hover:text-[#2aa5ae]"}`}>Contact</Link>
-          </div>
+    <motion.header
+      initial={{ opacity: 0, y: -10 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
+      className="fixed top-0 left-0 right-0 z-50 flex items-center justify-center pointer-events-none"
+    >
+      <nav className="flex items-center justify-center h-16 md:h-20 gap-6 pointer-events-auto">
+        {/* Logo */}
+        <Link href="/" className="shrink-0">
+          <span className="font-orbitron text-lg md:text-xl font-bold tracking-[0.15em] text-gold-glow">
+            WISDOM
+          </span>
+        </Link>
 
-          <div className="md:hidden flex items-center">
-            <button onClick={() => setIsOpen(!isOpen)} className="text-[--color-text-gray] hover:text-[#2aa5ae] transition-colors p-2 -mr-2">
-              <AnimatePresence mode="wait">
-                {isOpen ? (
-                  <motion.div key="close" initial={{ rotate: -90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: 90, opacity: 0 }} transition={{ duration: 0.2 }}>
-                    <X size={28} />
-                  </motion.div>
-                ) : (
-                  <motion.div key="menu" initial={{ rotate: 90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: -90, opacity: 0 }} transition={{ duration: 0.2 }}>
-                    <Menu size={28} />
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </button>
-          </div>
-        </div>
-      </div>
-
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "100vh" }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.3, ease: "easeInOut" }}
-            className="md:hidden bg-white/95 backdrop-blur-xl absolute w-full left-0 top-0 pt-24 pb-8 flex flex-col items-center shadow-2xl overflow-hidden z-40"
-          >
-            <div className="flex flex-col items-center space-y-8 mt-10">
-              <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }}>
-                <Link href="/" onClick={() => setIsOpen(false)} className={`text-2xl font-extrabold tracking-wide ${isActive("/") ? "text-[#2aa5ae]" : "text-[--color-text-gray] hover:text-[#2aa5ae]"}`}>Home</Link>
-              </motion.div>
-              <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.15 }}>
-                <Link href="/colleges" onClick={() => setIsOpen(false)} className={`text-2xl font-extrabold tracking-wide ${isActive("/colleges") ? "text-[#2aa5ae]" : "text-[--color-text-gray] hover:text-[#2aa5ae]"}`}>Colleges</Link>
-              </motion.div>
-              <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }}>
-                <Link href="/study-abroad" onClick={() => setIsOpen(false)} className={`text-2xl font-extrabold tracking-wide ${isActive("/study-abroad") ? "text-[#2aa5ae]" : "text-[--color-text-gray] hover:text-[#2aa5ae]"}`}>Study Abroad</Link>
-              </motion.div>
-              <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.25 }}>
-                <Link href="/dmit" onClick={() => setIsOpen(false)} className={`text-2xl font-extrabold tracking-wide ${isActive("/dmit") ? "text-[#2aa5ae]" : "text-[--color-text-gray] hover:text-[#2aa5ae]"}`}>DMIT Assessment</Link>
-              </motion.div>
-              <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }}>
-                <Link href="/about" onClick={() => setIsOpen(false)} className={`text-2xl font-extrabold tracking-wide ${isActive("/about") ? "text-[#2aa5ae]" : "text-[--color-text-gray] hover:text-[#2aa5ae]"}`}>About Us</Link>
-              </motion.div>
-              <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.35 }}>
-                <Link href="/contact" onClick={() => setIsOpen(false)} className={`text-2xl font-extrabold tracking-wide ${isActive("/contact") ? "text-[#2aa5ae]" : "text-[--color-text-gray] hover:text-[#2aa5ae]"}`}>Contact</Link>
-              </motion.div>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </nav>
+        {/* Icon Nav — dynamic island */}
+        <ExpandableTabs
+          tabs={tabs}
+          activeColor="text-[var(--color-accent-gold)]"
+          activeIndex={activeTabIndex}
+          onChange={handleChange}
+        />
+      </nav>
+    </motion.header>
   );
 }

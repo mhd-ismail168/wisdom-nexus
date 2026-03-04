@@ -1,25 +1,18 @@
 import type { Metadata } from "next";
-import { Montserrat, Manrope } from "next/font/google";
+import { Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
-import BottomNavContainer from "@/components/BottomNavContainer";
+import { FooterSection } from "@/components/ui/footer-section";
 
-const montserrat = Montserrat({
-  weight: ['400', '500', '600', '700', '800', '900'],
+const inter = Inter({
+  weight: ['300', '400', '500', '600', '700'],
   subsets: ["latin"],
-  variable: '--font-heading',
-});
-
-const manrope = Manrope({
-  weight: ['400', '500', '600', '700', '800'],
-  variable: "--font-body",
-  subsets: ["latin"],
+  variable: '--font-body',
 });
 
 export const metadata: Metadata = {
-  title: "Wisdom Consultancy | Top South Indian Universities Admission",
-  description: "Expert Admission Guidance. Career Clarity. Trusted Counseling for South Indian Universities.",
+  title: "Wisdom Nexus | Elite Admission Architects",
+  description: "Strategic admission guidance for elite academic institutions. Career clarity through precision counseling.",
 };
 
 export default function RootLayout({
@@ -29,15 +22,19 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="scroll-smooth">
+      <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+                <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Great+Vibes&display=swap" rel="stylesheet" />
+      </head>
       <body
-        className={`${montserrat.variable} ${manrope.variable} text-gray-900 bg-[var(--color-bg-light)] antialiased min-h-screen flex flex-col font-[family-name:var(--font-body)] font-medium`}
+        className={`${inter.variable} bg-[var(--color-bg-primary)] text-[var(--color-text-primary)] antialiased min-h-screen flex flex-col font-[family-name:var(--font-body)] font-normal tracking-wide`}
       >
         <Navbar />
         <main className="flex-grow">
           {children}
         </main>
-        <Footer />
-        <BottomNavContainer />
+        <FooterSection />
       </body>
     </html>
   );

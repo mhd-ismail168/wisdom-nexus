@@ -55,7 +55,7 @@ const FloatingDockDesktop = ({
                 }
             }}
             className={cn(
-                "mx-auto flex h-[4.5rem] md:h-[6rem] items-end gap-2 sm:gap-3 md:gap-5 rounded-full bg-white/20 backdrop-blur-xl px-4 md:px-6 pb-3 md:pb-4 shadow-[0_8px_32px_rgba(0,0,0,0.15)] border border-white/30 overflow-visible",
+                "mx-auto flex h-[4.5rem] md:h-[6rem] items-end gap-2 sm:gap-3 md:gap-5 rounded-full bg-[var(--color-surface)]/80 backdrop-blur-xl px-4 md:px-6 pb-3 md:pb-4 shadow-[0_8px_32px_rgba(0,0,0,0.4)] border border-[var(--color-border)] overflow-visible",
                 className,
             )}
         >
@@ -135,7 +135,7 @@ function IconContainer({
                         setHovered(false);
                     }
                 }}
-                className={`relative flex aspect-square items-center justify-center rounded-full bg-white/30 backdrop-blur-md border shadow-[0_4px_12px_rgba(0,0,0,0.1)] transition-colors ${isActive ? "border-[#2aa5ae] bg-white/60 box-shadow-[0_0_15px_#2aa5ae] ring-2 ring-[#2aa5ae]/60" : "border-white/40 hover:bg-white/50"}`}
+                className={`relative flex aspect-square items-center justify-center rounded-full bg-[var(--color-surface)]/60 backdrop-blur-md border shadow-[0_4px_12px_rgba(0,0,0,0.2)] transition-colors ${isActive ? "border-[var(--color-accent-gold)] bg-[var(--color-accent-gold)]/10 ring-2 ring-[var(--color-accent-gold)]/40" : "border-[var(--color-border)] hover:bg-[var(--color-surface)]"}`}
             >
                 <AnimatePresence>
                     {hovered && (
@@ -143,7 +143,7 @@ function IconContainer({
                             initial={{ opacity: 0, y: 10, x: "-50%" }}
                             animate={{ opacity: 1, y: 0, x: "-50%" }}
                             exit={{ opacity: 0, y: 2, x: "-50%" }}
-                            className="absolute -top-14 left-1/2 w-fit rounded-xl border border-white/40 bg-white/70 backdrop-blur-md px-4 py-1.5 text-sm font-semibold whitespace-pre text-neutral-800 shadow-[0_8px_16px_rgba(0,0,0,0.1)] shrink-0 z-50 whitespace-nowrap"
+                            className="absolute -top-14 left-1/2 w-fit rounded-lg border border-[var(--color-border)] bg-[var(--color-surface)]/90 backdrop-blur-md px-4 py-1.5 text-sm font-medium whitespace-pre text-[var(--color-text-primary)] shadow-[0_8px_16px_rgba(0,0,0,0.3)] shrink-0 z-50 whitespace-nowrap"
                         >
                             {title}
                         </motion.div>
