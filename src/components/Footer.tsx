@@ -8,8 +8,8 @@ export default function Footer() {
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-8 border-b border-[var(--color-border)] pb-16">
                     {/* Brand Section */}
                     <div className="lg:col-span-4 flex flex-col space-y-6">
-                        <Link href="/" className="font-serif-heading text-xl tracking-[0.1em] text-[var(--color-text-primary)] inline-flex items-center gap-1">
-                            WISDOM<span className="text-[var(--color-accent-gold)]">N</span>
+                        <Link href="/" className="font-orbitron text-xl font-bold tracking-[0.15em] text-gold-glow inline-flex items-center">
+                            WISDOM
                         </Link>
                         <p className="text-[var(--color-text-muted)] leading-relaxed max-w-sm text-sm">
                             Empowering students to navigate their future with certainty. We provide end-to-end guidance for domestic and international university admissions.

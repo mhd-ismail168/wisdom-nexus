@@ -23,7 +23,7 @@ export default function CollegesPage() {
             <section className="relative w-full pt-32 pb-20 md:pb-28 bg-[var(--color-bg-section)] border-b border-[var(--color-border)]">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
                     <p className="text-[var(--color-accent-gold)] tracking-[0.3em] uppercase text-xs mb-4">Curated Network</p>
-                    <h1 className="font-serif-heading text-3xl sm:text-3xl md:text-4xl text-gold-glow tracking-wide">
+                    <h1 className="font-bungee text-3xl sm:text-3xl md:text-4xl text-gold-glow tracking-wide">
                         Academic Institutions
                     </h1>
                     <p className="text-[var(--color-text-muted)] mt-4 max-w-lg mx-auto text-sm leading-relaxed">
@@ -78,7 +78,7 @@ export default function CollegesPage() {
                                 {college.logoUrl ? (
                                     <Image src={college.logoUrl} alt={`${college.name} logo`} fill className="object-contain p-8 transition-transform duration-700 group-hover:scale-105" sizes="(max-width: 768px) 100vw, 500px" loading="lazy" />
                                 ) : (
-                                    <div className="text-[var(--color-text-muted)] font-serif-heading text-3xl">{college.logo}</div>
+                                    <div className="text-[var(--color-text-muted)] font-bungee text-3xl">{college.logo}</div>
                                 )}
                             </div>
 

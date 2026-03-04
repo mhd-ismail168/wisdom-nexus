@@ -83,7 +83,7 @@ export default function Home() {
                 <span className="font-orbitron text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-[0.04em] text-gold-glow block">
                   WISDOM
                 </span>
-                <span className="font-serif-heading text-[var(--color-text-secondary)] text-3xl sm:text-4xl md:text-5xl lg:text-6xl block mt-2">
+                <span className="font-serif-heading text-[var(--color-text-secondary)] text-5xl sm:text-6xl md:text-7xl lg:text-8xl block mt-2">
                   Nexus
                 </span>
               </h1>
@@ -148,7 +148,7 @@ export default function Home() {
           >
             <div>
               <p className="text-[var(--color-accent-gold)] tracking-[0.3em] uppercase text-xs mb-4">Curated Network</p>
-              <h2 className="font-serif-heading text-2xl sm:text-3xl md:text-4xl text-gold-glow tracking-wide">
+              <h2 className="font-serif-heading text-4xl sm:text-5xl md:text-6xl text-gold-glow tracking-wide">
                 Top Institutes
               </h2>
               <p className="text-[var(--color-text-muted)] mt-4 max-w-lg text-sm leading-relaxed">
@@ -247,7 +247,7 @@ export default function Home() {
             className="mb-16"
           >
             <p className="text-[var(--color-accent-gold)] tracking-[0.3em] uppercase text-xs mb-4">Our Pathways</p>
-            <h2 className="font-serif-heading text-2xl sm:text-3xl md:text-4xl text-gold-glow tracking-wide">
+            <h2 className="font-serif-heading text-4xl sm:text-5xl md:text-6xl text-gold-glow tracking-wide">
               Four Pillars of Precision
             </h2>
             <p className="text-[var(--color-text-muted)] mt-4 max-w-xl text-sm leading-relaxed">
@@ -286,7 +286,7 @@ export default function Home() {
                           <panel.icon size={18} className="text-[var(--color-accent-gold)]" />
                         </div>
                         <div className="space-y-3">
-                          <h3 className="font-serif-heading text-xl sm:text-2xl text-[var(--color-text-primary)] tracking-wide leading-tight">
+                          <h3 className="font-serif-heading text-3xl sm:text-4xl text-[var(--color-text-primary)] tracking-wide leading-tight">
                             {panel.title}
                           </h3>
                           <p className="text-[var(--color-text-muted)] leading-relaxed text-sm">
@@ -317,7 +317,7 @@ export default function Home() {
             className="mb-16"
           >
             <p className="text-[var(--color-accent-gold)] tracking-[0.3em] uppercase text-xs mb-4">Global Destinations</p>
-            <h2 className="font-serif-heading text-2xl sm:text-3xl md:text-4xl text-gold-glow tracking-wide">
+            <h2 className="font-serif-heading text-4xl sm:text-5xl md:text-6xl text-gold-glow tracking-wide">
               Where Will You Study?
             </h2>
             <p className="text-[var(--color-text-muted)] mt-4 max-w-xl text-sm leading-relaxed">
@@ -368,7 +368,7 @@ export default function Home() {
             className="mb-20"
           >
             <p className="text-[var(--color-accent-gold)] tracking-[0.3em] uppercase text-xs mb-4">Why Wisdom Nexus</p>
-            <h2 className="font-serif-heading text-2xl sm:text-3xl md:text-4xl text-gold-glow tracking-wide max-w-3xl">
+            <h2 className="font-serif-heading text-4xl sm:text-5xl md:text-6xl text-gold-glow tracking-wide max-w-3xl">
               Built on Trust. Driven by Outcomes.
             </h2>
             <p className="text-[var(--color-text-muted)] mt-4 max-w-2xl text-sm leading-relaxed">
@@ -392,7 +392,7 @@ export default function Home() {
                 transition={{ duration: 0.5, delay: i * 0.08 }}
                 className="border border-[var(--color-border)] bg-[var(--color-bg-primary)] p-6 md:p-8 text-center"
               >
-                <p className="font-serif-heading text-3xl md:text-4xl text-[var(--color-text-primary)] mb-1">{stat.num}</p>
+                <p className="font-serif-heading text-4xl md:text-5xl text-[var(--color-text-primary)] mb-1">{stat.num}</p>
                 <p className="text-[var(--color-accent-gold)] tracking-[0.15em] uppercase text-[10px] md:text-xs">{stat.label}</p>
               </motion.div>
             ))}
@@ -441,7 +441,7 @@ export default function Home() {
             className="mb-12"
           >
             <p className="text-[var(--color-accent-gold)] tracking-[0.3em] uppercase text-xs mb-4">Success Stories</p>
-            <h2 className="font-serif-heading text-2xl sm:text-3xl md:text-4xl text-gold-glow tracking-wide">
+            <h2 className="font-serif-heading text-4xl sm:text-5xl md:text-6xl text-gold-glow tracking-wide">
               Hear From Our Families
             </h2>
             <p className="text-[var(--color-text-muted)] mt-4 max-w-lg text-sm leading-relaxed">
@@ -466,7 +466,7 @@ export default function Home() {
             transition={{ duration: 0.8, ease: smoothEase }}
           >
             <p className="text-[var(--color-accent-gold)] tracking-[0.3em] uppercase text-xs mb-6">Take the First Step</p>
-            <h2 className="font-serif-heading text-2xl sm:text-3xl md:text-4xl text-gold-glow tracking-wide leading-tight">
+            <h2 className="font-serif-heading text-4xl sm:text-5xl md:text-6xl text-gold-glow tracking-wide leading-tight">
               Your Future Deserves a Strategy, Not a Guess
             </h2>
             <p className="text-[var(--color-text-muted)] mt-6 max-w-lg text-sm leading-relaxed">

@@ -64,8 +64,8 @@ export function FooterSection() {
 				<div className="grid w-full gap-12 lg:grid-cols-12 lg:gap-16">
 					{/* Brand column */}
 					<AnimatedContainer className="lg:col-span-4 space-y-6">
-						<Link href="/" className="font-serif-heading text-2xl tracking-[0.1em] text-[var(--color-text-primary)] inline-flex items-center gap-1">
-							WISDOM<span className="text-[var(--color-accent-gold)]">N</span>
+						<Link href="/" className="font-orbitron text-xl font-bold tracking-[0.15em] text-gold-glow inline-flex items-center">
+							WISDOM
 						</Link>
 						<p className="text-[var(--color-footer-text)] text-sm leading-relaxed max-w-sm">
 							Empowering students to navigate their future with certainty. End-to-end guidance for domestic and international university admissions.

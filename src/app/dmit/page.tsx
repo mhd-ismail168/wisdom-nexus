@@ -52,7 +52,7 @@ export default function DmitPage() {
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.6, delay: 0.1 }}
-                            className="font-serif-heading text-3xl sm:text-3xl md:text-4xl text-gold-glow tracking-wide mb-2"
+                            className="font-bungee text-3xl sm:text-3xl md:text-4xl text-gold-glow tracking-wide mb-2"
                         >
                             DMIT Analysis
                         </motion.h1>
@@ -99,7 +99,7 @@ export default function DmitPage() {
                         >
                             <div className="flex items-center gap-3 mb-6">
                                 <Fingerprint size={24} className="text-[var(--color-accent-gold)]" />
-                                <h2 className="text-xl font-serif-heading text-gold-glow tracking-wide">What is DMIT?</h2>
+                                <h2 className="text-xl font-bungee text-gold-glow tracking-wide">What is DMIT?</h2>
                             </div>
                             <p className="text-[var(--color-text-muted)] text-sm leading-relaxed mb-6">
                                 <strong className="text-[var(--color-text-secondary)]">Dermatoglyphics Multiple Intelligence Test (DMIT)</strong> is a truly scientific study of fingerprint patterns. It helps in understanding an individual's potential & personality type.
@@ -123,7 +123,7 @@ export default function DmitPage() {
                         >
                             <div className="flex items-center gap-3 mb-6">
                                 <Brain size={24} className="text-[var(--color-accent-gold)]" />
-                                <h2 className="text-xl font-serif-heading text-gold-glow tracking-wide">Psychometric Test</h2>
+                                <h2 className="text-xl font-bungee text-gold-glow tracking-wide">Psychometric Test</h2>
                             </div>
                             <p className="text-[var(--color-text-muted)] text-sm leading-relaxed mb-6">
                                 <strong className="text-[var(--color-text-secondary)]">Psychometric profiling</strong> scientifically measures current cognitive abilities, personality traits, and situational behaviors through self-reported questionnaires.
@@ -146,7 +146,7 @@ export default function DmitPage() {
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
                     <div className="flex flex-col md:flex-row items-center justify-center gap-6">
                         <Award size={40} className="text-[var(--color-accent-gold)]" />
-                        <h2 className="text-xl md:text-2xl font-serif-heading text-gold-glow tracking-wide">
+                        <h2 className="text-xl md:text-2xl font-bungee text-gold-glow tracking-wide">
                             India&apos;s Top
                             <span className="text-[var(--color-text-muted)] px-3">|</span>
                             Kerala&apos;s 1st DMIT Lab
@@ -159,7 +159,7 @@ export default function DmitPage() {
             <section className="relative bg-[var(--color-bg-primary)]">
                 <div className="text-center pt-24 pb-8 px-4">
                     <p className="text-[var(--color-accent-gold)] tracking-[0.3em] uppercase text-xs mb-4">Methodology</p>
-                    <h2 className="text-2xl font-serif-heading text-gold-glow tracking-wide mb-4">
+                    <h2 className="text-2xl font-bungee text-gold-glow tracking-wide mb-4">
                         DMIT <span className="text-[var(--color-text-muted)]">vs</span> Psychometric
                     </h2>
                     <div className="gold-divider mx-auto mb-6"></div>
@@ -174,7 +174,7 @@ export default function DmitPage() {
                                     <div className="w-12 h-12 rounded-full bg-[var(--color-accent-gold)]/10 border border-[var(--color-accent-gold)]/20 flex items-center justify-center">
                                         <Fingerprint size={24} className="text-[var(--color-accent-gold)]" />
                                     </div>
-                                    <h3 className="text-3xl font-serif-heading text-[var(--color-accent-gold)] tracking-wide">DMIT</h3>
+                                    <h3 className="text-3xl font-bungee text-[var(--color-accent-gold)] tracking-wide">DMIT</h3>
                                 </div>
                                 <p className="text-[var(--color-text-secondary)] text-sm leading-relaxed">
                                     Dermatoglyphics Multiple Intelligence Test — a biometric analysis of fingerprint patterns that reveals
@@ -209,7 +209,7 @@ export default function DmitPage() {
                                     <div className="w-12 h-12 rounded-full bg-[var(--color-text-secondary)]/10 border border-[var(--color-text-secondary)]/20 flex items-center justify-center">
                                         <Brain size={24} className="text-[var(--color-text-secondary)]" />
                                     </div>
-                                    <h3 className="text-3xl font-serif-heading text-[var(--color-text-primary)] tracking-wide">Psychometric</h3>
+                                    <h3 className="text-3xl font-bungee text-[var(--color-text-primary)] tracking-wide">Psychometric</h3>
                                 </div>
                                 <p className="text-[var(--color-text-muted)] text-sm leading-relaxed">
                                     Self-reported questionnaire that measures current cognitive abilities, personality traits,
@@ -245,7 +245,7 @@ export default function DmitPage() {
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="text-center mb-20">
                         <p className="text-[var(--color-accent-gold)] tracking-[0.3em] uppercase text-xs mb-4">Process</p>
-                        <h2 className="text-2xl font-serif-heading text-gold-glow tracking-wide mb-4">How it Works</h2>
+                        <h2 className="text-2xl font-bungee text-gold-glow tracking-wide mb-4">How it Works</h2>
                         <div className="gold-divider mx-auto"></div>
                     </div>
 
@@ -295,7 +295,7 @@ export default function DmitPage() {
 
                         {/* Text Content */}
                         <div className="w-full md:w-[60%] text-center md:text-left">
-                            <h2 className="text-2xl md:text-3xl font-serif-heading text-gold-glow tracking-wide mb-6 leading-tight">
+                            <h2 className="text-2xl md:text-3xl font-bungee text-gold-glow tracking-wide mb-6 leading-tight">
                                 Wanna know more <br /> about these?
                             </h2>
                             <p className="text-[var(--color-text-muted)] text-sm mb-10 max-w-lg leading-relaxed">

@@ -34,7 +34,7 @@ export default function StudyAbroadPage() {
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.6, delay: 0.1 }}
-                            className="font-serif-heading text-3xl sm:text-3xl md:text-4xl text-gold-glow tracking-wide mb-4"
+                            className="font-bungee text-3xl sm:text-3xl md:text-4xl text-gold-glow tracking-wide mb-4"
                         >
                             Study Abroad
                         </motion.h1>

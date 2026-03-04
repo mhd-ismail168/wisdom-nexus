@@ -17,7 +17,7 @@ export default function AboutPage() {
                     <p className="text-[var(--color-accent-gold)] tracking-[0.3em] uppercase text-xs mb-6">About Us</p>
                     <motion.h1
                         initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}
-                        className="text-3xl md:text-4xl font-serif-heading text-gold-glow tracking-wide mb-6 leading-tight"
+                        className="text-3xl md:text-4xl font-bungee text-gold-glow tracking-wide mb-6 leading-tight"
                     >
                         Wisdom Nexus Foundation
                     </motion.h1>
@@ -39,7 +39,7 @@ export default function AboutPage() {
                             <BookOpen size={18} className="text-[var(--color-accent-gold)]" />
                             <span className="text-[var(--color-accent-gold)] text-[10px] tracking-[0.3em] uppercase">Who We Are</span>
                         </div>
-                        <h2 className="text-2xl font-serif-heading text-gold-glow tracking-wide mb-6 leading-tight">
+                        <h2 className="text-2xl font-bungee text-gold-glow tracking-wide mb-6 leading-tight">
                             Who We Are
                         </h2>
                         <div className="gold-divider mb-8"></div>
@@ -58,7 +58,7 @@ export default function AboutPage() {
                                 <Eye size={24} className="text-[var(--color-accent-gold)]" />
                             </div>
                             <div>
-                                <h3 className="text-lg font-serif-heading text-[var(--color-text-primary)] mb-3 tracking-wide">Our Vision</h3>
+                                <h3 className="text-lg font-bungee text-[var(--color-text-primary)] mb-3 tracking-wide">Our Vision</h3>
                                 <p className="text-[var(--color-text-muted)] leading-relaxed text-sm">A globally connected society where every young person has equitable access to higher education, meaningful career opportunities, and the capacity to contribute positively to social and economic development.</p>
                             </div>
                         </motion.div>
@@ -68,7 +68,7 @@ export default function AboutPage() {
                                 <Target size={24} className="text-[var(--color-accent-gold)]" />
                             </div>
                             <div>
-                                <h3 className="text-lg font-serif-heading text-[var(--color-text-primary)] mb-3 tracking-wide">Our Mission</h3>
+                                <h3 className="text-lg font-bungee text-[var(--color-text-primary)] mb-3 tracking-wide">Our Mission</h3>
                                 <p className="text-[var(--color-text-muted)] leading-relaxed text-sm mb-4">To strengthen higher education ecosystems and empower youth by:</p>
                                 <ul className="space-y-3">
                                     {[
@@ -94,7 +94,7 @@ export default function AboutPage() {
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="text-center mb-16">
                         <p className="text-[var(--color-accent-gold)] tracking-[0.3em] uppercase text-xs mb-4">Core Initiatives</p>
-                        <h2 className="text-2xl font-serif-heading text-gold-glow tracking-wide mb-4">
+                        <h2 className="text-2xl font-bungee text-gold-glow tracking-wide mb-4">
                             Strategic Focus Areas
                         </h2>
                         <div className="gold-divider mx-auto"></div>
@@ -105,7 +105,7 @@ export default function AboutPage() {
                         <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="p-8 bg-[var(--color-bg-primary)] border border-[var(--color-border)] hover:border-[var(--color-accent-gold)]/20 transition-colors">
                             <div className="flex items-center gap-4 mb-6">
                                 <GraduationCap size={20} className="text-[var(--color-accent-gold)]" />
-                                <h3 className="text-lg font-serif-heading text-[var(--color-text-primary)] tracking-wide">Higher Education Access</h3>
+                                <h3 className="text-lg font-bungee text-[var(--color-text-primary)] tracking-wide">Higher Education Access</h3>
                             </div>
                             <p className="text-[var(--color-text-muted)] text-sm mb-4">We facilitate inclusive access to higher education through:</p>
                             <ul className="space-y-2">
@@ -119,7 +119,7 @@ export default function AboutPage() {
                         <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 }} className="p-8 bg-[var(--color-bg-primary)] border border-[var(--color-border)] hover:border-[var(--color-accent-gold)]/20 transition-colors">
                             <div className="flex items-center gap-4 mb-6">
                                 <Briefcase size={20} className="text-[var(--color-accent-gold)]" />
-                                <h3 className="text-lg font-serif-heading text-[var(--color-text-primary)] tracking-wide">Career Readiness</h3>
+                                <h3 className="text-lg font-bungee text-[var(--color-text-primary)] tracking-wide">Career Readiness</h3>
                             </div>
                             <p className="text-[var(--color-text-muted)] text-sm mb-4">We support youth transition from education to employment by:</p>
                             <ul className="space-y-2">
@@ -133,7 +133,7 @@ export default function AboutPage() {
                         <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.2 }} className="p-8 bg-[var(--color-bg-primary)] border border-[var(--color-border)] hover:border-[var(--color-accent-gold)]/20 transition-colors">
                             <div className="flex items-center gap-4 mb-6">
                                 <Users size={20} className="text-[var(--color-accent-gold)]" />
-                                <h3 className="text-lg font-serif-heading text-[var(--color-text-primary)] tracking-wide">Youth Leadership</h3>
+                                <h3 className="text-lg font-bungee text-[var(--color-text-primary)] tracking-wide">Youth Leadership</h3>
                             </div>
                             <p className="text-[var(--color-text-muted)] text-sm mb-4">We invest in the holistic development of young people through:</p>
                             <ul className="space-y-2">
@@ -147,7 +147,7 @@ export default function AboutPage() {
                         <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.3 }} className="p-8 bg-[var(--color-bg-primary)] border border-[var(--color-border)] hover:border-[var(--color-accent-gold)]/20 transition-colors">
                             <div className="flex items-center gap-4 mb-6">
                                 <Globe size={20} className="text-[var(--color-accent-gold)]" />
-                                <h3 className="text-lg font-serif-heading text-[var(--color-text-primary)] tracking-wide">Global Engagement</h3>
+                                <h3 className="text-lg font-bungee text-[var(--color-text-primary)] tracking-wide">Global Engagement</h3>
                             </div>
                             <p className="text-[var(--color-text-muted)] text-sm mb-4">We promote international collaboration by:</p>
                             <ul className="space-y-2">
@@ -167,7 +167,7 @@ export default function AboutPage() {
 
                         {/* Target Beneficiaries */}
                         <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
-                            <h2 className="text-xl font-serif-heading text-gold-glow mb-8 tracking-wide flex items-center gap-3">
+                            <h2 className="text-xl font-bungee text-gold-glow mb-8 tracking-wide flex items-center gap-3">
                                 <Building2 className="text-[var(--color-accent-gold)]" size={24} /> Target Beneficiaries
                             </h2>
                             <div className="space-y-4">
@@ -189,7 +189,7 @@ export default function AboutPage() {
 
                         {/* Values & Principles */}
                         <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 }}>
-                            <h2 className="text-xl font-serif-heading text-gold-glow mb-8 tracking-wide flex items-center gap-3">
+                            <h2 className="text-xl font-bungee text-gold-glow mb-8 tracking-wide flex items-center gap-3">
                                 <ShieldCheck className="text-[var(--color-accent-gold)]" size={24} /> Values & Principles
                             </h2>
                             <div className="space-y-4">
@@ -220,7 +220,7 @@ export default function AboutPage() {
             <section className="py-20 bg-[var(--color-bg-section)] border-y border-[var(--color-border)]">
                 <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
                     <Globe size={32} className="text-[var(--color-accent-gold)] mx-auto mb-6" />
-                    <h2 className="text-xl md:text-2xl font-serif-heading text-gold-glow tracking-wide mb-6">Our Global Commitment</h2>
+                    <h2 className="text-xl md:text-2xl font-bungee text-gold-glow tracking-wide mb-6">Our Global Commitment</h2>
                     <p className="text-[var(--color-text-muted)] text-sm leading-relaxed max-w-3xl mx-auto">
                         Wisdom Nexus Foundation operates with a global perspective, collaborating with governments, academic institutions, industry partners, and civil society organizations to design scalable solutions that strengthen education-to-employment pathways and empower the next generation of leaders.
                     </p>
@@ -235,7 +235,7 @@ export default function AboutPage() {
                             <HeartHandshake size={18} className="text-[var(--color-accent-gold)]" />
                             <span className="text-[var(--color-accent-gold)] text-[10px] tracking-[0.3em] uppercase">Leadership</span>
                         </div>
-                        <h2 className="text-2xl font-serif-heading text-gold-glow tracking-wide">
+                        <h2 className="text-2xl font-bungee text-gold-glow tracking-wide">
                             Message from the Founder
                         </h2>
                     </div>
@@ -247,7 +247,7 @@ export default function AboutPage() {
                             </div>
 
                             <div>
-                                <h3 className="text-2xl md:text-3xl font-serif-heading text-[var(--color-text-primary)] mb-2 tracking-wide">Dr. R. Karthikeyan</h3>
+                                <h3 className="text-2xl md:text-3xl font-bungee text-[var(--color-text-primary)] mb-2 tracking-wide">Dr. R. Karthikeyan</h3>
                                 <p className="text-[var(--color-accent-gold)] text-[10px] tracking-[0.2em] uppercase mb-8">Founder & Chief Consultant</p>
                                 <p className="text-[var(--color-text-muted)] text-sm md:text-base leading-relaxed italic mb-8 border-l border-[var(--color-accent-gold)] pl-6 py-2">
                                     &ldquo;Education is the single most powerful tool to change lives. At Wisdom, we don&apos;t just fill forms; we sculpt futures. Every student is unique, and our goal is to find the environment where they will thrive.&rdquo;

@@ -77,7 +77,7 @@ const HoverExpandGallery = ({
                       transition={{ duration: 0.3, delay: 0.1 }}
                       className="absolute bottom-0 left-0 right-0 z-20 p-5"
                     >
-                      <p className="font-serif-heading text-lg tracking-wide text-white">
+                      <p className="font-serif-heading text-3xl tracking-wide text-white">
                         {image.label}
                       </p>
                       {image.href && (

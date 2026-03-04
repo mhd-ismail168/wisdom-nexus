@@ -8,7 +8,7 @@ export default function ContactPage() {
                 <div className="bg-[var(--color-bg-section)] border border-[var(--color-border)] p-12 md:p-20 text-center relative overflow-hidden">
                     <div className="relative z-10 max-w-2xl mx-auto">
                         <p className="text-[var(--color-accent-gold)] tracking-[0.3em] uppercase text-xs mb-4">Get In Touch</p>
-                        <h1 className="text-3xl md:text-4xl font-serif-heading text-gold-glow tracking-wide mb-6 leading-tight">
+                        <h1 className="text-3xl md:text-4xl font-bungee text-gold-glow tracking-wide mb-6 leading-tight">
                             Let&apos;s <span className="text-[var(--color-accent-gold)]">Connect</span>
                         </h1>
                         <p className="text-[var(--color-text-muted)] text-sm">
@@ -24,7 +24,7 @@ export default function ContactPage() {
 
                     {/* Contact Info Cards */}
                     <div className="space-y-6">
-                        <h2 className="text-xl font-serif-heading text-gold-glow tracking-wide mb-8">Reach Out To Us</h2>
+                        <h2 className="text-xl font-bungee text-gold-glow tracking-wide mb-8">Reach Out To Us</h2>
 
                         <div className="bg-[var(--color-bg-section)] p-8 border border-[var(--color-border)] flex items-start gap-6 hover:border-[var(--color-accent-gold)]/20 transition-colors">
                             <div className="w-12 h-12 bg-[var(--color-surface)] border border-[var(--color-border)] flex items-center justify-center shrink-0">
@@ -64,7 +64,7 @@ export default function ContactPage() {
 
                     {/* Form Side */}
                     <div className="bg-[var(--color-bg-section)] p-10 md:p-12 border border-[var(--color-border)] relative">
-                        <h2 className="text-xl font-serif-heading text-gold-glow tracking-wide mb-8">Send a Message</h2>
+                        <h2 className="text-xl font-bungee text-gold-glow tracking-wide mb-8">Send a Message</h2>
 
                         <form className="space-y-6">
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
