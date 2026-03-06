@@ -64,7 +64,7 @@ export function ExpandableTabs({
   return (
     <div
       className={cn(
-        "flex items-center gap-0.5 rounded-2xl bg-white/[0.04] backdrop-blur-xl border border-white/[0.06] px-1.5 py-1 shadow-[0_2px_20px_rgba(0,0,0,0.4)]",
+        "flex items-center gap-0.5 rounded-2xl bg-white/[0.04] backdrop-blur-xl border border-white/[0.06] px-1 sm:px-1.5 py-0.5 sm:py-1 shadow-[0_2px_20px_rgba(0,0,0,0.4)]",
         className
       )}
     >
@@ -88,7 +88,7 @@ export function ExpandableTabs({
             onClick={() => onChange?.(index)}
             transition={transition}
             className={cn(
-              "relative flex items-center justify-center rounded-xl px-3 py-2 text-sm font-medium transition-colors duration-300",
+              "relative flex items-center justify-center rounded-xl px-2 sm:px-3 py-1.5 sm:py-2 text-sm font-medium transition-colors duration-300",
               isActive
                 ? cn(activeColor)
                 : isHovered

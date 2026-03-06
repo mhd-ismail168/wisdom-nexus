@@ -250,15 +250,39 @@ export const collegesData = rawColleges.map((c, i) => {
         78: "/logos-optimized/tumkur-univ.webp",
     };
 
+    // Derive structured filter fields
+    const parsedCourses = c.courses.split(',').map(s => s.trim());
+
+    // Classify ownership type
+    let ownershipType: 'Government' | 'Private' | 'Deemed' | 'State University' = 'Private';
+    if (c.ownership.includes('Government') || c.ownership.includes('Gov')) ownershipType = 'Government';
+    else if (c.ownership.includes('Deemed') || c.approval.includes('Deemed')) ownershipType = 'Deemed';
+
+    // Determine course categories
+    const courseCategories: string[] = [];
+    const courseLower = c.courses.toLowerCase();
+    if (courseLower.includes('mbbs') || courseLower.includes('md') || courseLower.includes('ms (') || courseLower.includes('nursing') || courseLower.includes('bpt') || courseLower.includes('bds') || courseLower.includes('mds') || courseLower.includes('pharmacy') || courseLower.includes('pharm')) courseCategories.push('Medical & Health');
+    if (courseLower.includes('b.e.') || courseLower.includes('b.tech') || courseLower.includes('m.tech') || courseLower.includes('cse') || courseLower.includes('ai') || courseLower.includes('mech') || courseLower.includes('robotics')) courseCategories.push('Engineering');
+    if (courseLower.includes('mba') || courseLower.includes('bba') || courseLower.includes('b.com') || courseLower.includes('m.com') || courseLower.includes('pgdm')) courseCategories.push('Business & Management');
+    if (courseLower.includes('ll.b') || courseLower.includes('ll.m') || courseLower.includes('law')) courseCategories.push('Law');
+    if (courseLower.includes('b.sc') || courseLower.includes('m.sc') || courseLower.includes('ph.d') || courseLower.includes('research')) courseCategories.push('Science & Research');
+    if (courseLower.includes('b.a.') || courseLower.includes('m.a.') || courseLower.includes('journalism') || courseLower.includes('media') || courseLower.includes('psychology')) courseCategories.push('Arts & Humanities');
+    if (courseLower.includes('agriculture') || courseLower.includes('agri') || courseLower.includes('hort') || courseLower.includes('vet') || courseLower.includes('dairy') || courseLower.includes('fish') || courseLower.includes('forest') || courseLower.includes('sericulture')) courseCategories.push('Agriculture & Veterinary');
+    if (courseLower.includes('b.des') || courseLower.includes('m.des') || courseLower.includes('fashion') || courseLower.includes('b.arch')) courseCategories.push('Design & Architecture');
+    if (courseCategories.length === 0) courseCategories.push('Other');
+
     return {
         id: i + 1,
         name: c.name,
         location: c.location,
         state: "Karnataka",
-        tag: c.ownership.includes("Government") ? "Top Institute" : "Premium",
+        tag: c.ownership.includes("Government") || c.ownership.includes("Gov") ? "Top Institute" : "Premium",
         image: imageMapping[i] || "https://via.placeholder.com/800x400",
         placement: "Excel in placements",
         course: c.courses,
+        parsedCourses,
+        courseCategories,
+        ownershipType,
         fee: "Refer to Official Site",
         hostel: "Available",
         logo: c.name.charAt(0).toUpperCase(),

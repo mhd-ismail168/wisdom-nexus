@@ -100,7 +100,7 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({
     <div
       onClick={() => handleMove(position)}
       className={cn(
-        "absolute left-1/2 top-1/2 cursor-pointer border-2 p-8 transition-all duration-500 ease-in-out",
+        "absolute left-1/2 top-1/2 cursor-pointer border-2 p-4 sm:p-6 md:p-8 transition-all duration-500 ease-in-out",
         isCenter
           ? "z-10 bg-[var(--color-accent-gold)] text-[var(--color-bg-primary)] border-[var(--color-accent-gold)]"
           : "z-0 bg-[var(--color-bg-section)] text-[var(--color-text-secondary)] border-[var(--color-border)] hover:border-[var(--color-accent-gold)]/30"
@@ -108,7 +108,7 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({
       style={{
         width: cardSize,
         height: cardSize,
-        clipPath: `polygon(50px 0%, calc(100% - 50px) 0%, 100% 50px, 100% 100%, calc(100% - 50px) 100%, 50px 100%, 0 100%, 0 0)`,
+        clipPath: cardSize < 260 ? `polygon(30px 0%, calc(100% - 30px) 0%, 100% 30px, 100% 100%, calc(100% - 30px) 100%, 30px 100%, 0 100%, 0 0)` : `polygon(50px 0%, calc(100% - 50px) 0%, 100% 50px, 100% 100%, calc(100% - 50px) 100%, 50px 100%, 0 100%, 0 0)`,
         transform: `
           translate(-50%, -50%)
           translateX(${(cardSize / 1.5) * position}px)
@@ -122,27 +122,27 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({
         className="absolute block origin-top-right rotate-45 bg-[var(--color-border)]"
         style={{
           right: -2,
-          top: 48,
-          width: SQRT_5000,
+          top: cardSize < 260 ? 28 : 48,
+          width: cardSize < 260 ? Math.sqrt(1800) : SQRT_5000,
           height: 2
         }}
       />
       <img
         src={testimonial.imgSrc}
         alt={`${testimonial.by.split(',')[0]}`}
-        className="mb-4 h-14 w-12 bg-[var(--color-surface)] object-cover object-top"
+        className="mb-2 sm:mb-4 h-10 w-9 sm:h-14 sm:w-12 bg-[var(--color-surface)] object-cover object-top"
         style={{
           boxShadow: "3px 3px 0px var(--color-bg-primary)"
         }}
       />
       <h3 className={cn(
-        "text-base sm:text-xl font-medium leading-relaxed",
+        "text-sm sm:text-base md:text-xl font-medium leading-relaxed line-clamp-5 sm:line-clamp-none",
         isCenter ? "text-[var(--color-bg-primary)]" : "text-[var(--color-text-primary)]"
       )}>
         &ldquo;{testimonial.testimonial}&rdquo;
       </h3>
       <p className={cn(
-        "absolute bottom-8 left-8 right-8 mt-2 text-sm italic",
+        "absolute bottom-4 sm:bottom-8 left-4 sm:left-8 right-4 sm:right-8 mt-2 text-xs sm:text-sm italic",
         isCenter ? "text-[var(--color-bg-primary)]/70" : "text-[var(--color-text-muted)]"
       )}>
         - {testimonial.by}
@@ -175,8 +175,14 @@ export const StaggerTestimonials: React.FC = () => {
 
   useEffect(() => {
     const updateSize = () => {
-      const { matches } = window.matchMedia("(min-width: 640px)");
-      setCardSize(matches ? 365 : 290);
+      const width = window.innerWidth;
+      if (width < 380) {
+        setCardSize(220);
+      } else if (width < 640) {
+        setCardSize(260);
+      } else {
+        setCardSize(365);
+      }
     };
 
     updateSize();
@@ -187,7 +193,7 @@ export const StaggerTestimonials: React.FC = () => {
   return (
     <div
       className="relative w-full overflow-hidden"
-      style={{ height: 600 }}
+      style={{ height: cardSize < 260 ? 420 : cardSize < 300 ? 480 : 600 }}
     >
       {testimonialsList.map((testimonial, index) => {
         const position = testimonialsList.length % 2
@@ -207,9 +213,7 @@ export const StaggerTestimonials: React.FC = () => {
         <button
           onClick={() => handleMove(-1)}
           className={cn(
-            "flex h-14 w-14 items-center justify-center text-2xl transition-colors",
-            "bg-[var(--color-bg-primary)] border-2 border-[var(--color-border)] text-[var(--color-text-secondary)]",
-            "hover:bg-[var(--color-accent-gold)] hover:text-[var(--color-bg-primary)] hover:border-[var(--color-accent-gold)]",
+            "btn-icon flex h-10 w-10 sm:h-14 sm:w-14 items-center justify-center text-xl sm:text-2xl",
             "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-accent-gold)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--color-bg-primary)]"
           )}
           aria-label="Previous testimonial"
@@ -219,9 +223,7 @@ export const StaggerTestimonials: React.FC = () => {
         <button
           onClick={() => handleMove(1)}
           className={cn(
-            "flex h-14 w-14 items-center justify-center text-2xl transition-colors",
-            "bg-[var(--color-bg-primary)] border-2 border-[var(--color-border)] text-[var(--color-text-secondary)]",
-            "hover:bg-[var(--color-accent-gold)] hover:text-[var(--color-bg-primary)] hover:border-[var(--color-accent-gold)]",
+            "btn-icon flex h-10 w-10 sm:h-14 sm:w-14 items-center justify-center text-xl sm:text-2xl",
             "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-accent-gold)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--color-bg-primary)]"
           )}
           aria-label="Next testimonial"

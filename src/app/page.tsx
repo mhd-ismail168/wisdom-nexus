@@ -4,12 +4,13 @@ import { motion } from "framer-motion";
 import { ArrowUpRight, GraduationCap, Globe, Brain, Briefcase, ShieldCheck, Users, Clock, Award } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { collegesData } from "@/data/colleges";
 import dynamic from "next/dynamic";
 import { StaggerTestimonials } from "@/components/ui/stagger-testimonials";
 import { MarkerDoodle } from "@/components/ui/marker-doodles";
 import { GlowingEffect } from "@/components/ui/glowing-effect";
 import { HoverExpandGallery } from "@/components/ui/expand-on-hover";
+import { BackgroundPaths } from "@/components/ui/background-paths";
+import { TopInstitutes } from "@/components/ui/top-institutes";
 
 const abroadPlaces = [
   { src: "https://images.unsplash.com/photo-1503614472-8c93d56e92ce?w=800", alt: "Canada landscape", label: "Canada", href: "/study-abroad/canada" },
@@ -35,7 +36,10 @@ export default function Home() {
     <div className="w-full bg-[var(--color-bg-primary)] overflow-clip">
 
       {/* ═══════════ SECTION 1: HERO ═══════════ */}
-      <section className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 py-24">
+      <section className="relative min-h-[100dvh] flex items-center justify-center px-4 sm:px-6 lg:px-8 py-20 sm:py-24">
+        {/* Sweeping line paths behind everything */}
+        <BackgroundPaths />
+
         {/* Subtle radial glow behind logo */}
         <div className="absolute inset-0 z-0 overflow-hidden">
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[radial-gradient(circle,rgba(184,156,74,0.08)_0%,transparent_70%)]" />
@@ -44,9 +48,8 @@ export default function Home() {
         <div className="relative z-10 flex flex-col items-center gap-8 max-w-4xl mx-auto">
           {/* Pixelated Logo */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.85 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1.2, ease: smoothEase }}
+            initial={{ opacity: 1 }}
+            animate={{ opacity: 1 }}
             className="flex-shrink-0"
           >
             <PixelatedCanvas
@@ -68,32 +71,60 @@ export default function Home() {
               jitterStrength={3}
               jitterSpeed={3}
               fadeOnLeave={true}
-              className="w-[280px] h-[280px] sm:w-[300px] sm:h-[300px] rounded-full"
+              entranceAnimation={true}
+              entranceDuration={2200}
+              className="w-[200px] h-[200px] xs:w-[240px] xs:h-[240px] sm:w-[280px] sm:h-[280px] md:w-[300px] md:h-[300px] rounded-full"
             />
           </motion.div>
 
           {/* Text Content */}
           <div className="text-center">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1.2, delay: 0.2, ease: smoothEase }}
-            >
+            <div>
               <h1 className="leading-[0.95]">
-                <span className="font-orbitron text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-[0.04em] text-gold-glow block">
-                  WISDOM
+                <span className="font-orbitron text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold tracking-[0.04em] text-gold-glow block">
+                  {"WISDOM".split("").map((letter, i) => (
+                    <motion.span
+                      key={`w-${i}`}
+                      initial={{ y: 60, opacity: 0, rotateX: -40 }}
+                      animate={{ y: 0, opacity: 1, rotateX: 0 }}
+                      transition={{
+                        delay: 0.3 + i * 0.07,
+                        type: "spring",
+                        stiffness: 120,
+                        damping: 20,
+                      }}
+                      className="inline-block"
+                    >
+                      {letter}
+                    </motion.span>
+                  ))}
                 </span>
-                <span className="font-serif-heading text-[var(--color-text-secondary)] text-5xl sm:text-6xl md:text-7xl lg:text-8xl block mt-2">
-                  Nexus
+                <span className="font-serif-heading text-[var(--color-text-secondary)] text-4xl sm:text-5xl md:text-6xl lg:text-8xl block mt-2">
+                  {"Nexus".split("").map((letter, i) => (
+                    <motion.span
+                      key={`n-${i}`}
+                      initial={{ y: 50, opacity: 0, filter: "blur(8px)" }}
+                      animate={{ y: 0, opacity: 1, filter: "blur(0px)" }}
+                      transition={{
+                        delay: 0.7 + i * 0.08,
+                        type: "spring",
+                        stiffness: 100,
+                        damping: 22,
+                      }}
+                      className="inline-block"
+                    >
+                      {letter}
+                    </motion.span>
+                  ))}
                 </span>
               </h1>
-            </motion.div>
+            </div>
 
             <motion.p
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 1, delay: 0.5 }}
-              className="mt-6 text-[var(--color-accent-gold)] tracking-[0.35em] uppercase text-xs sm:text-sm font-medium"
+              initial={{ opacity: 0, letterSpacing: "0.6em" }}
+              animate={{ opacity: 1, letterSpacing: "0.35em" }}
+              transition={{ duration: 1.4, delay: 1.2, ease: [0.22, 1, 0.36, 1] }}
+              className="mt-6 text-[var(--color-accent-gold)] uppercase text-xs sm:text-sm font-medium"
             >
               Elite Admission Architects
             </motion.p>
@@ -101,140 +132,29 @@ export default function Home() {
             <motion.div
               initial={{ scaleX: 0 }}
               animate={{ scaleX: 1 }}
-              transition={{ duration: 1, delay: 0.7 }}
+              transition={{ duration: 1, delay: 1.5 }}
               className="mx-auto mt-8 w-24 gold-divider"
             />
 
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1, delay: 0.9 }}
+              transition={{ duration: 1, delay: 1.7 }}
               className="mt-8 text-[var(--color-text-secondary)] text-base sm:text-lg max-w-xl mx-auto leading-relaxed font-light"
             >
               Strategic academic counsel for families who refuse to leave their future to chance. Every placement, deliberate. Every outcome, engineered.
             </motion.p>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1, delay: 1.1 }}
-              className="mt-10 flex flex-col sm:flex-row gap-4 justify-center"
-            >
-              <Link href="/colleges" className="btn-primary inline-flex items-center justify-center gap-3 px-8 py-3.5 text-sm tracking-[0.15em] uppercase">
-                Explore Institutions
-                <ArrowUpRight size={16} className="text-[var(--color-accent-gold)]" />
-              </Link>
-              <Link href="/contact" className="inline-flex items-center justify-center gap-2 px-8 py-3.5 text-sm tracking-[0.15em] uppercase text-[var(--color-text-muted)] hover:text-[var(--color-text-primary)] transition-colors">
-                Book Free Consultation
-              </Link>
-            </motion.div>
           </div>
         </div>
       </section>
 
       {/* ═══════════ SECTION 2: TOP INSTITUTES ═══════════ */}
-      <section className="relative py-28 md:py-36 bg-[var(--color-bg-section)]">
-        {/* Doodle decorations */}
-        <MarkerDoodle variant="circle" className="absolute top-16 right-8 w-24 h-24 hidden lg:block" delay={0.2} />
-        <MarkerDoodle variant="squiggle" className="absolute bottom-20 left-6 w-40 h-10 hidden lg:block" delay={0.5} />
-
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 0.8, ease: smoothEase }}
-            className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-6"
-          >
-            <div>
-              <p className="text-[var(--color-accent-gold)] tracking-[0.3em] uppercase text-xs mb-4">Curated Network</p>
-              <h2 className="font-serif-heading text-4xl sm:text-5xl md:text-6xl text-gold-glow tracking-wide">
-                Top Institutes
-              </h2>
-              <p className="text-[var(--color-text-muted)] mt-4 max-w-lg text-sm leading-relaxed">
-                Handpicked from 76+ verified institutions — each evaluated for academic credibility, placement track record, and infrastructure quality.
-              </p>
-            </div>
-            <Link href="/colleges" className="hidden md:inline-flex items-center gap-2 text-[var(--color-accent-gold)] text-xs tracking-[0.2em] uppercase hover:opacity-80 transition-opacity shrink-0">
-              Browse All <ArrowUpRight size={14} />
-            </Link>
-          </motion.div>
-
-          <div className="flex overflow-x-auto pb-8 -mx-4 px-4 sm:mx-0 sm:px-0 gap-5 snap-x [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
-            {collegesData.slice(0, 8).map((college, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.05 }}
-                className="min-w-[240px] md:min-w-[280px] snap-start"
-              >
-                <Link href="/colleges" className="block group relative h-[380px] overflow-hidden border border-[var(--color-border)] bg-[var(--color-bg-primary)]">
-                  {/* Background logo — centered, faded on all 4 sides via radial mask */}
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    {college.logoUrl ? (
-                      <Image
-                        src={college.logoUrl}
-                        alt={`${college.name} logo`}
-                        fill
-                        className="object-contain p-6 opacity-15 group-hover:opacity-25 group-hover:scale-110 transition-all duration-700 ease-out"
-                        sizes="280px"
-                        loading="lazy"
-                        style={{ mask: 'radial-gradient(ellipse 55% 55% at center, white 30%, transparent 80%)', WebkitMask: 'radial-gradient(ellipse 55% 55% at center, white 30%, transparent 80%)' }}
-                      />
-                    ) : (
-                      <span
-                        className="text-[var(--color-text-muted)] font-serif-heading text-[140px] leading-none opacity-[0.06] group-hover:opacity-[0.12] group-hover:scale-110 transition-all duration-700 select-none"
-                        style={{ mask: 'radial-gradient(ellipse 55% 55% at center, white 30%, transparent 80%)', WebkitMask: 'radial-gradient(ellipse 55% 55% at center, white 30%, transparent 80%)' }}
-                      >
-                        {college.logo}
-                      </span>
-                    )}
-                  </div>
-
-                  {/* Soft vignette overlay — no hard edges */}
-                  <div className="absolute inset-0 bg-[var(--color-bg-primary)]/40 group-hover:bg-[var(--color-bg-primary)]/30 transition-colors duration-500" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[var(--color-bg-primary)] via-transparent to-transparent" />
-
-                  {/* Tag badge */}
-                  <div className="absolute top-4 right-4 z-10 bg-[var(--color-bg-primary)]/80 backdrop-blur-sm border border-[var(--color-border)] px-3 py-1 text-[10px] tracking-[0.15em] uppercase text-[var(--color-accent-gold)]">
-                    {college.tag}
-                  </div>
-
-                  {/* Gold accent line — slides in from left on hover */}
-                  <div className="absolute bottom-0 left-0 h-[2px] w-0 group-hover:w-full bg-gradient-to-r from-[var(--color-accent-gold)] to-transparent transition-all duration-700 ease-out z-10" />
-
-                  {/* Content — anchored at bottom, slides up on hover */}
-                  <div className="absolute bottom-0 left-0 right-0 p-6 z-10 translate-y-2 group-hover:translate-y-0 transition-transform duration-500 ease-out">
-                    <h3 className="text-[var(--color-text-primary)] text-base font-medium leading-tight line-clamp-2 mb-1.5">
-                      {college.name}
-                    </h3>
-                    <p className="text-[var(--color-text-muted)] text-xs mb-4">
-                      {college.location}, {college.state}
-                    </p>
-
-                    {/* Explore row — fades in on hover */}
-                    <div className="flex items-center justify-between opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">
-                      <span className="text-[var(--color-accent-gold)] text-[11px] tracking-[0.2em] uppercase">Explore</span>
-                      <ArrowUpRight size={14} className="text-[var(--color-accent-gold)] -translate-x-2 group-hover:translate-x-0 transition-transform duration-500" />
-                    </div>
-                  </div>
-                </Link>
-              </motion.div>
-            ))}
-          </div>
-
-          <div className="mt-8 flex justify-center md:hidden">
-            <Link href="/colleges" className="inline-flex items-center gap-2 text-[var(--color-accent-gold)] text-xs tracking-[0.2em] uppercase">
-              Browse All Institutes <ArrowUpRight size={14} />
-            </Link>
-          </div>
-        </div>
+      <section className="bg-[var(--color-bg-section)]">
+        <TopInstitutes />
       </section>
 
       {/* ═══════════ SECTION 3: OUR PATHWAYS ═══════════ */}
-      <section className="relative py-28 md:py-40 px-4 sm:px-6 lg:px-8 bg-[var(--color-bg-primary)]">
+      <section className="relative py-16 sm:py-20 md:py-28 lg:py-40 px-4 sm:px-6 lg:px-8 bg-[var(--color-bg-primary)]">
         <MarkerDoodle variant="arrow" className="absolute top-24 left-10 w-32 h-16 hidden lg:block" delay={0.3} />
         <MarkerDoodle variant="star" className="absolute bottom-32 right-12 w-16 h-16 hidden lg:block" delay={0.6} />
 
@@ -255,7 +175,7 @@ export default function Home() {
             </p>
           </motion.div>
 
-          <ul className="grid grid-cols-1 grid-rows-none gap-4 md:grid-cols-12 md:grid-rows-2 lg:gap-5">
+          <ul className="grid grid-cols-1 gap-3 sm:gap-4 md:grid-cols-12 md:grid-rows-2 lg:gap-5">
             {[
               { title: "Institutional Admissions", desc: "Direct access to 76+ premier institutions. We handle seat matrices, quota analysis, and documentation — so you focus on academics.", href: "/colleges", icon: GraduationCap, area: "md:[grid-area:1/1/2/7]" },
               { title: "Global Education Strategy", desc: "University shortlisting, SOP crafting, visa documentation, and post-landing support across 12+ countries. Not just abroad — the right destination.", href: "/study-abroad", icon: Globe, area: "md:[grid-area:1/7/2/13]" },
@@ -268,10 +188,10 @@ export default function Home() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.2 }}
                 transition={{ duration: 0.7, ease: smoothEase, delay: i * 0.1 }}
-                className={`min-h-[16rem] list-none ${panel.area}`}
+                className={`min-h-[14rem] sm:min-h-[16rem] list-none ${panel.area}`}
               >
                 <Link href={panel.href} className="block h-full group">
-                  <div className="relative h-full rounded-[1.25rem] border-[0.75px] border-[var(--color-border)] p-2 md:rounded-[1.5rem] md:p-3">
+                  <div className="relative h-full rounded-[1rem] sm:rounded-[1.25rem] border-[0.75px] border-[var(--color-border)] p-1.5 sm:p-2 md:rounded-[1.5rem] md:p-3">
                     <GlowingEffect
                       spread={40}
                       glow={true}
@@ -280,13 +200,13 @@ export default function Home() {
                       inactiveZone={0.01}
                       borderWidth={3}
                     />
-                    <div className="relative flex h-full flex-col justify-between gap-6 overflow-hidden rounded-xl border-[0.75px] border-[var(--color-border)] bg-[var(--color-bg-section)] p-6 shadow-sm md:p-8">
+                    <div className="relative flex h-full flex-col justify-between gap-4 sm:gap-6 overflow-hidden rounded-xl border-[0.75px] border-[var(--color-border)] bg-[var(--color-bg-section)] p-4 sm:p-6 shadow-sm md:p-8">
                       <div className="relative flex flex-1 flex-col justify-between gap-4">
                         <div className="w-fit rounded-lg border-[0.75px] border-[var(--color-border)] bg-[var(--color-bg-primary)] p-2.5">
                           <panel.icon size={18} className="text-[var(--color-accent-gold)]" />
                         </div>
                         <div className="space-y-3">
-                          <h3 className="font-serif-heading text-3xl sm:text-4xl text-[var(--color-text-primary)] tracking-wide leading-tight">
+                          <h3 className="font-serif-heading text-2xl sm:text-3xl md:text-4xl text-[var(--color-text-primary)] tracking-wide leading-tight">
                             {panel.title}
                           </h3>
                           <p className="text-[var(--color-text-muted)] leading-relaxed text-sm">
@@ -307,14 +227,14 @@ export default function Home() {
       </section>
 
       {/* ═══════════ SECTION 3.5: STUDY ABROAD DESTINATIONS ═══════════ */}
-      <section className="relative py-28 md:py-40 px-4 sm:px-6 lg:px-8 bg-[var(--color-bg-section)]">
+      <section className="relative py-16 sm:py-20 md:py-28 lg:py-40 px-4 sm:px-6 lg:px-8 bg-[var(--color-bg-section)]">
         <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.3 }}
             transition={{ duration: 0.8, ease: smoothEase }}
-            className="mb-16"
+            className="mb-10 sm:mb-16"
           >
             <p className="text-[var(--color-accent-gold)] tracking-[0.3em] uppercase text-xs mb-4">Global Destinations</p>
             <h2 className="font-serif-heading text-4xl sm:text-5xl md:text-6xl text-gold-glow tracking-wide">
@@ -333,7 +253,7 @@ export default function Home() {
           {/* Mobile: horizontal scroll */}
           <div className="flex md:hidden gap-3 overflow-x-auto pb-4 -mx-4 px-4 snap-x snap-mandatory scrollbar-hide">
             {abroadPlaces.map((place, i) => (
-              <Link key={i} href={place.href || "/study-abroad"} className="relative flex-shrink-0 w-44 h-56 rounded-2xl overflow-hidden snap-start group">
+              <Link key={i} href={place.href || "/study-abroad"} className="relative flex-shrink-0 w-[40vw] max-w-[176px] h-48 sm:h-56 rounded-2xl overflow-hidden snap-start group">
                 <img src={place.src} alt={place.alt} className="h-full w-full object-cover" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
                 <div className="absolute bottom-0 left-0 right-0 p-3">
@@ -347,14 +267,14 @@ export default function Home() {
           <div className="mt-10 flex justify-center">
             <Link href="/study-abroad" className="btn-primary inline-flex items-center justify-center gap-3 px-8 py-3.5 text-sm tracking-[0.15em] uppercase">
               View All Destinations
-              <ArrowUpRight size={16} className="text-[var(--color-accent-gold)]" />
+              <ArrowUpRight size={16} />
             </Link>
           </div>
         </div>
       </section>
 
       {/* ═══════════ SECTION 4: WHY CHOOSE US ═══════════ */}
-      <section className="relative py-28 md:py-40 px-4 sm:px-6 lg:px-8 bg-[var(--color-bg-section)]">
+      <section className="relative py-16 sm:py-20 md:py-28 lg:py-40 px-4 sm:px-6 lg:px-8 bg-[var(--color-bg-section)]">
         <MarkerDoodle variant="loop" className="absolute top-20 right-16 w-36 h-20 hidden lg:block" delay={0.2} />
         <MarkerDoodle variant="underline" className="absolute bottom-24 left-12 w-44 h-8 hidden lg:block" delay={0.4} />
         <MarkerDoodle variant="spiral" className="absolute top-1/2 left-4 w-20 h-20 hidden xl:block" delay={0.7} />
@@ -365,7 +285,7 @@ export default function Home() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.8, ease: smoothEase }}
-            className="mb-20"
+            className="mb-12 sm:mb-16 md:mb-20"
           >
             <p className="text-[var(--color-accent-gold)] tracking-[0.3em] uppercase text-xs mb-4">Why Wisdom Nexus</p>
             <h2 className="font-serif-heading text-4xl sm:text-5xl md:text-6xl text-gold-glow tracking-wide max-w-3xl">
@@ -377,7 +297,7 @@ export default function Home() {
           </motion.div>
 
           {/* Stats row */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-16">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 mb-10 sm:mb-16">
             {[
               { num: "15,000+", label: "Students Placed" },
               { num: "76+", label: "Verified Institutions" },
@@ -390,16 +310,16 @@ export default function Home() {
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: i * 0.08 }}
-                className="border border-[var(--color-border)] bg-[var(--color-bg-primary)] p-6 md:p-8 text-center"
+                className="border border-[var(--color-border)] bg-[var(--color-bg-primary)] p-4 sm:p-6 md:p-8 text-center"
               >
-                <p className="font-serif-heading text-4xl md:text-5xl text-[var(--color-text-primary)] mb-1">{stat.num}</p>
-                <p className="text-[var(--color-accent-gold)] tracking-[0.15em] uppercase text-[10px] md:text-xs">{stat.label}</p>
+                <p className="font-serif-heading text-2xl sm:text-3xl md:text-5xl text-[var(--color-text-primary)] mb-1">{stat.num}</p>
+                <p className="text-[var(--color-accent-gold)] tracking-[0.1em] sm:tracking-[0.15em] uppercase text-[9px] sm:text-[10px] md:text-xs">{stat.label}</p>
               </motion.div>
             ))}
           </div>
 
           {/* Feature grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
             {[
               { icon: ShieldCheck, title: "Verified Partners Only", desc: "Every institution in our network is vetted for accreditation, placement records, and student satisfaction before we recommend it." },
               { icon: Users, title: "Dedicated Counselors", desc: "One family, one counselor. No rotating support desks — your advisor knows your child&apos;s file inside out." },
@@ -412,7 +332,7 @@ export default function Home() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: i * 0.1 }}
-                className="group relative border border-[var(--color-border)] bg-[var(--color-bg-primary)] p-8 md:p-10 transition-all duration-500 hover:border-[var(--color-accent-gold)]/20"
+                className="group relative border border-[var(--color-border)] bg-[var(--color-bg-primary)] p-6 sm:p-8 md:p-10 transition-all duration-500 hover:border-[var(--color-accent-gold)]/20"
               >
                 <div className="w-10 h-10 border border-[var(--color-border)] flex items-center justify-center mb-6 group-hover:border-[var(--color-accent-gold)]/30 group-hover:bg-[var(--color-accent-gold)]/5 transition-all duration-500">
                   <feature.icon size={18} className="text-[var(--color-accent-gold)]" />
@@ -428,7 +348,7 @@ export default function Home() {
       <div className="gold-divider max-w-3xl mx-auto" />
 
       {/* ═══════════ SECTION 5: TESTIMONIALS ═══════════ */}
-      <section className="relative py-28 md:py-36 px-4 sm:px-6 lg:px-8 bg-[var(--color-bg-primary)]">
+      <section className="relative py-16 sm:py-20 md:py-28 lg:py-36 px-4 sm:px-6 lg:px-8 bg-[var(--color-bg-primary)]">
         <MarkerDoodle variant="zigzag" className="absolute top-16 left-8 w-36 h-8 hidden lg:block" delay={0.3} />
         <MarkerDoodle variant="cross" className="absolute bottom-20 right-10 w-14 h-14 hidden lg:block" delay={0.5} />
 
@@ -454,7 +374,7 @@ export default function Home() {
       </section>
 
       {/* ═══════════ SECTION 6: CTA ═══════════ */}
-      <section className="relative py-28 md:py-40 px-4 sm:px-6 lg:px-8 bg-[var(--color-bg-section)]">
+      <section className="relative py-16 sm:py-20 md:py-28 lg:py-40 px-4 sm:px-6 lg:px-8 bg-[var(--color-bg-section)]">
         <MarkerDoodle variant="bracket" className="absolute top-1/2 -translate-y-1/2 left-8 w-10 h-32 hidden xl:block" delay={0.3} />
         <MarkerDoodle variant="bracket" className="absolute top-1/2 -translate-y-1/2 right-8 w-10 h-32 hidden xl:block rotate-180" delay={0.3} />
 
@@ -476,9 +396,9 @@ export default function Home() {
             <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
               <Link href="/contact" className="btn-primary inline-flex items-center justify-center gap-3 px-10 py-4 text-sm tracking-[0.15em] uppercase">
                 Schedule a Consultation
-                <ArrowUpRight size={16} className="text-[var(--color-accent-gold)]" />
+                <ArrowUpRight size={16} />
               </Link>
-              <Link href="/dmit" className="inline-flex items-center justify-center gap-2 px-10 py-4 text-sm tracking-[0.15em] uppercase text-[var(--color-text-muted)] border border-[var(--color-border)] hover:border-[var(--color-accent-gold)]/30 hover:text-[var(--color-text-primary)] transition-all">
+              <Link href="/dmit" className="btn-outline inline-flex items-center justify-center gap-2 px-10 py-4 text-sm tracking-[0.15em] uppercase">
                 Take Aptitude Test
               </Link>
             </div>

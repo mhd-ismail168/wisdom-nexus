@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { Globe } from "lucide-react";
 import CountrySection from "@/components/CountrySection";
+import BackgroundPaths from "@/components/ui/modern-background-paths";
 
 export default function StudyAbroadPage() {
     return (
@@ -13,7 +14,8 @@ export default function StudyAbroadPage() {
             className="min-h-screen bg-[var(--color-bg-primary)]"
         >
             {/* Hero Section */}
-            <section className="relative w-full pt-32 pb-20 md:pb-28 bg-[var(--color-bg-section)] border-b border-[var(--color-border)] overflow-hidden">
+            <section className="relative w-full pt-28 sm:pt-32 pb-16 sm:pb-20 md:pb-28 bg-[var(--color-bg-section)] border-b border-[var(--color-border)] overflow-hidden">
+                <BackgroundPaths />
                 {/* Subtle decorative globe */}
                 <div className="absolute top-1/2 right-0 -translate-y-1/2 translate-x-1/3 opacity-[0.04] pointer-events-none">
                     <Globe size={500} strokeWidth={0.5} />
@@ -34,7 +36,7 @@ export default function StudyAbroadPage() {
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.6, delay: 0.1 }}
-                            className="font-bungee text-3xl sm:text-3xl md:text-4xl text-gold-glow tracking-wide mb-4"
+                            className="font-bungee text-2xl sm:text-3xl md:text-4xl text-gold-glow tracking-wide mb-4"
                         >
                             Study Abroad
                         </motion.h1>
@@ -70,7 +72,7 @@ export default function StudyAbroadPage() {
             </section>
 
             {/* Country Cards Grid */}
-            <section className="mx-auto w-full py-20 relative z-30">
+            <section className="mx-auto w-full py-12 sm:py-16 md:py-20 relative z-30">
                 <CountrySection />
             </section>
         </motion.div>

@@ -54,7 +54,7 @@ export default function CountrySection() {
     };
 
     return (
-        <div className="w-full max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 space-y-16 pb-20 relative z-30">
+        <div className="w-full max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 space-y-8 sm:space-y-12 md:space-y-16 pb-12 sm:pb-16 md:pb-20 relative z-30">
             {studyAbroadCountries.map((country) => (
                 <div
                     key={country.id}
@@ -66,7 +66,7 @@ export default function CountrySection() {
                     {/* Collapsed/Header State */}
                     <div
                         onClick={(e) => toggleExpand(country.id, e)}
-                        className={`w-full p-8 md:p-10 flex flex-col md:flex-row gap-8 items-start md:items-center justify-between transition-colors duration-300 ${expandedId === country.id ? "border-b border-[var(--color-border)] bg-[var(--color-surface)]" : ""
+                        className={`w-full p-4 sm:p-6 md:p-8 lg:p-10 flex flex-col md:flex-row gap-4 sm:gap-6 md:gap-8 items-start md:items-center justify-between transition-colors duration-300 ${expandedId === country.id ? "border-b border-[var(--color-border)] bg-[var(--color-surface)]" : ""
                             }`}
                         style={{ cursor: expandedId === country.id ? "default" : "pointer" }}
                     >
@@ -88,14 +88,14 @@ export default function CountrySection() {
 
                         {/* Title & Tagline */}
                         <div className="flex-1 w-full">
-                            <div className="flex items-center gap-4 mb-2">
-                                <span className="text-4xl">{country.flag}</span>
-                                <h3 className="text-2xl md:text-3xl font-bungee text-[var(--color-text-primary)] tracking-wide">{country.name}</h3>
+                            <div className="flex items-center gap-3 sm:gap-4 mb-2">
+                                <span className="text-2xl sm:text-3xl md:text-4xl">{country.flag}</span>
+                                <h3 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bungee text-[var(--color-text-primary)] tracking-wide">{country.name}</h3>
                             </div>
                             <p className="text-sm text-[var(--color-accent-gold)] mt-2">{country.tagline}</p>
 
                             {/* Summary Tags */}
-                            <div className="flex flex-wrap items-center gap-x-6 gap-y-3 mt-6">
+                            <div className="flex flex-wrap items-center gap-x-3 sm:gap-x-6 gap-y-2 sm:gap-y-3 mt-4 sm:mt-6">
                                 <span className="flex items-center gap-2 text-xs text-[var(--color-text-muted)]">
                                     <DollarSign size={14} className="text-[var(--color-accent-gold)]" /> {country.tuition}
                                 </span>
@@ -129,13 +129,13 @@ export default function CountrySection() {
                                 transition={{ duration: 0.5, ease: [0.32, 0.72, 0, 1] }}
                                 className="overflow-hidden"
                             >
-                                <motion.div variants={contentStagger} initial="hidden" animate="visible" exit="hidden" className="p-8 md:p-12 space-y-16">
+                                <motion.div variants={contentStagger} initial="hidden" animate="visible" exit="hidden" className="p-4 sm:p-6 md:p-8 lg:p-12 space-y-10 sm:space-y-12 md:space-y-16">
 
                                     {/* 1 Hero Subsection */}
-                                    <motion.div variants={subsectionReveal} className="flex flex-col md:flex-row gap-8 lg:gap-12 items-start relative z-10">
+                                    <motion.div variants={subsectionReveal} className="flex flex-col md:flex-row gap-6 sm:gap-8 lg:gap-12 items-start relative z-10">
                                         <motion.div
                                             layoutId={`country-img-${country.id}`}
-                                            className="w-full md:w-1/2 lg:w-5/12 h-64 md:h-80 bg-[var(--color-surface)] shrink-0 overflow-hidden relative border border-[var(--color-border)]"
+                                            className="w-full md:w-1/2 lg:w-5/12 h-48 sm:h-56 md:h-72 lg:h-80 bg-[var(--color-surface)] shrink-0 overflow-hidden relative border border-[var(--color-border)]"
                                         >
                                             <Image
                                                 src={country.image}
@@ -147,7 +147,7 @@ export default function CountrySection() {
                                         </motion.div>
 
                                         <div className="flex-1 w-full pt-2">
-                                            <h2 className="text-3xl md:text-4xl font-bungee text-[var(--color-text-primary)] tracking-wide leading-tight mb-4">
+                                            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bungee text-[var(--color-text-primary)] tracking-wide leading-tight mb-3 sm:mb-4">
                                                 Study in <span className="text-[var(--color-accent-gold)]">{country.name}</span>
                                             </h2>
                                             <p className="text-base text-[var(--color-text-muted)] leading-relaxed">
@@ -158,10 +158,10 @@ export default function CountrySection() {
                                     </motion.div>
 
                                     {/* 2 & 5 Grid */}
-                                    <motion.div variants={subsectionReveal} className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 relative z-10">
+                                    <motion.div variants={subsectionReveal} className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-10 lg:gap-16 relative z-10">
                                         {/* Why Study */}
-                                        <div className="relative z-10 bg-[var(--color-surface)] p-8 border border-[var(--color-border)]">
-                                            <h3 className="flex items-center gap-3 text-xl font-bungee text-[var(--color-text-primary)] mb-6 tracking-wide">
+                                        <div className="relative z-10 bg-[var(--color-surface)] p-5 sm:p-6 md:p-8 border border-[var(--color-border)]">
+                                            <h3 className="flex items-center gap-3 text-base sm:text-lg md:text-xl font-bungee text-[var(--color-text-primary)] mb-4 sm:mb-6 tracking-wide">
                                                 <Sparkles size={20} className="text-[var(--color-accent-gold)]" /> Why {country.name}?
                                             </h3>
                                             <ul className="space-y-4">
@@ -176,10 +176,10 @@ export default function CountrySection() {
 
                                         {/* Tuition & Living */}
                                         <div className="relative z-10">
-                                            <h3 className="flex items-center gap-3 text-xl font-bungee text-[var(--color-text-primary)] mb-6 tracking-wide">
+                                            <h3 className="flex items-center gap-3 text-base sm:text-lg md:text-xl font-bungee text-[var(--color-text-primary)] mb-4 sm:mb-6 tracking-wide">
                                                 <DollarSign size={20} className="text-[var(--color-accent-gold)]" /> Financial Overview
                                             </h3>
-                                            <div className="flex flex-col gap-6 bg-[var(--color-surface)] p-6 sm:p-8 border border-[var(--color-border)] relative overflow-hidden">
+                                            <div className="flex flex-col gap-4 sm:gap-6 bg-[var(--color-surface)] p-4 sm:p-6 md:p-8 border border-[var(--color-border)] relative overflow-hidden">
                                                 <div className="relative z-10">
                                                     <span className="block text-[10px] text-[var(--color-accent-gold)] uppercase tracking-[0.2em] mb-1">Average Tuition</span>
                                                     <span className="text-xl font-bungee text-[var(--color-text-primary)] tracking-wide">{country.tuition}</span>
@@ -196,16 +196,16 @@ export default function CountrySection() {
                                     <motion.div variants={dividerReveal} className="w-full h-px bg-[var(--color-border)] origin-left"></motion.div>
 
                                     {/* 4 Top Universities & 3 Popular Courses Grid */}
-                                    <motion.div variants={subsectionReveal} className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 relative z-10">
+                                    <motion.div variants={subsectionReveal} className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-10 lg:gap-16 relative z-10">
                                         {/* Top Universities */}
                                         <div className="relative z-10">
-                                            <h3 className="flex items-center gap-3 text-xl font-bungee text-[var(--color-text-primary)] mb-8 tracking-wide pl-2">
+                                            <h3 className="flex items-center gap-3 text-base sm:text-lg md:text-xl font-bungee text-[var(--color-text-primary)] mb-6 sm:mb-8 tracking-wide pl-2">
                                                 <Building2 size={20} className="text-[var(--color-accent-gold)]" /> Top Universities
                                             </h3>
                                             <motion.div variants={tagStagger} initial="hidden" animate="visible" className="space-y-4">
                                                 {country.universities.map((uni, idx) => (
-                                                    <motion.div variants={universityReaveal} key={idx} className="flex items-start gap-5 group p-4 border border-transparent hover:border-[var(--color-border)] hover:bg-[var(--color-surface)] transition-all cursor-default">
-                                                        <div className="w-12 h-12 bg-[var(--color-surface)] border border-[var(--color-border)] flex items-center justify-center shrink-0 group-hover:border-[var(--color-accent-gold)]/30 transition-colors">
+                                                    <motion.div variants={universityReaveal} key={idx} className="flex items-start gap-3 sm:gap-5 group p-3 sm:p-4 border border-transparent hover:border-[var(--color-border)] hover:bg-[var(--color-surface)] transition-all cursor-default">
+                                                        <div className="w-10 h-10 sm:w-12 sm:h-12 bg-[var(--color-surface)] border border-[var(--color-border)] flex items-center justify-center shrink-0 group-hover:border-[var(--color-accent-gold)]/30 transition-colors">
                                                             <Landmark size={20} className="text-[var(--color-accent-gold)]" />
                                                         </div>
                                                         <div className="pt-0.5">
@@ -222,8 +222,8 @@ export default function CountrySection() {
 
                                         <div className="flex flex-col gap-10 relative z-10">
                                             {/* Popular Courses */}
-                                            <div className="bg-[var(--color-surface)] p-8 border border-[var(--color-border)]">
-                                                <h3 className="flex items-center gap-3 text-xl font-bungee text-[var(--color-text-primary)] mb-6 tracking-wide">
+                                            <div className="bg-[var(--color-surface)] p-5 sm:p-6 md:p-8 border border-[var(--color-border)]">
+                                                <h3 className="flex items-center gap-3 text-base sm:text-lg md:text-xl font-bungee text-[var(--color-text-primary)] mb-4 sm:mb-6 tracking-wide">
                                                     <BookOpen size={20} className="text-[var(--color-accent-gold)]" /> Popular Programs
                                                 </h3>
                                                 <motion.div variants={tagStagger} initial="hidden" animate="visible" className="flex flex-wrap gap-2.5">
@@ -236,8 +236,8 @@ export default function CountrySection() {
                                             </div>
 
                                             {/* Admission Requirements */}
-                                            <div className="bg-[var(--color-surface)] p-8 border border-[var(--color-border)] relative overflow-hidden">
-                                                <h3 className="flex items-center gap-3 text-xl font-bungee text-[var(--color-text-primary)] mb-6 tracking-wide relative z-10">
+                                            <div className="bg-[var(--color-surface)] p-5 sm:p-6 md:p-8 border border-[var(--color-border)] relative overflow-hidden">
+                                                <h3 className="flex items-center gap-3 text-base sm:text-lg md:text-xl font-bungee text-[var(--color-text-primary)] mb-4 sm:mb-6 tracking-wide relative z-10">
                                                     <GradIcon size={20} className="text-[var(--color-accent-gold)]" /> Admissions Info
                                                 </h3>
                                                 <div className="space-y-6 relative z-10">
@@ -270,10 +270,10 @@ export default function CountrySection() {
                                     <motion.div variants={dividerReveal} className="w-full h-px bg-[var(--color-border)] origin-left"></motion.div>
 
                                     {/* 6 Work & Visa & 8 CTA Block */}
-                                    <motion.div variants={subsectionReveal} className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-stretch relative z-10">
+                                    <motion.div variants={subsectionReveal} className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-10 lg:gap-16 items-stretch relative z-10">
                                         {/* Work & Visa */}
-                                        <div className="bg-[var(--color-surface)] p-8 border border-[var(--color-border)] relative overflow-hidden">
-                                            <h3 className="flex items-center gap-3 text-xl font-bungee text-[var(--color-text-primary)] mb-8 tracking-wide relative z-10">
+                                        <div className="bg-[var(--color-surface)] p-5 sm:p-6 md:p-8 border border-[var(--color-border)] relative overflow-hidden">
+                                            <h3 className="flex items-center gap-3 text-base sm:text-lg md:text-xl font-bungee text-[var(--color-text-primary)] mb-6 sm:mb-8 tracking-wide relative z-10">
                                                 <Briefcase size={20} className="text-[var(--color-accent-gold)]" /> Post-Study Rights
                                             </h3>
                                             <div className="space-y-0 text-sm relative z-10">
@@ -293,15 +293,15 @@ export default function CountrySection() {
                                         </div>
 
                                         {/* CTA Block */}
-                                        <div className="flex flex-col gap-4 justify-center bg-[var(--color-bg-primary)] p-8 md:p-10 border border-[var(--color-border)] text-center lg:text-left h-full">
-                                            <h4 className="text-xl font-bungee text-[var(--color-text-primary)]">Ready to start your journey?</h4>
+                                        <div className="flex flex-col gap-4 justify-center bg-[var(--color-bg-primary)] p-5 sm:p-6 md:p-8 lg:p-10 border border-[var(--color-border)] text-center lg:text-left h-full">
+                                            <h4 className="text-base sm:text-lg md:text-xl font-bungee text-[var(--color-text-primary)]">Ready to start your journey?</h4>
                                             <p className="text-[var(--color-text-muted)] text-sm mb-4">Connect with our admission experts for customized counseling.</p>
                                             <div className="flex flex-col sm:flex-row gap-4 lg:justify-start justify-center mt-auto">
                                                 <Link
                                                     href="https://wa.me/"
                                                     target="_blank"
                                                     rel="noopener noreferrer"
-                                                    className="px-8 py-4 bg-[#25D366] hover:bg-[#20BD5A] text-white text-xs tracking-[0.15em] uppercase font-medium transition-all flex items-center justify-center gap-2"
+                                                    className="btn-primary px-8 py-4 text-xs tracking-[0.15em] uppercase font-medium flex items-center justify-center gap-2 !bg-[#25D366] !shadow-[0_4px_20px_rgba(37,211,102,0.25)] hover:!bg-[#20BD5A] hover:!shadow-[0_6px_30px_rgba(37,211,102,0.4)] text-white"
                                                 >
                                                     <IconBrandWhatsapp size={20} stroke={2} /> Reach us
                                                 </Link>

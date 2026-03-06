@@ -48,6 +48,10 @@ type PixelatedCanvasProps = {
   fadeOnLeave?: boolean;
   /** 0..1 smoothing factor for leave fade. Higher = faster fade. */
   fadeSpeed?: number;
+  /** Enable a particle entrance animation on mount (particles fly in from random screen positions). */
+  entranceAnimation?: boolean;
+  /** Duration of the entrance animation in milliseconds. Default 2500. */
+  entranceDuration?: number;
 };
 
 export const PixelatedCanvas: React.FC<PixelatedCanvasProps> = ({
@@ -76,6 +80,8 @@ export const PixelatedCanvas: React.FC<PixelatedCanvasProps> = ({
   jitterSpeed = 4,
   fadeOnLeave = true,
   fadeSpeed = 0.1,
+  entranceAnimation = false,
+  entranceDuration = 2500,
 }) => {
   const canvasRef = React.useRef<HTMLCanvasElement | null>(null);
   const samplesRef = React.useRef<
@@ -88,6 +94,8 @@ export const PixelatedCanvas: React.FC<PixelatedCanvasProps> = ({
       a: number;
       drop: boolean;
       seed: number;
+      startX: number;
+      startY: number;
     }>
   >([]);
   const dimsRef = React.useRef<{
@@ -108,11 +116,20 @@ export const PixelatedCanvas: React.FC<PixelatedCanvasProps> = ({
   const pointerInsideRef = React.useRef<boolean>(false);
   const activityRef = React.useRef<number>(0);
   const activityTargetRef = React.useRef<number>(0);
+  const entranceStartRef = React.useRef<number>(0);
+  const entranceDoneRef = React.useRef<boolean>(!entranceAnimation);
+  const isTouchDeviceRef = React.useRef<boolean>(false);
 
   React.useEffect(() => {
     let isCancelled = false;
     const canvas = canvasRef.current;
     if (!canvas) return;
+
+    // Detect touch-only (no hover) devices
+    if (typeof window !== "undefined") {
+      const hoverQuery = window.matchMedia("(hover: none)");
+      isTouchDeviceRef.current = hoverQuery.matches;
+    }
 
     const img = new Image();
     img.crossOrigin = "anonymous";
@@ -210,6 +227,13 @@ export const PixelatedCanvas: React.FC<PixelatedCanvasProps> = ({
         return s - Math.floor(s);
       };
 
+      // Generate random start positions for entrance animation
+      const randAngle = (seed: number) => seed * Math.PI * 2;
+      const randDist = (seed: number, w: number, h: number) => {
+        const maxDim = Math.max(w, h);
+        return maxDim * 0.8 + seed * maxDim * 1.2;
+      };
+
       const samples: Array<{
         x: number;
         y: number;
@@ -219,6 +243,8 @@ export const PixelatedCanvas: React.FC<PixelatedCanvasProps> = ({
         a: number;
         drop: boolean;
         seed: number;
+        startX: number;
+        startY: number;
       }> = [];
 
       let tintRGB: [number, number, number] | null = null;
@@ -311,7 +337,16 @@ export const PixelatedCanvas: React.FC<PixelatedCanvasProps> = ({
           const drop = hash2D(cx, cy) < dropoutProb;
           const seed = hash2D(cx, cy);
 
-          samples.push({ x, y, r, g, b, a, drop, seed });
+          // Compute random start position for entrance animation
+          const seed2 = hash2D(cx + 7, cy + 13);
+          const angle = randAngle(seed);
+          const dist = randDist(seed2, displayWidth, displayHeight);
+          const centerX = displayWidth / 2;
+          const centerY = displayHeight / 2;
+          const startX = centerX + Math.cos(angle) * dist;
+          const startY = centerY + Math.sin(angle) * dist;
+
+          samples.push({ x, y, r, g, b, a, drop, seed, startX, startY });
         }
       }
 
@@ -321,6 +356,10 @@ export const PixelatedCanvas: React.FC<PixelatedCanvasProps> = ({
     img.onload = () => {
       if (isCancelled) return;
       compute();
+      if (entranceAnimation) {
+        entranceStartRef.current = performance.now();
+        entranceDoneRef.current = false;
+      }
       const canvasEl = canvasRef.current;
       if (!canvasEl) return;
 
@@ -329,41 +368,56 @@ export const PixelatedCanvas: React.FC<PixelatedCanvasProps> = ({
         const dims = dimsRef.current;
         const samples = samplesRef.current;
         if (!ctx || !dims || !samples) return;
-        if (backgroundColor) {
-          ctx.fillStyle = backgroundColor;
-          ctx.fillRect(0, 0, dims.width, dims.height);
+
+        // If entrance animation enabled, we need the animation loop even in non-interactive mode
+        if (entranceAnimation) {
+          // Fall through to the animate() loop below
         } else {
-          ctx.clearRect(0, 0, dims.width, dims.height);
-        }
-        for (const s of samples) {
-          if (s.drop || s.a <= 0) continue;
-          ctx.globalAlpha = s.a;
-          ctx.fillStyle = `rgb(${s.r}, ${s.g}, ${s.b})`;
-          if (shape === "circle") {
-            const radius = dims.dot / 2;
-            ctx.beginPath();
-            ctx.arc(
-              s.x + cellSize / 2,
-              s.y + cellSize / 2,
-              radius,
-              0,
-              Math.PI * 2,
-            );
-            ctx.fill();
+          if (backgroundColor) {
+            ctx.fillStyle = backgroundColor;
+            ctx.fillRect(0, 0, dims.width, dims.height);
           } else {
-            ctx.fillRect(
-              s.x + cellSize / 2 - dims.dot / 2,
-              s.y + cellSize / 2 - dims.dot / 2,
-              dims.dot,
-              dims.dot,
-            );
+            ctx.clearRect(0, 0, dims.width, dims.height);
           }
+          for (const s of samples) {
+            if (s.drop || s.a <= 0) continue;
+            ctx.globalAlpha = s.a;
+            ctx.fillStyle = `rgb(${s.r}, ${s.g}, ${s.b})`;
+            if (shape === "circle") {
+              const radius = dims.dot / 2;
+              ctx.beginPath();
+              ctx.arc(
+                s.x + cellSize / 2,
+                s.y + cellSize / 2,
+                radius,
+                0,
+                Math.PI * 2,
+              );
+              ctx.fill();
+            } else {
+              ctx.fillRect(
+                s.x + cellSize / 2 - dims.dot / 2,
+                s.y + cellSize / 2 - dims.dot / 2,
+                dims.dot,
+                dims.dot,
+              );
+            }
+          }
+          ctx.globalAlpha = 1;
+          return;
         }
-        ctx.globalAlpha = 1;
-        return;
+      }
+
+      // On touch devices, start with auto-animation active
+      if (isTouchDeviceRef.current) {
+        pointerInsideRef.current = true;
+        activityTargetRef.current = 1;
+        activityRef.current = 1;
       }
 
       const onPointerMove = (e: PointerEvent) => {
+        // If user touches, disable auto-animation so it doesn't conflict
+        if (isTouchDeviceRef.current) isTouchDeviceRef.current = false;
         const rect = canvasEl.getBoundingClientRect();
         targetMouseRef.current.x = e.clientX - rect.left;
         targetMouseRef.current.y = e.clientY - rect.top;
@@ -375,6 +429,12 @@ export const PixelatedCanvas: React.FC<PixelatedCanvasProps> = ({
         activityTargetRef.current = 1;
       };
       const onPointerLeave = () => {
+        // On touch devices that started auto-animating, re-enable it after touch ends
+        if (!isTouchDeviceRef.current && typeof window !== "undefined" && window.matchMedia("(hover: none)").matches) {
+          isTouchDeviceRef.current = true;
+          activityTargetRef.current = 1;
+          return;
+        }
         pointerInsideRef.current = false;
         if (fadeOnLeave) {
           activityTargetRef.current = 0;
@@ -425,16 +485,63 @@ export const PixelatedCanvas: React.FC<PixelatedCanvasProps> = ({
           ctx.clearRect(0, 0, dims.width, dims.height);
         }
 
+        // Auto-animate pointer on touch devices (no hover)
+        if (isTouchDeviceRef.current) {
+          const dims2 = dimsRef.current;
+          if (dims2) {
+            const autoT = now * 0.0003; // slow smooth orbit
+            const cx = dims2.width / 2;
+            const cy = dims2.height / 2;
+            const rx = dims2.width * 0.3;
+            const ry = dims2.height * 0.25;
+            // Lissajous-like figure-8 pattern for organic movement
+            targetMouseRef.current.x = cx + Math.sin(autoT) * rx;
+            targetMouseRef.current.y = cy + Math.sin(autoT * 2.0) * ry;
+          }
+          activityRef.current = 1;
+        }
+
         const mx = animMouseRef.current.x;
         const my = animMouseRef.current.y;
         const sigma = Math.max(1, distortionRadius * 0.5);
         const t = now * 0.001 * jitterSpeed;
         const activity = Math.max(0, Math.min(1, activityRef.current));
 
+        // Entrance animation progress
+        let entranceT = 1;
+        if (entranceAnimation && !entranceDoneRef.current) {
+          const elapsed = now - entranceStartRef.current;
+          const rawT = Math.min(1, elapsed / entranceDuration);
+          // Cubic ease-out for smooth deceleration
+          entranceT = 1 - Math.pow(1 - rawT, 3);
+          if (rawT >= 1) {
+            entranceDoneRef.current = true;
+          }
+        }
+
         for (const s of samples) {
           if (s.drop || s.a <= 0) continue;
-          let drawX = s.x + cellSize / 2;
-          let drawY = s.y + cellSize / 2;
+
+          // Compute target position (final resting place)
+          const targetX = s.x + cellSize / 2;
+          const targetY = s.y + cellSize / 2;
+
+          // During entrance, interpolate from scattered start position to target
+          let baseX: number;
+          let baseY: number;
+          let dotAlpha = s.a;
+          if (entranceT < 1) {
+            baseX = s.startX + (targetX - s.startX) * entranceT;
+            baseY = s.startY + (targetY - s.startY) * entranceT;
+            // Fade in — particles start invisible and become opaque
+            dotAlpha = s.a * Math.min(1, entranceT * 2);
+          } else {
+            baseX = targetX;
+            baseY = targetY;
+          }
+
+          let drawX = baseX;
+          let drawY = baseY;
           const dx = drawX - mx;
           const dy = drawY - my;
           const dist2 = dx * dx + dy * dy;
@@ -468,7 +575,7 @@ export const PixelatedCanvas: React.FC<PixelatedCanvasProps> = ({
             }
           }
 
-          ctx.globalAlpha = s.a;
+          ctx.globalAlpha = dotAlpha;
           ctx.fillStyle = `rgb(${s.r}, ${s.g}, ${s.b})`;
           if (shape === "circle") {
             const radius = dims.dot / 2;
@@ -548,6 +655,8 @@ export const PixelatedCanvas: React.FC<PixelatedCanvasProps> = ({
     jitterSpeed,
     fadeOnLeave,
     fadeSpeed,
+    entranceAnimation,
+    entranceDuration,
   ]);
 
   return (

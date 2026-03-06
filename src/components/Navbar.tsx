@@ -74,9 +74,14 @@ export default function Navbar() {
     (index: number | null) => {
       if (index === null) return;
       const href = hrefFromTabIndex(index);
-      if (href) router.push(href);
+      if (!href) return;
+      if (href === pathname || (href !== "/" && pathname.startsWith(href))) {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      } else {
+        router.push(href);
+      }
     },
-    [router]
+    [router, pathname]
   );
 
   const activeTabIndex = getActiveTabIndex(pathname);
@@ -88,10 +93,10 @@ export default function Navbar() {
       transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
       className="fixed top-0 left-0 right-0 z-50 flex items-center justify-center pointer-events-none"
     >
-      <nav className="flex items-center justify-center h-16 md:h-20 gap-6 pointer-events-auto">
+      <nav className="flex items-center justify-center h-14 sm:h-16 md:h-20 gap-3 sm:gap-4 md:gap-6 pointer-events-auto px-2">
         {/* Logo */}
         <Link href="/" className="shrink-0">
-          <span className="font-orbitron text-lg md:text-xl font-bold tracking-[0.15em] text-gold-glow">
+          <span className="font-orbitron text-base sm:text-lg md:text-xl font-bold tracking-[0.15em] text-gold-glow">
             WISDOM
           </span>
         </Link>

@@ -6,6 +6,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { DotLottieReact } from '@lottiefiles/dotlottie-react';
 import dynamic from "next/dynamic";
+import BackgroundPaths from "@/components/ui/modern-background-paths";
 
 const LightningSplit = dynamic(() => import("@/components/ui/lightning-split").then(mod => ({ default: mod.Component })), { ssr: false });
 
@@ -28,7 +29,8 @@ export default function DmitPage() {
             className="w-full bg-[var(--color-bg-primary)]"
         >
             {/* Hero Section */}
-            <section className="relative w-full pt-32 pb-20 md:pb-28 bg-[var(--color-bg-section)] border-b border-[var(--color-border)] overflow-hidden">
+            <section className="relative w-full pt-28 sm:pt-32 pb-16 sm:pb-20 md:pb-28 bg-[var(--color-bg-section)] border-b border-[var(--color-border)] overflow-hidden">
+                <BackgroundPaths pattern="neural" />
                 {/* Subtle background elements */}
                 <div className="absolute top-1/2 right-0 -translate-y-1/2 translate-x-1/4 opacity-[0.03] pointer-events-none">
                     <Fingerprint size={500} strokeWidth={0.5} />
@@ -52,7 +54,7 @@ export default function DmitPage() {
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.6, delay: 0.1 }}
-                            className="font-bungee text-3xl sm:text-3xl md:text-4xl text-gold-glow tracking-wide mb-2"
+                            className="font-bungee text-2xl sm:text-3xl md:text-4xl text-gold-glow tracking-wide mb-2"
                         >
                             DMIT Analysis
                         </motion.h1>
@@ -88,18 +90,19 @@ export default function DmitPage() {
             </section>
 
             {/* What is DMIT? */}
-            <section className="py-24 bg-[var(--color-bg-primary)]">
+            <section className="py-16 sm:py-20 md:py-24 bg-[var(--color-bg-primary)]">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 md:gap-12 items-start">
                         <motion.div
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
-                            className="bg-[var(--color-bg-section)] border border-[var(--color-border)] p-8 md:p-10 relative"
+                            className="bg-[var(--color-bg-section)] border border-[var(--color-border)] p-5 sm:p-8 md:p-10 relative"
                         >
-                            <div className="flex items-center gap-3 mb-6">
-                                <Fingerprint size={24} className="text-[var(--color-accent-gold)]" />
-                                <h2 className="text-xl font-bungee text-gold-glow tracking-wide">What is DMIT?</h2>
+                            <div className="flex items-center gap-3 mb-4 sm:mb-6">
+                                <Fingerprint size={20} className="text-[var(--color-accent-gold)] sm:hidden" />
+                                <Fingerprint size={24} className="text-[var(--color-accent-gold)] hidden sm:block" />
+                                <h2 className="text-lg sm:text-xl font-bungee text-gold-glow tracking-wide">What is DMIT?</h2>
                             </div>
                             <p className="text-[var(--color-text-muted)] text-sm leading-relaxed mb-6">
                                 <strong className="text-[var(--color-text-secondary)]">Dermatoglyphics Multiple Intelligence Test (DMIT)</strong> is a truly scientific study of fingerprint patterns. It helps in understanding an individual's potential & personality type.
@@ -119,11 +122,12 @@ export default function DmitPage() {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ delay: 0.1 }}
-                            className="bg-[var(--color-bg-section)] border border-[var(--color-border)] p-8 md:p-10 relative"
+                            className="bg-[var(--color-bg-section)] border border-[var(--color-border)] p-5 sm:p-8 md:p-10 relative"
                         >
-                            <div className="flex items-center gap-3 mb-6">
-                                <Brain size={24} className="text-[var(--color-accent-gold)]" />
-                                <h2 className="text-xl font-bungee text-gold-glow tracking-wide">Psychometric Test</h2>
+                            <div className="flex items-center gap-3 mb-4 sm:mb-6">
+                                <Brain size={20} className="text-[var(--color-accent-gold)] sm:hidden" />
+                                <Brain size={24} className="text-[var(--color-accent-gold)] hidden sm:block" />
+                                <h2 className="text-lg sm:text-xl font-bungee text-gold-glow tracking-wide">Psychometric Test</h2>
                             </div>
                             <p className="text-[var(--color-text-muted)] text-sm leading-relaxed mb-6">
                                 <strong className="text-[var(--color-text-secondary)]">Psychometric profiling</strong> scientifically measures current cognitive abilities, personality traits, and situational behaviors through self-reported questionnaires.
@@ -142,13 +146,14 @@ export default function DmitPage() {
             </section>
 
             {/* DMIT Highlight Section */}
-            <section className="py-16 bg-[var(--color-bg-section)] border-y border-[var(--color-border)]">
+            <section className="py-10 sm:py-12 md:py-16 bg-[var(--color-bg-section)] border-y border-[var(--color-border)]">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                    <div className="flex flex-col md:flex-row items-center justify-center gap-6">
-                        <Award size={40} className="text-[var(--color-accent-gold)]" />
-                        <h2 className="text-xl md:text-2xl font-bungee text-gold-glow tracking-wide">
+                    <div className="flex flex-col items-center justify-center gap-4 sm:gap-6 sm:flex-row">
+                        <Award size={32} className="text-[var(--color-accent-gold)] sm:hidden" />
+                        <Award size={40} className="text-[var(--color-accent-gold)] hidden sm:block" />
+                        <h2 className="text-base sm:text-xl md:text-2xl font-bungee text-gold-glow tracking-wide">
                             India&apos;s Top
-                            <span className="text-[var(--color-text-muted)] px-3">|</span>
+                            <span className="text-[var(--color-text-muted)] px-2 sm:px-3">|</span>
                             Kerala&apos;s 1st DMIT Lab
                         </h2>
                     </div>
@@ -157,9 +162,9 @@ export default function DmitPage() {
 
             {/* DMIT vs Psychometric — Lightning Split */}
             <section className="relative bg-[var(--color-bg-primary)]">
-                <div className="text-center pt-24 pb-8 px-4">
+                <div className="text-center pt-16 sm:pt-20 md:pt-24 pb-6 sm:pb-8 px-4">
                     <p className="text-[var(--color-accent-gold)] tracking-[0.3em] uppercase text-xs mb-4">Methodology</p>
-                    <h2 className="text-2xl font-bungee text-gold-glow tracking-wide mb-4">
+                    <h2 className="text-xl sm:text-2xl font-bungee text-gold-glow tracking-wide mb-4">
                         DMIT <span className="text-[var(--color-text-muted)]">vs</span> Psychometric
                     </h2>
                     <div className="gold-divider mx-auto mb-6"></div>
@@ -168,7 +173,7 @@ export default function DmitPage() {
 
                 <LightningSplit
                     leftComponent={
-                        <div className="flex min-h-screen w-full items-center justify-center bg-gradient-to-br from-[#0D0B06] via-[#100D08] to-black px-8 md:px-16">
+                        <div className="flex min-h-[70vh] sm:min-h-screen w-full items-center justify-center bg-gradient-to-br from-[#0D0B06] via-[#100D08] to-black px-4 sm:px-8 md:px-16">
                             <div className="max-w-md space-y-8">
                                 <div className="flex items-center gap-3">
                                     <div className="w-12 h-12 rounded-full bg-[var(--color-accent-gold)]/10 border border-[var(--color-accent-gold)]/20 flex items-center justify-center">
@@ -203,7 +208,7 @@ export default function DmitPage() {
                         </div>
                     }
                     rightComponent={
-                        <div className="flex min-h-screen w-full items-center justify-center bg-gradient-to-bl from-[#080808] via-[#0A0A0A] to-[#050505] px-8 md:px-16">
+                        <div className="flex min-h-[70vh] sm:min-h-screen w-full items-center justify-center bg-gradient-to-bl from-[#080808] via-[#0A0A0A] to-[#050505] px-4 sm:px-8 md:px-16">
                             <div className="max-w-md space-y-8">
                                 <div className="flex items-center gap-3">
                                     <div className="w-12 h-12 rounded-full bg-[var(--color-text-secondary)]/10 border border-[var(--color-text-secondary)]/20 flex items-center justify-center">
@@ -241,15 +246,15 @@ export default function DmitPage() {
             </section>
 
             {/* Process Section */}
-            <section className="py-24 bg-[var(--color-bg-section)] border-y border-[var(--color-border)]">
+            <section className="py-16 sm:py-20 md:py-24 bg-[var(--color-bg-section)] border-y border-[var(--color-border)]">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="text-center mb-20">
+                    <div className="text-center mb-12 sm:mb-16 md:mb-20">
                         <p className="text-[var(--color-accent-gold)] tracking-[0.3em] uppercase text-xs mb-4">Process</p>
-                        <h2 className="text-2xl font-bungee text-gold-glow tracking-wide mb-4">How it Works</h2>
+                        <h2 className="text-xl sm:text-2xl font-bungee text-gold-glow tracking-wide mb-4">How it Works</h2>
                         <div className="gold-divider mx-auto"></div>
                     </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-4 gap-8 md:gap-4 lg:gap-8 relative">
+                    <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8 md:gap-4 lg:gap-8 relative">
                         {/* Connecting Line background for desktop */}
                         <div className="hidden md:block absolute top-[48px] left-[12%] w-[76%] h-px bg-[var(--color-border)] z-0"></div>
 
@@ -262,9 +267,9 @@ export default function DmitPage() {
                                 transition={{ delay: i * 0.1 }}
                                 className="relative z-10 flex flex-col items-center text-center group"
                             >
-                                <div className="w-24 h-24 bg-[var(--color-bg-primary)] border border-[var(--color-border)] flex items-center justify-center mb-8 group-hover:border-[var(--color-accent-gold)]/40 transition-colors relative">
+                                <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 bg-[var(--color-bg-primary)] border border-[var(--color-border)] flex items-center justify-center mb-4 sm:mb-6 md:mb-8 group-hover:border-[var(--color-accent-gold)]/40 transition-colors relative">
                                     <div className="text-[var(--color-accent-gold)] transition-transform duration-300 group-hover:scale-110">{step.icon}</div>
-                                    <div className="absolute -top-3 -right-3 w-8 h-8 bg-[var(--color-accent-gold)] flex items-center justify-center text-[var(--color-bg-primary)] text-xs font-medium">
+                                    <div className="absolute -top-2 -right-2 sm:-top-3 sm:-right-3 w-6 h-6 sm:w-8 sm:h-8 bg-[var(--color-accent-gold)] flex items-center justify-center text-[var(--color-bg-primary)] text-[10px] sm:text-xs font-medium">
                                         {i + 1}
                                     </div>
                                 </div>
@@ -278,12 +283,12 @@ export default function DmitPage() {
             </section>
 
             {/* CTA */}
-            <section className="py-24 bg-[var(--color-bg-primary)] border-b border-[var(--color-border)]">
+            <section className="py-16 sm:py-20 md:py-24 bg-[var(--color-bg-primary)] border-b border-[var(--color-border)]">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="flex flex-col md:flex-row items-center gap-12">
+                    <div className="flex flex-col md:flex-row items-center gap-8 sm:gap-10 md:gap-12">
                         {/* Animation Container */}
                         <div className="w-full md:w-[40%] flex justify-center">
-                            <div className="w-full max-w-[350px] pointer-events-none">
+                            <div className="w-full max-w-[250px] sm:max-w-[300px] md:max-w-[350px] pointer-events-none">
                                 <DotLottieReact
                                     src="/Thinking.lottie"
                                     loop
@@ -295,7 +300,7 @@ export default function DmitPage() {
 
                         {/* Text Content */}
                         <div className="w-full md:w-[60%] text-center md:text-left">
-                            <h2 className="text-2xl md:text-3xl font-bungee text-gold-glow tracking-wide mb-6 leading-tight">
+                            <h2 className="text-xl sm:text-2xl md:text-3xl font-bungee text-gold-glow tracking-wide mb-4 sm:mb-6 leading-tight">
                                 Wanna know more <br /> about these?
                             </h2>
                             <p className="text-[var(--color-text-muted)] text-sm mb-10 max-w-lg leading-relaxed">

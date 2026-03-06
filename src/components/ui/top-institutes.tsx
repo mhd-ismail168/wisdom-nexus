@@ -1,0 +1,170 @@
+"use client";
+
+import { useRef, useEffect, useState } from "react";
+import { motion, useInView } from "framer-motion";
+import { ArrowUpRight, ChevronRight } from "lucide-react";
+import { collegesData } from "@/data/colleges";
+import Image from "next/image";
+import Link from "next/link";
+
+/* Only show "Top Institute" tagged colleges */
+const topInstitutes = collegesData.filter(c => c.tag === "Top Institute");
+
+const smoothEase = [0.25, 0.1, 0.25, 1] as const;
+
+export function TopInstitutes() {
+    const scrollRef = useRef<HTMLDivElement>(null);
+    const sectionRef = useRef<HTMLElement>(null);
+    const isInView = useInView(sectionRef, { once: true, amount: 0.15 });
+    const [canScrollRight, setCanScrollRight] = useState(true);
+
+    /* Check scroll position for fade indicator */
+    useEffect(() => {
+        const el = scrollRef.current;
+        if (!el) return;
+        const check = () => {
+            setCanScrollRight(el.scrollLeft + el.clientWidth < el.scrollWidth - 20);
+        };
+        check();
+        el.addEventListener("scroll", check, { passive: true });
+        return () => el.removeEventListener("scroll", check);
+    }, []);
+
+    const scrollRight = () => {
+        scrollRef.current?.scrollBy({ left: 340, behavior: "smooth" });
+    };
+
+    return (
+        <section
+            ref={sectionRef}
+            className="relative py-20 sm:py-28 md:py-36 lg:py-44 overflow-hidden"
+        >
+            {/* Subtle radial spotlight behind cards */}
+            <div className="absolute inset-0 pointer-events-none">
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-[40%] w-[900px] h-[600px] bg-[radial-gradient(ellipse_at_center,rgba(212,175,55,0.04)_0%,transparent_70%)]" />
+            </div>
+
+            <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                {/* ── Section Header ── */}
+                <motion.div
+                    initial={{ opacity: 0, y: 24 }}
+                    animate={isInView ? { opacity: 1, y: 0 } : {}}
+                    transition={{ duration: 0.9, ease: smoothEase }}
+                    className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 mb-16 sm:mb-20"
+                >
+                    <div>
+                        <p className="text-[#c9a227]/80 tracking-[0.25em] uppercase text-[12px] mb-4 font-medium">
+                            Curated Network
+                        </p>
+                        <h2 className="font-serif-heading text-4xl sm:text-5xl md:text-[56px] text-[#d4af37] leading-[1.05] tracking-wide">
+                            Elite Partner Institutions
+                        </h2>
+                        <p className="text-[#9a9a9a] mt-5 max-w-[520px] text-base leading-relaxed">
+                            Handpicked from {collegesData.length}+ verified institutions across Karnataka — each evaluated for academic credibility and institutional excellence.
+                        </p>
+                    </div>
+                    <Link
+                        href="/colleges"
+                        className="hidden md:inline-flex items-center gap-2.5 text-[#d4af37] text-[12px] tracking-[0.2em] uppercase hover:gap-3.5 transition-all duration-300 font-medium shrink-0 group"
+                    >
+                        Browse All
+                        <ArrowUpRight size={14} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-300" />
+                    </Link>
+                </motion.div>
+
+                {/* ── Horizontal Scroll Gallery ── */}
+                <div className="relative">
+                    <div
+                        ref={scrollRef}
+                        className="flex gap-5 sm:gap-6 overflow-x-auto pb-6 -mx-4 px-4 sm:mx-0 sm:px-0 snap-x snap-mandatory scrollbar-hide"
+                        style={{ scrollPaddingLeft: "1rem" }}
+                    >
+                        {topInstitutes.slice(0, 12).map((college, index) => (
+                            <motion.div
+                                key={college.id}
+                                initial={{ opacity: 0, y: 30, scale: 0.97 }}
+                                animate={isInView ? { opacity: 1, y: 0, scale: 1 } : {}}
+                                transition={{
+                                    duration: 0.6,
+                                    delay: 0.15 + index * 0.06,
+                                    ease: smoothEase,
+                                }}
+                                className="snap-start shrink-0"
+                            >
+                                <Link href="/colleges" className="block">
+                                    <div className="top-inst-card group">
+                                        {/* Badge */}
+                                        <div className="absolute top-5 right-5 z-10">
+                                            <span className="text-[10px] tracking-[0.12em] uppercase bg-[rgba(212,175,55,0.12)] text-[#d4af37] px-3 py-1.5 rounded-[5px] font-medium">
+                                                Top Institute
+                                            </span>
+                                        </div>
+
+                                        {/* Logo medallion */}
+                                        <div className="top-inst-logo">
+                                            {college.logoUrl ? (
+                                                <Image
+                                                    src={college.logoUrl}
+                                                    alt={`${college.name} logo`}
+                                                    width={56}
+                                                    height={56}
+                                                    className="object-contain"
+                                                    loading="lazy"
+                                                />
+                                            ) : (
+                                                <span className="text-[#d4af37] font-bungee text-3xl">
+                                                    {college.logo}
+                                                </span>
+                                            )}
+                                        </div>
+
+                                        {/* Content */}
+                                        <div className="mt-auto">
+                                            <h3 className="text-white text-[18px] font-semibold leading-[1.4] line-clamp-2 mb-1.5 group-hover:text-[#f0e6c8] transition-colors duration-300">
+                                                {college.name}
+                                            </h3>
+                                            <p className="text-[#8a8a8a] text-[14px]">
+                                                {college.location}, Karnataka
+                                            </p>
+                                        </div>
+
+                                        {/* Explore indicator - fades in on hover */}
+                                        <div className="flex items-center gap-1.5 mt-5 opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-400">
+                                            <span className="text-[#d4af37] text-[11px] tracking-[0.18em] uppercase font-medium">
+                                                Explore
+                                            </span>
+                                            <ArrowUpRight size={12} className="text-[#d4af37]" />
+                                        </div>
+                                    </div>
+                                </Link>
+                            </motion.div>
+                        ))}
+                    </div>
+
+                    {/* Right edge fade + scroll arrow */}
+                    {canScrollRight && (
+                        <div className="absolute top-0 right-0 bottom-6 w-20 sm:w-28 pointer-events-none bg-gradient-to-l from-[var(--color-bg-section)] via-[var(--color-bg-section)]/60 to-transparent z-10 hidden sm:flex items-center justify-end pr-2">
+                            <button
+                                onClick={scrollRight}
+                                className="pointer-events-auto w-10 h-10 rounded-full border border-[rgba(212,175,55,0.2)] bg-[rgba(12,12,12,0.9)] flex items-center justify-center hover:border-[rgba(212,175,55,0.5)] hover:bg-[rgba(212,175,55,0.08)] transition-all duration-300"
+                                aria-label="Scroll right"
+                            >
+                                <ChevronRight size={16} className="text-[#d4af37]" />
+                            </button>
+                        </div>
+                    )}
+                </div>
+
+                {/* Mobile browse link */}
+                <div className="mt-10 flex justify-center md:hidden">
+                    <Link
+                        href="/colleges"
+                        className="inline-flex items-center gap-2 text-[#d4af37] text-[12px] tracking-[0.2em] uppercase font-medium"
+                    >
+                        Browse All Institutions <ArrowUpRight size={14} />
+                    </Link>
+                </div>
+            </div>
+        </section>
+    );
+}

@@ -121,7 +121,15 @@ function IconContainer({
     const [hovered, setHovered] = useState(false);
 
     return (
-        <Link href={href}>
+        <Link
+            href={href}
+            onClick={(e) => {
+                if (isActive) {
+                    e.preventDefault();
+                    window.scrollTo({ top: 0, behavior: "smooth" });
+                }
+            }}
+        >
             <motion.div
                 ref={ref}
                 style={{ width, height }}

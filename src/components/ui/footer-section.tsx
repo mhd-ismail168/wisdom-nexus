@@ -56,14 +56,14 @@ const footerLinks: FooterSection[] = [
 
 export function FooterSection() {
 	return (
-		<footer className="relative w-full border-t border-[var(--color-footer-border)] bg-[var(--color-footer-bg)] px-6 sm:px-10 lg:px-16 py-16 lg:py-24">
+		<footer className="relative w-full border-t border-[var(--color-footer-border)] bg-[var(--color-footer-bg)] px-4 sm:px-6 md:px-10 lg:px-16 py-10 sm:py-12 md:py-16 lg:py-24">
 			<div className="absolute top-0 right-1/2 left-1/2 h-px w-1/3 -translate-x-1/2 -translate-y-1/2 rounded-full blur bg-[var(--color-accent-gold)]/30" />
 
 			<div className="max-w-7xl mx-auto">
 				{/* Top: Brand + Link Columns */}
-				<div className="grid w-full gap-12 lg:grid-cols-12 lg:gap-16">
+				<div className="grid w-full gap-8 sm:gap-10 lg:gap-16 lg:grid-cols-12">
 					{/* Brand column */}
-					<AnimatedContainer className="lg:col-span-4 space-y-6">
+					<AnimatedContainer className="lg:col-span-4 space-y-4 sm:space-y-6">
 						<Link href="/" className="font-orbitron text-xl font-bold tracking-[0.15em] text-gold-glow inline-flex items-center">
 							WISDOM
 						</Link>
@@ -73,7 +73,7 @@ export function FooterSection() {
 					</AnimatedContainer>
 
 					{/* Link columns */}
-					<div className="lg:col-span-8 grid grid-cols-2 md:grid-cols-4 gap-10 lg:gap-8">
+					<div className="lg:col-span-8 grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8 lg:gap-8">
 						{footerLinks.map((section, index) => (
 							<AnimatedContainer key={section.label} delay={0.1 + index * 0.1}>
 								<div>
@@ -98,7 +98,7 @@ export function FooterSection() {
 				</div>
 
 				{/* Bottom bar */}
-				<div className="mt-16 pt-8 border-t border-[var(--color-footer-border)] flex flex-col sm:flex-row justify-between items-center gap-4">
+				<div className="mt-10 sm:mt-12 md:mt-16 pt-6 sm:pt-8 border-t border-[var(--color-footer-border)] flex flex-col sm:flex-row justify-between items-center gap-3 sm:gap-4">
 					<p className="text-[var(--color-footer-text)] text-xs">
 						© {new Date().getFullYear()} Wisdom Nexus. All rights reserved.
 					</p>
