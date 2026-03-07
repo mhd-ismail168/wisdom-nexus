@@ -56,16 +56,16 @@ const footerLinks: FooterSection[] = [
 
 export function FooterSection() {
 	return (
-		<footer className="relative w-full border-t border-[var(--color-footer-border)] bg-[var(--color-footer-bg)] px-4 sm:px-6 md:px-10 lg:px-16 py-10 sm:py-12 md:py-16 lg:py-24">
-			<div className="absolute top-0 right-1/2 left-1/2 h-px w-1/3 -translate-x-1/2 -translate-y-1/2 rounded-full blur bg-[var(--color-accent-gold)]/30" />
+		<footer className="relative w-full border-t border-[#C5A55A]/20 bg-[var(--color-footer-bg)] px-4 sm:px-6 md:px-10 lg:px-16 py-10 sm:py-12 md:py-16 lg:py-24">
+			<div className="absolute top-0 right-1/2 left-1/2 h-px w-1/3 -translate-x-1/2 -translate-y-1/2 rounded-full blur bg-[#C5A55A]/30" />
 
 			<div className="max-w-7xl mx-auto">
 				{/* Top: Brand + Link Columns */}
 				<div className="grid w-full gap-8 sm:gap-10 lg:gap-16 lg:grid-cols-12">
 					{/* Brand column */}
 					<AnimatedContainer className="lg:col-span-4 space-y-4 sm:space-y-6">
-						<Link href="/" className="font-orbitron text-xl font-bold tracking-[0.15em] text-gold-glow inline-flex items-center">
-							WISDOM
+						<Link href="/" className="font-orbitron text-xl font-bold tracking-[0.15em] text-[#C5A55A] drop-shadow-[0_0_8px_rgba(197,165,90,0.5)] inline-flex items-center">
+							&gt; WISDOM
 						</Link>
 						<p className="text-[var(--color-footer-text)] text-sm leading-relaxed max-w-sm">
 							Empowering students to navigate their future with certainty. End-to-end guidance for domestic and international university admissions.
@@ -77,7 +77,7 @@ export function FooterSection() {
 						{footerLinks.map((section, index) => (
 							<AnimatedContainer key={section.label} delay={0.1 + index * 0.1}>
 								<div>
-									<h3 className="text-xs text-[var(--color-accent-gold)] tracking-[0.15em] uppercase mb-5">{section.label}</h3>
+									<h3 className="text-xs text-[#C5A55A] tracking-[0.15em] uppercase mb-5 drop-shadow-[0_0_4px_rgba(197,165,90,0.4)]">{section.label}</h3>
 									<ul className="space-y-3 text-sm">
 										{section.links.map((link) => (
 											<li key={link.title}>
@@ -98,13 +98,13 @@ export function FooterSection() {
 				</div>
 
 				{/* Bottom bar */}
-				<div className="mt-10 sm:mt-12 md:mt-16 pt-6 sm:pt-8 border-t border-[var(--color-footer-border)] flex flex-col sm:flex-row justify-between items-center gap-3 sm:gap-4">
+				<div className="mt-10 sm:mt-12 md:mt-16 pt-6 sm:pt-8 border-t border-[#C5A55A]/10 flex flex-col sm:flex-row justify-between items-center gap-3 sm:gap-4">
 					<p className="text-[var(--color-footer-text)] text-xs">
 						© {new Date().getFullYear()} Wisdom Nexus. All rights reserved.
 					</p>
 					<div className="flex items-center gap-6">
-						<Link href="/privacy" className="text-xs text-[var(--color-footer-text)] hover:text-[var(--color-accent-gold)] transition-colors">Privacy</Link>
-						<Link href="/terms" className="text-xs text-[var(--color-footer-text)] hover:text-[var(--color-accent-gold)] transition-colors">Terms</Link>
+						<Link href="/privacy" className="text-xs text-[var(--color-footer-text)] hover:text-[#C5A55A] transition-colors duration-200">Privacy</Link>
+						<Link href="/terms" className="text-xs text-[var(--color-footer-text)] hover:text-[#C5A55A] transition-colors duration-200">Terms</Link>
 					</div>
 				</div>
 			</div>
@@ -130,7 +130,7 @@ function AnimatedContainer({ className, delay = 0.1, children }: ViewAnimationPr
 			initial={{ filter: 'blur(4px)', translateY: -8, opacity: 0 }}
 			whileInView={{ filter: 'blur(0px)', translateY: 0, opacity: 1 }}
 			viewport={{ once: true }}
-			transition={{ delay, duration: 0.8 }}
+			transition={{ delay, duration: 0.2 }}
 			className={className}
 		>
 			{children}

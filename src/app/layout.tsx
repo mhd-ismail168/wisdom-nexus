@@ -1,14 +1,7 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import { FooterSection } from "@/components/ui/footer-section";
-
-const inter = Inter({
-  weight: ['300', '400', '500', '600', '700'],
-  subsets: ["latin"],
-  variable: '--font-body',
-});
 
 export const metadata: Metadata = {
   title: "Wisdom Nexus | Elite Admission Architects",
@@ -25,16 +18,18 @@ export default function RootLayout({
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-                <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Playfair+Display:wght@400;500;600;700;800;900&family=Bungee&display=swap" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Share+Tech+Mono&display=swap" rel="stylesheet" />
       </head>
       <body
-        className={`${inter.variable} bg-[var(--color-bg-primary)] text-[var(--color-text-primary)] antialiased min-h-screen flex flex-col font-[family-name:var(--font-body)] font-normal tracking-wide`}
+        className="bg-[var(--color-bg-primary)] text-[var(--color-text-primary)] antialiased min-h-screen flex flex-col font-[family-name:'Share_Tech_Mono'] tracking-wide"
       >
         <Navbar />
         <main className="flex-grow">
           {children}
         </main>
         <FooterSection />
+        {/* CRT Scanline Overlay */}
+        <div className="crt-scanlines" aria-hidden="true" />
       </body>
     </html>
   );

@@ -180,7 +180,7 @@ function UniversityCard({
         >
             {/* Top badge */}
             <div className="flex items-center justify-between mb-4">
-                <span className="text-[11px] tracking-[0.08em] uppercase bg-[rgba(212,175,55,0.1)] text-[#d4af37] px-3 py-1 rounded-md border border-[rgba(212,175,55,0.15)]">
+                <span className="text-[11px] tracking-[0.08em] uppercase bg-[rgba(197,165,90,0.1)] text-[#C5A55A] px-3 py-1 rounded-md border border-[rgba(197,165,90,0.15)]">
                     {college.tag}
                 </span>
                 <span className="text-[11px] text-[var(--color-text-muted)] tracking-wide">
@@ -201,7 +201,7 @@ function UniversityCard({
                             loading="lazy"
                         />
                     ) : (
-                        <span className="text-[#d4af37] font-bungee text-2xl">{college.logo}</span>
+                        <span className="text-[#C5A55A] font-orbitron text-2xl">{college.logo}</span>
                     )}
                 </div>
 
@@ -211,11 +211,11 @@ function UniversityCard({
                     </h3>
                     <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-[13px] text-[#bfbfbf]">
                         <span className="flex items-center gap-1.5">
-                            <MapPin size={13} className="text-[#d4af37]" />
+                            <MapPin size={13} className="text-[#C5A55A]" />
                             {college.location}, Karnataka
                         </span>
                         <span className="flex items-center gap-1.5">
-                            <Star size={13} className="text-[#d4af37]" fill="#d4af37" />
+                            <Star size={13} className="text-[#C5A55A]" fill="#C5A55A" />
                             {college.placement}
                         </span>
                     </div>
@@ -229,7 +229,7 @@ function UniversityCard({
                         {a}
                     </span>
                 ))}
-                <span className="text-[10px] tracking-[0.04em] uppercase px-2.5 py-1 rounded-md border border-[rgba(212,175,55,0.2)] text-[#d4af37] bg-[rgba(212,175,55,0.06)]">
+                <span className="text-[10px] tracking-[0.04em] uppercase px-2.5 py-1 rounded-md border border-[rgba(197,165,90,0.2)] text-[#C5A55A] bg-[rgba(197,165,90,0.06)]">
                     {college.ownershipType}
                 </span>
             </div>
@@ -237,7 +237,7 @@ function UniversityCard({
             {/* Course categories */}
             <div className="flex flex-wrap gap-2 mb-5">
                 {college.courseCategories.slice(0, 3).map(cat => (
-                    <span key={cat} className="text-[11px] px-2.5 py-1 rounded-md bg-[rgba(212,175,55,0.05)] text-[var(--color-text-secondary)] border border-[rgba(212,175,55,0.1)]">
+                    <span key={cat} className="text-[11px] px-2.5 py-1 rounded-md bg-[rgba(197,165,90,0.05)] text-[var(--color-text-secondary)] border border-[rgba(197,165,90,0.1)]">
                         {cat}
                     </span>
                 ))}
@@ -250,7 +250,7 @@ function UniversityCard({
 
             {/* Explore link */}
             <div className="flex items-center justify-between pt-4 border-t border-[rgba(255,255,255,0.06)]">
-                <span className="text-[12px] tracking-[0.5px] uppercase text-[#d4af37] flex items-center gap-1.5 group-hover:gap-2.5 transition-all">
+                <span className="text-[12px] tracking-[0.5px] uppercase text-[#C5A55A] flex items-center gap-1.5 group-hover:gap-2.5 transition-all">
                     Explore University <ArrowUpRight size={13} />
                 </span>
                 <motion.div animate={{ rotate: expanded ? 180 : 0 }} transition={{ duration: 0.25 }}>
@@ -269,13 +269,13 @@ function UniversityCard({
                         className="overflow-hidden"
                     >
                         <div className="pt-5 mt-4 border-t border-[rgba(255,255,255,0.06)]">
-                            <p className="text-[var(--color-text-muted)] text-[13px] leading-relaxed mb-6 border-l-2 border-[rgba(212,175,55,0.4)] pl-4 italic">
+                            <p className="text-[var(--color-text-muted)] text-[13px] leading-relaxed mb-6 border-l-2 border-[rgba(197,165,90,0.4)] pl-4 italic">
                                 {college.description}
                             </p>
 
                             <div className="mb-5">
                                 <p className="text-[10px] text-[var(--color-text-muted)] uppercase tracking-[0.15em] mb-3 flex items-center gap-2">
-                                    <GraduationCap size={12} className="text-[#d4af37]" /> Popular Programs
+                                    <GraduationCap size={12} className="text-[#C5A55A]" /> Popular Programs
                                 </p>
                                 <div className="flex flex-wrap gap-2">
                                     {college.parsedCourses.slice(0, 6).map(c => (
@@ -288,14 +288,14 @@ function UniversityCard({
 
                             <div className="grid grid-cols-2 gap-4 mb-6 text-sm">
                                 <div className="flex items-start gap-3 p-3 rounded-lg bg-[rgba(255,255,255,0.02)] border border-[rgba(255,255,255,0.04)]">
-                                    <Building size={14} className="text-[#d4af37] mt-0.5 shrink-0" />
+                                    <Building size={14} className="text-[#C5A55A] mt-0.5 shrink-0" />
                                     <div>
                                         <p className="text-[10px] text-[var(--color-text-muted)] uppercase tracking-[0.1em] mb-1">Affiliation</p>
                                         <p className="text-[var(--color-text-primary)] text-[13px] leading-snug">{college.approval}</p>
                                     </div>
                                 </div>
                                 <div className="flex items-start gap-3 p-3 rounded-lg bg-[rgba(255,255,255,0.02)] border border-[rgba(255,255,255,0.04)]">
-                                    <BookOpen size={14} className="text-[#d4af37] mt-0.5 shrink-0" />
+                                    <BookOpen size={14} className="text-[#C5A55A] mt-0.5 shrink-0" />
                                     <div>
                                         <p className="text-[10px] text-[var(--color-text-muted)] uppercase tracking-[0.1em] mb-1">Fee</p>
                                         <p className="text-[var(--color-text-primary)] text-[13px] leading-snug">{college.fee}</p>
@@ -345,11 +345,11 @@ function MobileFilterDrawer({
                         animate={{ x: 0 }}
                         exit={{ x: "100%" }}
                         transition={{ type: "spring", damping: 28, stiffness: 300 }}
-                        className="fixed top-0 right-0 h-full w-[85%] max-w-[360px] bg-[#0b0b0b] border-l border-[rgba(212,175,55,0.1)] z-50 p-6 overflow-y-auto"
+                        className="fixed top-0 right-0 h-full w-[85%] max-w-[360px] bg-[#0b0b0b] border-l border-[rgba(197,165,90,0.1)] z-50 p-6 overflow-y-auto"
                     >
                         <div className="flex items-center justify-between mb-6">
                             <h3 className="text-lg font-semibold text-white flex items-center gap-2">
-                                <SlidersHorizontal size={18} className="text-[#d4af37]" /> Filters
+                                <SlidersHorizontal size={18} className="text-[#C5A55A]" /> Filters
                             </h3>
                             <button onClick={onClose} className="text-[var(--color-text-muted)] hover:text-white transition-colors">
                                 <X size={20} />
@@ -462,14 +462,18 @@ export default function CollegesPage() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.4 }}
-            className="min-h-screen bg-[var(--color-bg-primary)]"
+            className="min-h-screen"
         >
-            {/* Hero */}
-            <section className="relative w-full pt-28 sm:pt-32 pb-16 sm:pb-20 md:pb-28 bg-[var(--color-bg-section)] border-b border-[var(--color-border)] overflow-hidden">
+            {/* Fixed Background */}
+            <div className="fixed inset-0 z-0">
                 <BackgroundPaths pattern="geometric" />
+            </div>
+
+            {/* Hero */}
+            <section className="relative w-full pt-28 sm:pt-32 pb-16 sm:pb-20 md:pb-28 border-b border-[var(--color-border)] overflow-hidden z-10">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-                    <p className="text-[var(--color-accent-gold)] tracking-[0.3em] uppercase text-xs mb-4">Curated Network</p>
-                    <h1 className="font-bungee text-2xl sm:text-3xl md:text-4xl text-gold-glow tracking-wide">
+                    <p className="text-[#C5A55A] tracking-[0.3em] uppercase text-xs mb-4 drop-shadow-[0_0_5px_rgba(197,165,90,0.5)]">&gt; Curated Network</p>
+                    <h1 className="font-orbitron font-bold text-2xl sm:text-3xl md:text-4xl text-gradient-sunset tracking-wide">
                         Academic Institutions
                     </h1>
                     <p className="text-[var(--color-text-muted)] mt-4 max-w-lg mx-auto text-sm leading-relaxed">
@@ -478,7 +482,7 @@ export default function CollegesPage() {
                 </div>
             </section>
 
-            <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
+            <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 relative z-10">
                 {/* Sticky filter bar */}
                 <div className="filter-bar p-4 sm:p-6 mb-8 sm:mb-10 relative z-30">
                     <div className="relative mb-4 sm:mb-5">
@@ -488,7 +492,7 @@ export default function CollegesPage() {
                             value={searchQuery}
                             onChange={e => handleSearch(e.target.value)}
                             placeholder="Search universities, cities, or courses..."
-                            className="w-full pl-10 pr-10 py-3 bg-[#080808] border border-[rgba(212,175,55,0.12)] rounded-xl text-[var(--color-text-primary)] text-sm outline-none focus:border-[rgba(212,175,55,0.4)] focus:shadow-[0_0_0_3px_rgba(212,175,55,0.06)] transition-all placeholder:text-[var(--color-text-muted)]"
+                            className="w-full pl-10 pr-10 py-3 bg-[#080808] border border-[rgba(197,165,90,0.12)] rounded-xl text-[var(--color-text-primary)] text-sm outline-none focus:border-[rgba(197,165,90,0.4)] focus:shadow-[0_0_0_3px_rgba(197,165,90,0.06)] transition-all placeholder:text-[var(--color-text-muted)]"
                         />
                         {searchQuery && (
                             <button
@@ -539,7 +543,7 @@ export default function CollegesPage() {
                         )}
                         <button
                             onClick={clearAll}
-                            className="text-[11px] text-[var(--color-text-muted)] hover:text-[#d4af37] transition-colors tracking-wide uppercase ml-1"
+                            className="text-[11px] text-[var(--color-text-muted)] hover:text-[#C5A55A] transition-colors tracking-wide uppercase ml-1"
                         >
                             Clear All
                         </button>
@@ -550,7 +554,7 @@ export default function CollegesPage() {
                 {hasFilters && (
                     <div className="flex items-center justify-between mb-8">
                         <p className="text-[13px] text-[var(--color-text-muted)]">
-                            <span className="text-[#d4af37] font-medium">{filtered.length}</span>{" "}
+                            <span className="text-[#C5A55A] font-medium">{filtered.length}</span>{" "}
                             {filtered.length === 1 ? "University" : "Universities"} found
                         </p>
                     </div>
@@ -571,7 +575,7 @@ export default function CollegesPage() {
                     </div>
                 ) : (
                     <div className="flex flex-col items-center justify-center py-24 text-center">
-                        <div className="w-20 h-20 rounded-full border border-[rgba(212,175,55,0.15)] bg-[rgba(212,175,55,0.04)] flex items-center justify-center mb-6">
+                        <div className="w-20 h-20 rounded-full border border-[rgba(197,165,90,0.15)] bg-[rgba(197,165,90,0.04)] flex items-center justify-center mb-6">
                             <Search size={28} className="text-[var(--color-text-muted)]" />
                         </div>
                         <h3 className="text-lg font-semibold text-[var(--color-text-primary)] mb-2">No universities match your filters</h3>

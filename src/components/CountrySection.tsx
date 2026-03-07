@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
@@ -90,7 +90,7 @@ export default function CountrySection() {
                         <div className="flex-1 w-full">
                             <div className="flex items-center gap-3 sm:gap-4 mb-2">
                                 <span className="text-2xl sm:text-3xl md:text-4xl">{country.flag}</span>
-                                <h3 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bungee text-[var(--color-text-primary)] tracking-wide">{country.name}</h3>
+                                <h3 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-orbitron text-[var(--color-text-primary)] tracking-wide">{country.name}</h3>
                             </div>
                             <p className="text-sm text-[var(--color-accent-gold)] mt-2">{country.tagline}</p>
 
@@ -147,7 +147,7 @@ export default function CountrySection() {
                                         </motion.div>
 
                                         <div className="flex-1 w-full pt-2">
-                                            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bungee text-[var(--color-text-primary)] tracking-wide leading-tight mb-3 sm:mb-4">
+                                            <h2 className="text-2xl sm:text-3xl md:text-4xl font-orbitron text-[var(--color-text-primary)] tracking-wide leading-tight mb-3 sm:mb-4">
                                                 Study in <span className="text-[var(--color-accent-gold)]">{country.name}</span>
                                             </h2>
                                             <p className="text-base text-[var(--color-text-muted)] leading-relaxed">
@@ -161,7 +161,7 @@ export default function CountrySection() {
                                     <motion.div variants={subsectionReveal} className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-10 lg:gap-16 relative z-10">
                                         {/* Why Study */}
                                         <div className="relative z-10 bg-[var(--color-surface)] p-5 sm:p-6 md:p-8 border border-[var(--color-border)]">
-                                            <h3 className="flex items-center gap-3 text-base sm:text-lg md:text-xl font-bungee text-[var(--color-text-primary)] mb-4 sm:mb-6 tracking-wide">
+                                            <h3 className="flex items-center gap-3 text-base sm:text-lg md:text-xl font-orbitron text-[var(--color-text-primary)] mb-4 sm:mb-6 tracking-wide">
                                                 <Sparkles size={20} className="text-[var(--color-accent-gold)]" /> Why {country.name}?
                                             </h3>
                                             <ul className="space-y-4">
@@ -176,18 +176,18 @@ export default function CountrySection() {
 
                                         {/* Tuition & Living */}
                                         <div className="relative z-10">
-                                            <h3 className="flex items-center gap-3 text-base sm:text-lg md:text-xl font-bungee text-[var(--color-text-primary)] mb-4 sm:mb-6 tracking-wide">
+                                            <h3 className="flex items-center gap-3 text-base sm:text-lg md:text-xl font-orbitron text-[var(--color-text-primary)] mb-4 sm:mb-6 tracking-wide">
                                                 <DollarSign size={20} className="text-[var(--color-accent-gold)]" /> Financial Overview
                                             </h3>
                                             <div className="flex flex-col gap-4 sm:gap-6 bg-[var(--color-surface)] p-4 sm:p-6 md:p-8 border border-[var(--color-border)] relative overflow-hidden">
                                                 <div className="relative z-10">
                                                     <span className="block text-[10px] text-[var(--color-accent-gold)] uppercase tracking-[0.2em] mb-1">Average Tuition</span>
-                                                    <span className="text-xl font-bungee text-[var(--color-text-primary)] tracking-wide">{country.tuition}</span>
+                                                    <span className="text-xl font-orbitron text-[var(--color-text-primary)] tracking-wide">{country.tuition}</span>
                                                 </div>
                                                 <div className="w-full h-px bg-[var(--color-border)] relative z-10"></div>
                                                 <div className="relative z-10">
                                                     <span className="block text-[10px] text-[var(--color-accent-gold)] uppercase tracking-[0.2em] mb-1">Estimated Living Cost</span>
-                                                    <span className="text-xl font-bungee text-[var(--color-text-primary)] tracking-wide">{country.living}</span>
+                                                    <span className="text-xl font-orbitron text-[var(--color-text-primary)] tracking-wide">{country.living}</span>
                                                 </div>
                                             </div>
                                         </div>
@@ -199,7 +199,7 @@ export default function CountrySection() {
                                     <motion.div variants={subsectionReveal} className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-10 lg:gap-16 relative z-10">
                                         {/* Top Universities */}
                                         <div className="relative z-10">
-                                            <h3 className="flex items-center gap-3 text-base sm:text-lg md:text-xl font-bungee text-[var(--color-text-primary)] mb-6 sm:mb-8 tracking-wide pl-2">
+                                            <h3 className="flex items-center gap-3 text-base sm:text-lg md:text-xl font-orbitron text-[var(--color-text-primary)] mb-6 sm:mb-8 tracking-wide pl-2">
                                                 <Building2 size={20} className="text-[var(--color-accent-gold)]" /> Top Universities
                                             </h3>
                                             <motion.div variants={tagStagger} initial="hidden" animate="visible" className="space-y-4">
@@ -223,7 +223,7 @@ export default function CountrySection() {
                                         <div className="flex flex-col gap-10 relative z-10">
                                             {/* Popular Courses */}
                                             <div className="bg-[var(--color-surface)] p-5 sm:p-6 md:p-8 border border-[var(--color-border)]">
-                                                <h3 className="flex items-center gap-3 text-base sm:text-lg md:text-xl font-bungee text-[var(--color-text-primary)] mb-4 sm:mb-6 tracking-wide">
+                                                <h3 className="flex items-center gap-3 text-base sm:text-lg md:text-xl font-orbitron text-[var(--color-text-primary)] mb-4 sm:mb-6 tracking-wide">
                                                     <BookOpen size={20} className="text-[var(--color-accent-gold)]" /> Popular Programs
                                                 </h3>
                                                 <motion.div variants={tagStagger} initial="hidden" animate="visible" className="flex flex-wrap gap-2.5">
@@ -237,7 +237,7 @@ export default function CountrySection() {
 
                                             {/* Admission Requirements */}
                                             <div className="bg-[var(--color-surface)] p-5 sm:p-6 md:p-8 border border-[var(--color-border)] relative overflow-hidden">
-                                                <h3 className="flex items-center gap-3 text-base sm:text-lg md:text-xl font-bungee text-[var(--color-text-primary)] mb-4 sm:mb-6 tracking-wide relative z-10">
+                                                <h3 className="flex items-center gap-3 text-base sm:text-lg md:text-xl font-orbitron text-[var(--color-text-primary)] mb-4 sm:mb-6 tracking-wide relative z-10">
                                                     <GradIcon size={20} className="text-[var(--color-accent-gold)]" /> Admissions Info
                                                 </h3>
                                                 <div className="space-y-6 relative z-10">
@@ -273,7 +273,7 @@ export default function CountrySection() {
                                     <motion.div variants={subsectionReveal} className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-10 lg:gap-16 items-stretch relative z-10">
                                         {/* Work & Visa */}
                                         <div className="bg-[var(--color-surface)] p-5 sm:p-6 md:p-8 border border-[var(--color-border)] relative overflow-hidden">
-                                            <h3 className="flex items-center gap-3 text-base sm:text-lg md:text-xl font-bungee text-[var(--color-text-primary)] mb-6 sm:mb-8 tracking-wide relative z-10">
+                                            <h3 className="flex items-center gap-3 text-base sm:text-lg md:text-xl font-orbitron text-[var(--color-text-primary)] mb-6 sm:mb-8 tracking-wide relative z-10">
                                                 <Briefcase size={20} className="text-[var(--color-accent-gold)]" /> Post-Study Rights
                                             </h3>
                                             <div className="space-y-0 text-sm relative z-10">
@@ -294,7 +294,7 @@ export default function CountrySection() {
 
                                         {/* CTA Block */}
                                         <div className="flex flex-col gap-4 justify-center bg-[var(--color-bg-primary)] p-5 sm:p-6 md:p-8 lg:p-10 border border-[var(--color-border)] text-center lg:text-left h-full">
-                                            <h4 className="text-base sm:text-lg md:text-xl font-bungee text-[var(--color-text-primary)]">Ready to start your journey?</h4>
+                                            <h4 className="text-base sm:text-lg md:text-xl font-orbitron text-[var(--color-text-primary)]">Ready to start your journey?</h4>
                                             <p className="text-[var(--color-text-muted)] text-sm mb-4">Connect with our admission experts for customized counseling.</p>
                                             <div className="flex flex-col sm:flex-row gap-4 lg:justify-start justify-center mt-auto">
                                                 <Link

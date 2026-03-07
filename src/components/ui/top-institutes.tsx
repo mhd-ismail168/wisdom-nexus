@@ -56,7 +56,7 @@ export function TopInstitutes() {
                         <p className="text-[#c9a227]/80 tracking-[0.25em] uppercase text-[12px] mb-4 font-medium">
                             Curated Network
                         </p>
-                        <h2 className="font-serif-heading text-4xl sm:text-5xl md:text-[56px] text-[#d4af37] leading-[1.05] tracking-wide">
+                        <h2 className="font-serif-heading text-4xl sm:text-5xl md:text-[56px] text-[#C5A55A] leading-[1.05] tracking-wide">
                             Elite Partner Institutions
                         </h2>
                         <p className="text-[#9a9a9a] mt-5 max-w-[520px] text-base leading-relaxed">
@@ -65,7 +65,7 @@ export function TopInstitutes() {
                     </div>
                     <Link
                         href="/colleges"
-                        className="hidden md:inline-flex items-center gap-2.5 text-[#d4af37] text-[12px] tracking-[0.2em] uppercase hover:gap-3.5 transition-all duration-300 font-medium shrink-0 group"
+                        className="hidden md:inline-flex items-center gap-2.5 text-[#C5A55A] text-[12px] tracking-[0.2em] uppercase hover:gap-3.5 transition-all duration-300 font-medium shrink-0 group"
                     >
                         Browse All
                         <ArrowUpRight size={14} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-300" />
@@ -95,7 +95,7 @@ export function TopInstitutes() {
                                     <div className="top-inst-card group">
                                         {/* Badge */}
                                         <div className="absolute top-5 right-5 z-10">
-                                            <span className="text-[10px] tracking-[0.12em] uppercase bg-[rgba(212,175,55,0.12)] text-[#d4af37] px-3 py-1.5 rounded-[5px] font-medium">
+                                            <span className="text-[10px] tracking-[0.12em] uppercase bg-[rgba(212,175,55,0.12)] text-[#C5A55A] px-3 py-1.5 rounded-[5px] font-medium">
                                                 Top Institute
                                             </span>
                                         </div>
@@ -112,7 +112,7 @@ export function TopInstitutes() {
                                                     loading="lazy"
                                                 />
                                             ) : (
-                                                <span className="text-[#d4af37] font-bungee text-3xl">
+                                                <span className="text-[#C5A55A] font-orbitron text-3xl">
                                                     {college.logo}
                                                 </span>
                                             )}
@@ -130,10 +130,10 @@ export function TopInstitutes() {
 
                                         {/* Explore indicator - fades in on hover */}
                                         <div className="flex items-center gap-1.5 mt-5 opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-400">
-                                            <span className="text-[#d4af37] text-[11px] tracking-[0.18em] uppercase font-medium">
+                                            <span className="text-[#C5A55A] text-[11px] tracking-[0.18em] uppercase font-medium">
                                                 Explore
                                             </span>
-                                            <ArrowUpRight size={12} className="text-[#d4af37]" />
+                                            <ArrowUpRight size={12} className="text-[#C5A55A]" />
                                         </div>
                                     </div>
                                 </Link>
@@ -149,7 +149,7 @@ export function TopInstitutes() {
                                 className="pointer-events-auto w-10 h-10 rounded-full border border-[rgba(212,175,55,0.2)] bg-[rgba(12,12,12,0.9)] flex items-center justify-center hover:border-[rgba(212,175,55,0.5)] hover:bg-[rgba(212,175,55,0.08)] transition-all duration-300"
                                 aria-label="Scroll right"
                             >
-                                <ChevronRight size={16} className="text-[#d4af37]" />
+                                <ChevronRight size={16} className="text-[#C5A55A]" />
                             </button>
                         </div>
                     )}
@@ -159,7 +159,7 @@ export function TopInstitutes() {
                 <div className="mt-10 flex justify-center md:hidden">
                     <Link
                         href="/colleges"
-                        className="inline-flex items-center gap-2 text-[#d4af37] text-[12px] tracking-[0.2em] uppercase font-medium"
+                        className="inline-flex items-center gap-2 text-[#C5A55A] text-[12px] tracking-[0.2em] uppercase font-medium"
                     >
                         Browse All Institutions <ArrowUpRight size={14} />
                     </Link>

@@ -100,10 +100,10 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({
     <div
       onClick={() => handleMove(position)}
       className={cn(
-        "absolute left-1/2 top-1/2 cursor-pointer border-2 p-4 sm:p-6 md:p-8 transition-all duration-500 ease-in-out",
+        "absolute left-1/2 top-1/2 cursor-pointer border-2 p-4 sm:p-6 md:p-8 transition-all duration-200 ease-linear",
         isCenter
-          ? "z-10 bg-[var(--color-accent-gold)] text-[var(--color-bg-primary)] border-[var(--color-accent-gold)]"
-          : "z-0 bg-[var(--color-bg-section)] text-[var(--color-text-secondary)] border-[var(--color-border)] hover:border-[var(--color-accent-gold)]/30"
+          ? "z-10 bg-[#C5A55A] text-[var(--color-bg-primary)] border-[#C5A55A] shadow-[0_0_30px_rgba(197,165,90,0.3)]"
+          : "z-0 bg-[var(--color-bg-section)] text-[var(--color-text-secondary)] border-[var(--color-border)] hover:border-[#C5A55A]/30"
       )}
       style={{
         width: cardSize,
@@ -115,11 +115,11 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({
           translateY(${isCenter ? -65 : position % 2 ? 15 : -15}px)
           rotate(${isCenter ? 0 : position % 2 ? 2.5 : -2.5}deg)
         `,
-        boxShadow: isCenter ? "0px 8px 0px 4px var(--color-border)" : "0px 0px 0px 0px transparent"
+        boxShadow: isCenter ? "0px 8px 0px 4px var(--color-border), 0 0 20px rgba(197,165,90,0.2)" : "0px 0px 0px 0px transparent"
       }}
     >
       <span
-        className="absolute block origin-top-right rotate-45 bg-[var(--color-border)]"
+        className="absolute block origin-top-right rotate-45 bg-[#C5A55A]/30"
         style={{
           right: -2,
           top: cardSize < 260 ? 28 : 48,
@@ -143,7 +143,7 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({
       </h3>
       <p className={cn(
         "absolute bottom-4 sm:bottom-8 left-4 sm:left-8 right-4 sm:right-8 mt-2 text-xs sm:text-sm italic",
-        isCenter ? "text-[var(--color-bg-primary)]/70" : "text-[var(--color-text-muted)]"
+        isCenter ? "text-[var(--color-bg-primary)]/80" : "text-[#C5A55A]/60"
       )}>
         - {testimonial.by}
       </p>
