@@ -28,8 +28,6 @@ export default function RootLayout({
           {children}
         </main>
         <FooterSection />
-        {/* CRT Scanline Overlay */}
-        <div className="crt-scanlines" aria-hidden="true" />
       </body>
     </html>
   );
