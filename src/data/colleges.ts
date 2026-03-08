@@ -290,6 +290,6 @@ export const collegesData = rawColleges.map((c, i) => {
         established: c.established,
         approval: c.approval,
         ownership: c.ownership,
-        description: `A premier ${c.ownership.toLowerCase()} institution located in ${c.location}, established in ${c.established}. Approved by ${c.approval}, it offers specialized programs including ${c.courses} and is renowned for academic excellence in Karnataka's educational landscape.`
+        description: `A premier ${c.ownership.toLowerCase()} institution located in ${c.location}, Karnataka, established in ${c.established}. Approved by ${c.approval}, it offers specialized programs including ${c.courses} and is renowned for academic excellence in South India's educational landscape.`
     };
 });

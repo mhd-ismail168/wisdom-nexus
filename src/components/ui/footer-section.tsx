@@ -23,33 +23,27 @@ const footerLinks: FooterSection[] = [
 			{ title: 'Home', href: '/' },
 			{ title: 'About', href: '/about' },
 			{ title: 'Institutions', href: '/colleges' },
-			{ title: 'Global Strategy', href: '/study-abroad' },
+			{ title: 'Study Abroad', href: '/study-abroad' },
+			{ title: 'DMIT', href: '/dmit' },
+			{ title: 'Contact', href: '/contact' },
 		],
 	},
 	{
 		label: 'Services',
 		links: [
-			{ title: 'Aptitude Mapping', href: '/dmit' },
-			{ title: 'Career Structuring', href: '#' },
-			{ title: 'Admission Strategy', href: '#' },
-			{ title: 'Visa Facilitation', href: '#' },
+			{ title: 'DMIT Assessment', href: '/dmit' },
+			{ title: 'Career Counseling', href: '/dmit' },
+			{ title: 'Admission Guidance', href: '/colleges' },
+			{ title: 'Study Abroad', href: '/study-abroad' },
 		],
 	},
 	{
 		label: 'Contact',
 		links: [
-			{ title: '123 Education Hub, Bengaluru', href: '#', icon: MapPin },
-			{ title: '+91 98765 43210', href: 'tel:+919876543210', icon: Phone },
-			{ title: 'info@wisdomnexus.com', href: 'mailto:info@wisdomnexus.com', icon: Mail },
-		],
-	},
-	{
-		label: 'Social',
-		links: [
-			{ title: 'Facebook', href: '#', icon: FacebookIcon },
-			{ title: 'Instagram', href: '#', icon: InstagramIcon },
-			{ title: 'Youtube', href: '#', icon: YoutubeIcon },
-			{ title: 'LinkedIn', href: '#', icon: LinkedinIcon },
+			{ title: 'Karimpanal Statue Avenue, Thiruvananthapuram, Kerala 695001', href: 'https://maps.google.com/?q=Karimpanal+Statue+Avenue+Thiruvananthapuram+Kerala', icon: MapPin },
+			{ title: '+91 99957 76277', href: 'tel:+919995776277', icon: Phone },
+			{ title: '+91 90372 21362', href: 'tel:+919037221362', icon: Phone },
+			{ title: 'admissions@wisdomlearn.com', href: 'mailto:admissions@wisdomlearn.com', icon: Mail },
 		],
 	},
 ];
@@ -68,12 +62,12 @@ export function FooterSection() {
 							&gt; WISDOM
 						</Link>
 						<p className="text-[var(--color-footer-text)] text-sm leading-relaxed max-w-sm">
-							Empowering students to navigate their future with certainty. End-to-end guidance for domestic and international university admissions.
+							Empowering students across Kerala to discover their true potential through DMIT assessments, career counseling, and expert guidance for college admissions in India and abroad.
 						</p>
 					</AnimatedContainer>
 
 					{/* Link columns */}
-					<div className="lg:col-span-8 grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8 lg:gap-8">
+					<div className="lg:col-span-8 grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8 lg:gap-8">
 						{footerLinks.map((section, index) => (
 							<AnimatedContainer key={section.label} delay={0.1 + index * 0.1}>
 								<div>
@@ -100,7 +94,7 @@ export function FooterSection() {
 				{/* Bottom bar */}
 				<div className="mt-10 sm:mt-12 md:mt-16 pt-6 sm:pt-8 border-t border-[#C5A55A]/10 flex flex-col sm:flex-row justify-between items-center gap-3 sm:gap-4">
 					<p className="text-[var(--color-footer-text)] text-xs">
-						© {new Date().getFullYear()} Wisdom Nexus. All rights reserved.
+						© {new Date().getFullYear()} Wisdom Way Of Life. All rights reserved.
 					</p>
 					<div className="flex items-center gap-6">
 						<Link href="/privacy" className="text-xs text-[var(--color-footer-text)] hover:text-[#C5A55A] transition-colors duration-200">Privacy</Link>

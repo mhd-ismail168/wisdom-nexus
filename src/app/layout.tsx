@@ -24,6 +24,7 @@ export default function RootLayout({
         className="bg-[var(--color-bg-primary)] text-[var(--color-text-primary)] antialiased min-h-screen flex flex-col font-[family-name:'Share_Tech_Mono'] tracking-wide"
       >
         <Navbar />
+        <div className="crt-scanlines" aria-hidden="true" />
         <main className="flex-grow">
           {children}
         </main>

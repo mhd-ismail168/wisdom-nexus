@@ -9,75 +9,53 @@ const SQRT_5000 = Math.sqrt(5000);
 const testimonials = [
   {
     tempId: 0,
-    testimonial: "Their DMIT assessment was an eye-opener. It completely changed my perspective on engineering, and the counselor guided me perfectly through the complex seat-matrix.",
-    by: "Rahul K., B.Tech at RVU",
-    imgSrc: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=150&h=150&fit=crop&crop=face"
+    testimonial: "Went there not really expecting much, but the DMIT report actually made sense. Helped me figure out what stream to pick after plus two. Pretty glad I did it.",
+    by: "Amal A",
   },
   {
     tempId: 1,
-    testimonial: "Time well spent understanding the Management quota vs Merit structures. The admission journey was absolutely transparent and perfectly organized.",
-    by: "Priya Sharma, MBA at NMIMS",
-    imgSrc: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&h=150&fit=crop&crop=face"
+    testimonial: "My parents and I had no clue how management quota works. The team here sat with us, explained everything clearly, and helped us get a solid college within budget.",
+    by: "Arjun",
   },
   {
     tempId: 2,
-    testimonial: "Getting my daughter into a premium medical college felt like a daunting task. The Wisdom team laid out exact budgets, NMC approvals, and hospital tie-ups. Purely professional.",
-    by: "Anita Desai, Medical Parent",
-    imgSrc: "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=150&h=150&fit=crop&crop=face"
+    testimonial: "I kept going back and forth between studying here and abroad. They didn't push me either way — just laid out the options honestly. That's what I appreciated.",
+    by: "Vinay S",
   },
   {
     tempId: 3,
-    testimonial: "Wisdom Nexus helped me secure admission at a top UK university. Their documentation and visa guidance was flawless from start to finish.",
-    by: "Aditya Menon, MSc at University of Edinburgh",
-    imgSrc: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face"
+    testimonial: "Got my DMIT done here back in 10th class. The counselor told me things about my learning style that even my teachers hadn't noticed. Really helpful for board exam prep.",
+    by: "Ananth",
   },
   {
     tempId: 4,
-    testimonial: "I was confused between 6 different colleges. One DMIT session and 30 minutes of career counseling later, I had absolute clarity. Best decision ever.",
-    by: "Sneha Patel, BBA at Christ University",
-    imgSrc: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop&crop=face"
+    testimonial: "Wasn't sure if career counseling was worth it, but one session here and I stopped second-guessing myself. They're straightforward and don't waste your time.",
+    by: "Sheril",
   },
   {
     tempId: 5,
-    testimonial: "The study abroad roadmap they built for my son was incredibly detailed — from IELTS prep to post-landing support in Canada. Highly recommend.",
-    by: "Vikram Rao, Parent",
-    imgSrc: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face"
+    testimonial: "They helped my younger brother get into a good engineering college in Bangalore. The whole process from shortlisting to admission was smooth. No last minute surprises.",
+    by: "Anas",
   },
   {
     tempId: 6,
-    testimonial: "What stood out was their honesty. They didn't just push expensive colleges — they matched my budget and aptitude to the right institution.",
-    by: "Meera Joshi, B.Com at Jain University",
-    imgSrc: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&h=150&fit=crop&crop=face"
+    testimonial: "What I liked is they didn't just hand me a list of colleges. They actually asked about my interests, marks, and budget before recommending anything.",
+    by: "Anzil",
   },
   {
     tempId: 7,
-    testimonial: "My NEET score wasn't great, but Wisdom Nexus found me a legitimate pathway into a recognized medical college. Transparent and trustworthy.",
-    by: "Arjun Nair, MBBS Student",
-    imgSrc: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&h=150&fit=crop&crop=face"
+    testimonial: "I was stressed about the NEET counseling process. These guys walked me through every round and helped with document prep. Saved me from a lot of confusion.",
+    by: "Ashwin",
   },
   {
     tempId: 8,
-    testimonial: "From psychometric testing to final admission letter — they handled everything. I just had to show up. That's the level of service you get here.",
-    by: "Kavitha R., M.Tech at VIT",
-    imgSrc: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=150&h=150&fit=crop&crop=face"
+    testimonial: "Did the DMIT assessment for my daughter. The report was detailed and the follow-up counseling session really helped us plan her academics better going forward.",
+    by: "Athira",
   },
   {
     tempId: 9,
-    testimonial: "I switched my career path from Commerce to Design after the DMIT assessment. Two years later, I'm thriving at NID. Thank you, Wisdom Nexus.",
-    by: "Rohan Gupta, B.Des at NID",
-    imgSrc: "https://images.unsplash.com/photo-1519345182560-3f2917c472ef?w=150&h=150&fit=crop&crop=face"
-  },
-  {
-    tempId: 10,
-    testimonial: "The counselors genuinely care. They followed up even after admission to make sure I was settling in well. That personal touch is rare.",
-    by: "Divya Krishnan, BCA at PES University",
-    imgSrc: "https://images.unsplash.com/photo-1607746882042-944635dfe10e?w=150&h=150&fit=crop&crop=face"
-  },
-  {
-    tempId: 11,
-    testimonial: "Wisdom Nexus made the overwhelming process of choosing a college abroad feel manageable. Their step-by-step approach is second to none.",
-    by: "Nikhil Verma, MS at TU Munich",
-    imgSrc: "https://images.unsplash.com/photo-1463453091185-61582044d556?w=150&h=150&fit=crop&crop=face"
+    testimonial: "Came here through a friend's recommendation. They helped me with the entire study abroad application — SOP, university shortlist, visa docs, everything. Genuine support.",
+    by: "Anjana",
   },
 ];
 
@@ -127,14 +105,18 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({
           height: 2
         }}
       />
-      <img
-        src={testimonial.imgSrc}
-        alt={`${testimonial.by.split(',')[0]}`}
-        className="mb-2 sm:mb-4 h-10 w-9 sm:h-14 sm:w-12 bg-[var(--color-surface)] object-cover object-top"
-        style={{
-          boxShadow: "3px 3px 0px var(--color-bg-primary)"
-        }}
-      />
+      {/* Name initial */}
+      <div
+        className={cn(
+          "mb-2 sm:mb-4 h-10 w-9 sm:h-14 sm:w-12 flex items-center justify-center text-sm sm:text-lg font-orbitron font-bold",
+          isCenter
+            ? "bg-[var(--color-bg-primary)]/20 text-[var(--color-bg-primary)]"
+            : "bg-[#C5A55A]/10 text-[#C5A55A]"
+        )}
+        style={{ boxShadow: "3px 3px 0px var(--color-bg-primary)" }}
+      >
+        {testimonial.by.charAt(0)}
+      </div>
       <h3 className={cn(
         "text-sm sm:text-base md:text-xl font-medium leading-relaxed line-clamp-5 sm:line-clamp-none",
         isCenter ? "text-[var(--color-bg-primary)]" : "text-[var(--color-text-primary)]"

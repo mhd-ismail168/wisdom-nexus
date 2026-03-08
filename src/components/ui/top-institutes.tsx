@@ -2,7 +2,7 @@
 
 import { useRef, useEffect, useState } from "react";
 import { motion, useInView } from "framer-motion";
-import { ArrowUpRight, ChevronRight } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import { collegesData } from "@/data/colleges";
 import Image from "next/image";
 import Link from "next/link";
@@ -13,26 +13,31 @@ const topInstitutes = collegesData.filter(c => c.tag === "Top Institute");
 const smoothEase = [0.25, 0.1, 0.25, 1] as const;
 
 export function TopInstitutes() {
-    const scrollRef = useRef<HTMLDivElement>(null);
     const sectionRef = useRef<HTMLElement>(null);
+    const scrollRef = useRef<HTMLDivElement>(null);
     const isInView = useInView(sectionRef, { once: true, amount: 0.15 });
-    const [canScrollRight, setCanScrollRight] = useState(true);
+    const [isPaused, setIsPaused] = useState(false);
 
-    /* Check scroll position for fade indicator */
+    /* Smooth infinite auto-scroll */
     useEffect(() => {
         const el = scrollRef.current;
         if (!el) return;
-        const check = () => {
-            setCanScrollRight(el.scrollLeft + el.clientWidth < el.scrollWidth - 20);
-        };
-        check();
-        el.addEventListener("scroll", check, { passive: true });
-        return () => el.removeEventListener("scroll", check);
-    }, []);
+        let raf: number;
+        let speed = 0.5;
 
-    const scrollRight = () => {
-        scrollRef.current?.scrollBy({ left: 340, behavior: "smooth" });
-    };
+        const step = () => {
+            if (!isPaused) {
+                el.scrollLeft += speed;
+                // When we've scrolled past the first set, jump back seamlessly
+                if (el.scrollLeft >= el.scrollWidth / 2) {
+                    el.scrollLeft = 0;
+                }
+            }
+            raf = requestAnimationFrame(step);
+        };
+        raf = requestAnimationFrame(step);
+        return () => cancelAnimationFrame(raf);
+    }, [isPaused]);
 
     return (
         <section
@@ -60,7 +65,7 @@ export function TopInstitutes() {
                             Elite Partner Institutions
                         </h2>
                         <p className="text-[#9a9a9a] mt-5 max-w-[520px] text-base leading-relaxed">
-                            Handpicked from {collegesData.length}+ verified institutions across Karnataka — each evaluated for academic credibility and institutional excellence.
+                            Handpicked from {collegesData.length}+ verified institutions across Karnataka, Kerala & Tamil Nadu — each evaluated for academic credibility and institutional excellence.
                         </p>
                     </div>
                     <Link
@@ -72,24 +77,31 @@ export function TopInstitutes() {
                     </Link>
                 </motion.div>
 
-                {/* ── Horizontal Scroll Gallery ── */}
-                <div className="relative">
+                {/* ── Infinite Scroll Gallery ── */}
+                <div
+                    className="relative"
+                    onMouseEnter={() => setIsPaused(true)}
+                    onMouseLeave={() => setIsPaused(false)}
+                >
+                    {/* Left edge fade */}
+                    <div className="absolute top-0 left-0 bottom-6 w-16 sm:w-28 pointer-events-none bg-gradient-to-r from-black via-black/60 to-transparent z-10" />
+
                     <div
                         ref={scrollRef}
-                        className="flex gap-5 sm:gap-6 overflow-x-auto pb-6 -mx-4 px-4 sm:mx-0 sm:px-0 snap-x snap-mandatory scrollbar-hide"
-                        style={{ scrollPaddingLeft: "1rem" }}
+                        className="flex gap-5 sm:gap-6 overflow-x-auto pb-6 scrollbar-hide"
                     >
-                        {topInstitutes.slice(0, 12).map((college, index) => (
+                        {/* Duplicate the cards for seamless loop */}
+                        {[...topInstitutes.slice(0, 12), ...topInstitutes.slice(0, 12)].map((college, index) => (
                             <motion.div
-                                key={college.id}
+                                key={`${college.id}-${index}`}
                                 initial={{ opacity: 0, y: 30, scale: 0.97 }}
                                 animate={isInView ? { opacity: 1, y: 0, scale: 1 } : {}}
                                 transition={{
                                     duration: 0.6,
-                                    delay: 0.15 + index * 0.06,
+                                    delay: 0.15 + (index % 12) * 0.06,
                                     ease: smoothEase,
                                 }}
-                                className="snap-start shrink-0"
+                                className="shrink-0"
                             >
                                 <Link href="/colleges" className="block">
                                     <div className="top-inst-card group">
@@ -124,7 +136,7 @@ export function TopInstitutes() {
                                                 {college.name}
                                             </h3>
                                             <p className="text-[#8a8a8a] text-[14px]">
-                                                {college.location}, Karnataka
+                                                {college.location}, {college.state}
                                             </p>
                                         </div>
 
@@ -141,18 +153,8 @@ export function TopInstitutes() {
                         ))}
                     </div>
 
-                    {/* Right edge fade + scroll arrow */}
-                    {canScrollRight && (
-                        <div className="absolute top-0 right-0 bottom-6 w-20 sm:w-28 pointer-events-none bg-gradient-to-l from-[var(--color-bg-section)] via-[var(--color-bg-section)]/60 to-transparent z-10 hidden sm:flex items-center justify-end pr-2">
-                            <button
-                                onClick={scrollRight}
-                                className="pointer-events-auto w-10 h-10 rounded-full border border-[rgba(212,175,55,0.2)] bg-[rgba(12,12,12,0.9)] flex items-center justify-center hover:border-[rgba(212,175,55,0.5)] hover:bg-[rgba(212,175,55,0.08)] transition-all duration-300"
-                                aria-label="Scroll right"
-                            >
-                                <ChevronRight size={16} className="text-[#C5A55A]" />
-                            </button>
-                        </div>
-                    )}
+                    {/* Right edge fade */}
+                    <div className="absolute top-0 right-0 bottom-6 w-16 sm:w-28 pointer-events-none bg-gradient-to-l from-black via-black/60 to-transparent z-10" />
                 </div>
 
                 {/* Mobile browse link */}

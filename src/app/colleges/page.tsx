@@ -212,7 +212,7 @@ function UniversityCard({
                     <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-[13px] text-[#bfbfbf]">
                         <span className="flex items-center gap-1.5">
                             <MapPin size={13} className="text-[#C5A55A]" />
-                            {college.location}, Karnataka
+                            {college.location}, {college.state}
                         </span>
                         <span className="flex items-center gap-1.5">
                             <Star size={13} className="text-[#C5A55A]" fill="#C5A55A" />
@@ -477,7 +477,7 @@ export default function CollegesPage() {
                         Academic Institutions
                     </h1>
                     <p className="text-[var(--color-text-muted)] mt-4 max-w-lg mx-auto text-sm leading-relaxed">
-                        Explore our verified network of elite academic institutions across Karnataka.
+                        Explore our verified network of elite academic institutions across Karnataka, Kerala & Tamil Nadu.
                     </p>
                 </div>
             </section>

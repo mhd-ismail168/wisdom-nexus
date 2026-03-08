@@ -35,19 +35,19 @@ export default function Home() {
       </div>
 
       {/* ═══════════ SECTION 1: HERO ═══════════ */}
-      <section className="relative min-h-[100dvh] flex items-center justify-center px-4 sm:px-6 lg:px-8 py-20 sm:py-24 z-10">
+      <section className="relative min-h-[100dvh] flex items-center justify-center px-4 sm:px-6 lg:px-8 py-20 sm:py-24">
         {/* Subtle radial glow behind logo */}
         <div className="absolute inset-0 z-0 overflow-hidden">
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[radial-gradient(circle,rgba(184,156,74,0.08)_0%,transparent_70%)]" />
         </div>
 
-        <div className="relative z-10 flex flex-col items-center gap-8 max-w-4xl mx-auto">
+        <div className="relative flex flex-col items-center gap-8 max-w-4xl mx-auto">
           {/* Logo */}
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.6, ease: smoothEase }}
-            className="flex-shrink-0"
+            className="flex-shrink-0 relative z-[50]"
           >
             <Image
               src="/wisdom logo.png"
@@ -291,10 +291,10 @@ export default function Home() {
           {/* Stats row */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 mb-10 sm:mb-16">
             {[
-              { num: "15,000+", label: "Students Placed" },
+              { num: "1,000+", label: "Students Placed" },
               { num: "76+", label: "Verified Institutions" },
-              { num: "12+", label: "Countries Covered" },
-              { num: "10+", label: "Years of Excellence" },
+              { num: "10+", label: "Countries Covered" },
+              { num: "7+", label: "Years of Excellence" },
             ].map((stat, i) => (
               <motion.div
                 key={i}
