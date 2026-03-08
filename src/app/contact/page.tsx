@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import { Mail, Phone, MapPin, Building2, ExternalLink, MessageCircle } from "lucide-react";
 import BackgroundPaths from "@/components/ui/modern-background-paths";
 

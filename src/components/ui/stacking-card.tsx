@@ -167,6 +167,7 @@ const StackCard = ({ i, data, progress, range, targetScale, total }: CardProps) 
             <img
               src={data.image}
               alt={data.label}
+              loading="lazy"
               className="absolute inset-0 w-full h-full object-cover"
             />
             {/* overlay tint */}

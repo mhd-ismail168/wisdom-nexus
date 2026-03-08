@@ -1,10 +1,9 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import { Brain, Fingerprint, CheckCircle2, ClipboardList, TrendingUp, CalendarCheck, FileBadge, Check, Award, ArrowUpRight, Lightbulb, Sparkles, Search, Dna, ShieldCheck, Clock, Zap, BarChart3, CalendarDays, User, Users, Phone, Mail, MapPin, FileText, Send } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { DotLottieReact } from '@lottiefiles/dotlottie-react';
 import BackgroundPaths from "@/components/ui/modern-background-paths";
 import { ReactNode, useState, FormEvent } from "react";
 
@@ -181,6 +180,7 @@ export default function DmitPage() {
                                     alt="DMIT fingerprint analysis revealing multiple intelligences and brain mapping"
                                     width={720}
                                     height={480}
+                                    sizes="(max-width: 768px) 100vw, 50vw"
                                     className="w-full h-auto object-cover"
                                     priority
                                 />

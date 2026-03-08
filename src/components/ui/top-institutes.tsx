@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef, useEffect, useState } from "react";
-import { motion, useInView } from "framer-motion";
+import { motion, useInView } from "motion/react";
 import { ArrowUpRight } from "lucide-react";
 import { collegesData } from "@/data/colleges";
 import Image from "next/image";
@@ -18,17 +18,30 @@ export function TopInstitutes() {
     const isInView = useInView(sectionRef, { once: true, amount: 0.15 });
     const [isPaused, setIsPaused] = useState(false);
 
-    /* Smooth infinite auto-scroll */
+    const [isVisible, setIsVisible] = useState(false);
+
+    /* Observe visibility so we only run RAF when on-screen */
+    useEffect(() => {
+        const section = sectionRef.current;
+        if (!section) return;
+        const observer = new IntersectionObserver(
+            ([entry]) => setIsVisible(entry.isIntersecting),
+            { threshold: 0 }
+        );
+        observer.observe(section);
+        return () => observer.disconnect();
+    }, []);
+
+    /* Smooth infinite auto-scroll — paused when off-screen */
     useEffect(() => {
         const el = scrollRef.current;
-        if (!el) return;
+        if (!el || !isVisible) return;
         let raf: number;
-        let speed = 0.5;
+        const speed = 0.5;
 
         const step = () => {
             if (!isPaused) {
                 el.scrollLeft += speed;
-                // When we've scrolled past the first set, jump back seamlessly
                 if (el.scrollLeft >= el.scrollWidth / 2) {
                     el.scrollLeft = 0;
                 }
@@ -37,7 +50,7 @@ export function TopInstitutes() {
         };
         raf = requestAnimationFrame(step);
         return () => cancelAnimationFrame(raf);
-    }, [isPaused]);
+    }, [isPaused, isVisible]);
 
     return (
         <section

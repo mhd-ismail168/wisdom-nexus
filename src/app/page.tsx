@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import { ArrowUpRight, GraduationCap, Globe, Brain, Briefcase, ShieldCheck, Users, Clock, Award } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
@@ -55,6 +55,7 @@ export default function Home() {
               width={300}
               height={300}
               priority
+              sizes="(max-width: 475px) 180px, (max-width: 640px) 220px, (max-width: 768px) 260px, 300px"
               className="w-[180px] h-[180px] xs:w-[220px] xs:h-[220px] sm:w-[260px] sm:h-[260px] md:w-[300px] md:h-[300px] object-contain drop-shadow-[0_0_25px_rgba(197,165,90,0.3)]"
             />
           </motion.div>
@@ -249,7 +250,7 @@ export default function Home() {
           <div className="flex md:hidden gap-3 overflow-x-auto pb-4 -mx-4 px-4 snap-x snap-mandatory scrollbar-hide">
             {abroadPlaces.map((place, i) => (
               <Link key={i} href={place.href || "/study-abroad"} className="relative flex-shrink-0 w-[40vw] max-w-[176px] h-48 sm:h-56 overflow-hidden snap-start group border border-[#C5A55A]/20">
-                <img src={place.src} alt={place.alt} className="h-full w-full object-cover" />
+                <img src={place.src} alt={place.alt} loading="lazy" className="h-full w-full object-cover" />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#000000] via-transparent to-transparent" />
                 <div className="absolute bottom-0 left-0 right-0 p-3">
                   <p className="text-white text-sm font-medium">{place.label}</p>

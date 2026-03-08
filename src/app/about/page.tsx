@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import { Target, Eye, Globe, BookOpen, Users, Lightbulb, ShieldCheck, GraduationCap, Briefcase, Workflow, CheckCircle2, HeartHandshake, Building2 } from "lucide-react";
 import BackgroundPaths from "@/components/ui/modern-background-paths";
 import { CyberneticBentoGrid } from "@/components/ui/cybernetic-bento-grid";

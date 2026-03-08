@@ -1,6 +1,6 @@
 "use client";
 
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, motion } from "motion/react";
 import React, { useState } from "react";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
@@ -108,6 +108,7 @@ const HoverExpandGallery = ({
                   src={image.src}
                   className="h-full w-full object-cover"
                   alt={image.alt}
+                  loading="lazy"
                 />
               </Wrapper>
             </motion.div>

@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import { Globe } from "lucide-react";
 import CountrySection from "@/components/CountrySection";
 import BackgroundPaths from "@/components/ui/modern-background-paths";

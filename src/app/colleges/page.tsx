@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useMemo, useCallback, useRef, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence } from "motion/react";
 import {
     Search, MapPin, Star, BookOpen, Building, ChevronDown,
     X, SlidersHorizontal, ArrowUpRight, GraduationCap, Filter,

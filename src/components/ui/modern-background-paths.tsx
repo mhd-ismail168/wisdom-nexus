@@ -1,6 +1,6 @@
 "use client"
 
-import { motion } from "framer-motion"
+import { motion } from "motion/react"
 import { useState, useEffect, useMemo } from "react"
 
 /* ── Seed-based deterministic random for SSR/CSR parity ── */
@@ -16,10 +16,10 @@ function seededRandom(seed: number) {
 function GeometricPaths() {
   const paths = useMemo(() => {
     const rand = seededRandom(42)
-    const gridSize = 40
+    const gridSize = 60
     const result: { id: string; d: string; delay: number }[] = []
-    for (let x = 0; x < 20; x++) {
-      for (let y = 0; y < 12; y++) {
+    for (let x = 0; x < 13; x++) {
+      for (let y = 0; y < 8; y++) {
         if (rand() > 0.7) {
           result.push({
             id: `grid-${x}-${y}`,
@@ -42,7 +42,7 @@ function GeometricPaths() {
           stroke="currentColor"
           strokeWidth="1"
           initial={{ pathLength: 0, opacity: 0 }}
-          animate={{ pathLength: [0, 1, 0], opacity: [0, 0.6, 0], scale: [1, 1.05, 1] }}
+          animate={{ pathLength: [0, 1, 0], opacity: [0, 0.6, 0] }}
           transition={{ duration: 8, delay: path.delay, repeat: Infinity, ease: "easeInOut" }}
         />
       ))}
@@ -89,7 +89,7 @@ function FlowPaths() {
 function NeuralPaths() {
   const { nodes, connections } = useMemo(() => {
     const rand = seededRandom(137)
-    const n = Array.from({ length: 50 }, (_, i) => ({
+    const n = Array.from({ length: 20 }, (_, i) => ({
       x: rand() * 800,
       y: rand() * 600,
       id: `node-${i}`,
@@ -97,7 +97,7 @@ function NeuralPaths() {
     const conns: { id: string; d: string; delay: number }[] = []
     n.forEach((node, i) => {
       n.forEach((other, j) => {
-        if (i >= j) return
+        if (i >= j || conns.length >= 30) return
         const dist = Math.sqrt((node.x - other.x) ** 2 + (node.y - other.y) ** 2)
         if (dist < 120 && rand() > 0.6) {
           conns.push({

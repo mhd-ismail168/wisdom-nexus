@@ -13,6 +13,7 @@ import {
 import { ExpandableTabs } from "@/components/ui/expandable-tabs";
 import { motion, useScroll, useMotionValueEvent } from "motion/react";
 import Link from "next/link";
+import Image from "next/image";
 
 const navItems = [
   { href: "/", title: "Home", icon: Home },
@@ -96,9 +97,14 @@ export default function Navbar() {
       <nav className="flex items-center justify-center h-14 sm:h-16 md:h-20 gap-3 sm:gap-4 md:gap-6 pointer-events-auto px-2">
         {/* Logo */}
         <Link href="/" className="shrink-0">
-          <span className="font-orbitron text-base sm:text-lg md:text-xl font-bold tracking-[0.15em] text-[#C5A55A] drop-shadow-[0_0_8px_rgba(197,165,90,0.5)]">
-            &gt; WISDOM
-          </span>
+          <Image
+            src="/wisdom logo.png"
+            alt="Wisdom Logo"
+            width={44}
+            height={44}
+            priority
+            className="w-8 h-8 sm:w-10 sm:h-10 md:w-11 md:h-11 object-contain drop-shadow-[0_0_8px_rgba(197,165,90,0.4)]"
+          />
         </Link>
 
         {/* Icon Nav — dynamic island */}
