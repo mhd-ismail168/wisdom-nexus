@@ -21,6 +21,7 @@ function FloatingPaths({ position }: { position: number }) {
                 className="w-full h-full text-[var(--color-accent-gold)]"
                 viewBox="0 0 696 316"
                 fill="none"
+                preserveAspectRatio="xMidYMid slice"
             >
                 <title>Background Paths</title>
                 {paths.map((path) => (
