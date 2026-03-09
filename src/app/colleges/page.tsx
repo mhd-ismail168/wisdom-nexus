@@ -192,14 +192,14 @@ function UniversityCard({
             <div className="flex items-center gap-4 mb-4">
                 <div className="uni-logo-badge">
                     {college.logoUrl ? (
-                        <Image
-                            src={college.logoUrl}
-                            alt={`${college.name} logo`}
-                            width={60}
-                            height={60}
-                            className="object-contain"
-                            loading="lazy"
-                        />
+                            <Image
+                                src={college.logoUrl}
+                                alt={`${college.name} logo`}
+                                width={80}
+                                height={80}
+                                className="object-contain"
+                                loading="lazy"
+                            />
                     ) : (
                         <span className="text-[#C5A55A] font-orbitron text-2xl">{college.logo}</span>
                     )}

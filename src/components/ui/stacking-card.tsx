@@ -4,6 +4,7 @@ import { useTransform, motion, useScroll, type MotionValue } from "motion/react"
 import { useRef } from "react";
 import { cn } from "@/lib/utils";
 import { Eye, Target, BookOpen, Sparkles } from "lucide-react";
+import Image from "next/image";
 import type { LucideIcon } from "lucide-react";
 
 /* ────────── Data ────────── */
@@ -164,11 +165,12 @@ const StackCard = ({ i, data, progress, range, targetScale, total }: CardProps) 
         {/* ── Right: Image ── */}
         <div className="relative w-full lg:w-[45%] h-48 sm:h-56 lg:h-full rounded-xl overflow-hidden shrink-0">
           <motion.div className="w-full h-full" style={{ scale: imageScale }}>
-            <img
+            <Image
               src={data.image}
-              alt={data.label}
-              loading="lazy"
+              alt={`Wisdom Nexus admission guidance consultancy - ${data.label}`}
+              fill
               className="absolute inset-0 w-full h-full object-cover"
+              loading="lazy"
             />
             {/* overlay tint */}
             <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />

@@ -98,7 +98,7 @@ export default function Navbar() {
         {/* Logo */}
         <Link href="/" className="shrink-0">
           <Image
-            src="/wisdom logo.png"
+            src="/logo.webp"
             alt="Wisdom Logo"
             width={44}
             height={44}

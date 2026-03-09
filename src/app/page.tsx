@@ -50,7 +50,7 @@ export default function Home() {
             className="flex-shrink-0 relative z-[50]"
           >
             <Image
-              src="/wisdom logo.png"
+              src="/logo.webp"
               alt="Wisdom Nexus Logo"
               width={300}
               height={300}
@@ -250,7 +250,14 @@ export default function Home() {
           <div className="flex md:hidden gap-3 overflow-x-auto pb-4 -mx-4 px-4 snap-x snap-mandatory scrollbar-hide">
             {abroadPlaces.map((place, i) => (
               <Link key={i} href={place.href || "/study-abroad"} className="relative flex-shrink-0 w-[40vw] max-w-[176px] h-48 sm:h-56 overflow-hidden snap-start group border border-[#C5A55A]/20">
-                <img src={place.src} alt={place.alt} loading="lazy" className="h-full w-full object-cover" />
+                <Image
+                  src={place.src}
+                  alt={`Wisdom Nexus admission guidance consultancy - ${place.alt}`}
+                  fill
+                  sizes="(max-width: 475px) 180px, (max-width: 640px) 220px, (max-width: 768px) 260px, 300px"
+                  className="h-full w-full object-cover"
+                  loading="lazy"
+                />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#000000] via-transparent to-transparent" />
                 <div className="absolute bottom-0 left-0 right-0 p-3">
                   <p className="text-white text-sm font-medium">{place.label}</p>

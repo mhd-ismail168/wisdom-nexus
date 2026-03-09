@@ -3,6 +3,7 @@
 import { AnimatePresence, motion } from "motion/react";
 import React, { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { cn } from "@/lib/utils";
 
 export interface HoverExpandImage {
@@ -104,10 +105,11 @@ const HoverExpandGallery = ({
                   </div>
                 )}
 
-                <img
+                <Image
                   src={image.src}
+                  alt={`Wisdom Nexus admission guidance consultancy - ${image.alt}`}
+                  fill
                   className="h-full w-full object-cover"
-                  alt={image.alt}
                   loading="lazy"
                 />
               </Wrapper>
