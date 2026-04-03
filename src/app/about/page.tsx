@@ -144,7 +144,7 @@ export default function AboutPage() {
                             </div>
 
                             <div>
-                                <h3 className="text-xl sm:text-2xl md:text-3xl font-orbitron font-bold text-[#C5A55A] drop-shadow-[0_0_6px_rgba(197,165,90,0.5)] mb-2 tracking-wide">Mr. Shameer</h3>
+                                <h3 className="text-xl sm:text-2xl md:text-3xl font-orbitron font-bold text-[#C5A55A] drop-shadow-[0_0_6px_rgba(197,165,90,0.5)] mb-2 tracking-wide">Akshai Nair</h3>
                                 <p className="text-[#C5A55A] text-[10px] tracking-[0.2em] uppercase mb-8">&gt; Founder & Chief Consultant</p>
                                 <p className="text-[var(--color-text-muted)] text-sm md:text-base leading-relaxed italic mb-8 border-l-2 border-[#C5A55A]/40 pl-6 py-2">
                                     &ldquo;Education is the single most powerful tool to change lives. At Wisdom, we don&apos;t just fill forms; we sculpt futures. Every student is unique, and our goal is to find the environment where they will thrive.&rdquo;
