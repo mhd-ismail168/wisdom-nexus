@@ -94,7 +94,7 @@ const HoverExpandGallery = ({
                 {!isActive && (
                   <div className="absolute inset-0 z-10 flex items-end justify-center pb-4">
                     <span
-                      className="text-white/60 text-[10px] tracking-[0.15em] uppercase font-medium"
+                      className="text-[#E5E5E5] text-[10px] tracking-[0.15em] uppercase font-medium"
                       style={{
                         writingMode: "vertical-rl",
                         textOrientation: "mixed",

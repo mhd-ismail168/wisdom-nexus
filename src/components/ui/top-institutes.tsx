@@ -148,7 +148,7 @@ export function TopInstitutes() {
                                             <h3 className="text-white text-[18px] font-semibold leading-[1.4] line-clamp-2 mb-1.5 group-hover:text-[#f0e6c8] transition-colors duration-300">
                                                 {college.name}
                                             </h3>
-                                            <p className="text-[#8a8a8a] text-[14px]">
+                                            <p className="text-[#E5E5E5] text-[14px]">
                                                 {college.location}, {college.state}
                                             </p>
                                         </div>
