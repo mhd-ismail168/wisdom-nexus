@@ -5,7 +5,8 @@ import { Brain, Fingerprint, CheckCircle2, ClipboardList, TrendingUp, CalendarCh
 import Image from "next/image";
 import Link from "next/link";
 import BackgroundPaths from "@/components/ui/modern-background-paths";
-import { ReactNode, useState, FormEvent } from "react";
+import { ReactNode, useState } from "react";
+import { useForm, ValidationError } from "@formspree/react";
 
 /* ── Flip Comparison Card ── */
 function ComparisonCard({ icon, title, subtitle, badge, items, description, delay }: {
@@ -410,45 +411,24 @@ export default function DmitPage() {
 }
 
 /* ── Form styling constants ── */
-const FORMSPREE_ENDPOINT = "https://formspree.io/f/YOUR_FORM_ID"; // TODO: Replace with your Formspree form ID
+
+import { useMemo } from "react";
+
 const inputClass = "w-full bg-[#121212] border border-[#C5A55A]/20 focus:border-[#C5A55A] focus:shadow-[0_0_10px_rgba(197,165,90,0.15)] px-4 py-3 outline-none text-[var(--color-text-primary)] text-sm transition-all duration-200 placeholder:text-[var(--color-text-muted)] [color-scheme:dark]";
 const labelClass = "text-[10px] text-[var(--color-text-muted)] uppercase tracking-[0.15em]";
 const sectionHeadingClass = "text-xs font-orbitron font-bold text-[#C5A55A] tracking-[0.15em] uppercase mb-5 flex items-center gap-2.5";
 
-const cities = ["Thiruvananthapuram", "Alappuzha", "Kochi", "Malappuram", "Palakkad"];
-const timeSlots = ["10:00 AM – 11:00 AM", "11:30 AM – 12:30 PM", "02:00 PM – 03:00 PM", "04:00 PM – 05:00 PM"];
-
 function BookingForm() {
-    const [submitted, setSubmitted] = useState(false);
-    const [submitting, setSubmitting] = useState(false);
+    const [state, handleSubmit] = useForm("mwvaqnkz");
+    // Memoize cities and timeSlots to avoid re-creating arrays on every render
+    const cities = useMemo(() => [
+        "Thiruvananthapuram", "Alappuzha", "Kochi", "Malappuram", "Palakkad"
+    ], []);
+    const timeSlots = useMemo(() => [
+        "10:00 AM – 11:00 AM", "11:30 AM – 12:30 PM", "02:00 PM – 03:00 PM", "04:00 PM – 05:00 PM"
+    ], []);
 
-    const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
-        setSubmitting(true);
-
-        const form = e.currentTarget;
-        const formData = new FormData(form);
-
-        try {
-            const res = await fetch(FORMSPREE_ENDPOINT, {
-                method: "POST",
-                body: formData,
-                headers: { Accept: "application/json" },
-            });
-            if (res.ok) {
-                setSubmitted(true);
-            } else {
-                setSubmitted(true);
-            }
-        } catch {
-            setSubmitted(true);
-        } finally {
-            setSubmitting(false);
-        }
-    };
-
-    /* ── Confirmation Screen ── */
-    if (submitted) {
+    if (state.succeeded) {
         return (
             <motion.div
                 initial={{ opacity: 0, scale: 0.95 }}
@@ -502,7 +482,6 @@ function BookingForm() {
         );
     }
 
-    /* ── Form ── */
     return (
         <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -522,14 +501,17 @@ function BookingForm() {
                         <div className="space-y-2">
                             <label className={labelClass}>First Name *</label>
                             <input name="firstName" type="text" required placeholder="Enter student's first name" className={inputClass} />
+                            <ValidationError prefix="First Name" field="firstName" errors={state.errors} />
                         </div>
                         <div className="space-y-2">
                             <label className={labelClass}>Last Name *</label>
                             <input name="lastName" type="text" required placeholder="Enter student's last name" className={inputClass} />
+                            <ValidationError prefix="Last Name" field="lastName" errors={state.errors} />
                         </div>
                         <div className="space-y-2">
                             <label className={labelClass}>Student Age *</label>
                             <input name="studentAge" type="number" required min={3} max={99} placeholder="Enter student's age" className={inputClass} />
+                            <ValidationError prefix="Student Age" field="studentAge" errors={state.errors} />
                         </div>
                     </div>
                 </fieldset>
@@ -547,14 +529,17 @@ function BookingForm() {
                         <div className="space-y-2">
                             <label className={labelClass}>Parent / Guardian Name *</label>
                             <input name="guardianName" type="text" required placeholder="Name of parent or guardian" className={inputClass} />
+                            <ValidationError prefix="Guardian Name" field="guardianName" errors={state.errors} />
                         </div>
                         <div className="space-y-2">
                             <label className={labelClass}>Phone Number *</label>
                             <input name="phone" type="tel" required placeholder="Enter contact number for confirmation" className={inputClass} />
+                            <ValidationError prefix="Phone" field="phone" errors={state.errors} />
                         </div>
                         <div className="space-y-2">
                             <label className={labelClass}>Email Address *</label>
                             <input name="email" type="email" required placeholder="Enter email for report delivery" className={inputClass} />
+                            <ValidationError prefix="Email" field="email" errors={state.errors} />
                         </div>
                     </div>
                 </fieldset>
@@ -600,16 +585,18 @@ function BookingForm() {
                         Additional Notes
                     </legend>
                     <textarea name="notes" rows={3} placeholder="Any special requests or questions about the DMIT assessment" className={`${inputClass} resize-none`} />
+                    <ValidationError prefix="Notes" field="notes" errors={state.errors} />
                 </fieldset>
 
                 {/* Submit */}
                 <button
                     type="submit"
-                    disabled={submitting}
+                    disabled={state.submitting}
                     className="w-full sm:w-auto px-10 py-3.5 rounded-full bg-[#C5A55A] text-[var(--color-bg-primary)] text-xs tracking-[0.15em] uppercase font-bold hover:shadow-[0_0_25px_rgba(197,165,90,0.3)] hover:-translate-y-0.5 transition-all duration-300 flex items-center justify-center gap-2 disabled:opacity-60 disabled:pointer-events-none"
                 >
-                    {submitting ? "Submitting…" : "Book DMIT Slot"} <Send size={14} />
+                    {state.submitting ? "Submitting…" : "Book DMIT Slot"} <Send size={14} />
                 </button>
+                <ValidationError errors={state.errors} />
             </form>
         </motion.div>
     );
