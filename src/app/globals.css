@@ -1,3 +1,10 @@
+/* Custom placeholder color for forms (muted grey, low opacity) */
+input::placeholder,
+textarea::placeholder {
+  color: #b0b0b0;
+  opacity: 0.55;
+  /* Ensures it looks like a subtle placeholder */
+}
 @import "tailwindcss";
 
 @theme {
