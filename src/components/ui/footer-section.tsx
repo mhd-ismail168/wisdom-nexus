@@ -43,7 +43,7 @@ const footerLinks: FooterSection[] = [
 			{ title: 'Karimpanal Statue Avenue, Thiruvananthapuram, Kerala 695001', href: 'https://maps.google.com/?q=Karimpanal+Statue+Avenue+Thiruvananthapuram+Kerala', icon: MapPin },
 			{ title: '+91 99957 76277', href: 'tel:+919995776277', icon: Phone },
 			{ title: '+91 90372 21362', href: 'tel:+919037221362', icon: Phone },
-			{ title: 'admissions@wisdomlearn.com', href: 'mailto:admissions@wisdomlearn.com', icon: Mail },
+			{ title: 'info@wisdomwayoflife.com', href: 'mailto:info@wisdomwayoflife.com', icon: Mail },
 		],
 	},
 ];

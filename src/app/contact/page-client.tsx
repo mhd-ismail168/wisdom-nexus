@@ -128,7 +128,7 @@ export default function ContactPage() {
                             <div>
                                 <h3 className="text-xs text-[#C5A55A] tracking-[0.2em] uppercase mb-3 font-medium">&gt; Email Us</h3>
                                 <div className="space-y-2">
-                                    {["admissions@wisdomlearn.com", "support@wisdomlearn.com"].map((email) => (
+                                                {["info@wisdomwayoflife.com"].map((email) => (
                                         <a
                                             key={email}
                                             href={`mailto:${email}`}
