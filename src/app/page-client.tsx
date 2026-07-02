@@ -1,15 +1,31 @@
 "use client";
 
 import { motion } from "motion/react";
+import dynamic from "next/dynamic";
 import { ArrowUpRight, GraduationCap, Globe, Brain, Briefcase, ShieldCheck, Users, Clock, Award } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
-import { StaggerTestimonials } from "@/components/ui/stagger-testimonials";
-import { MarkerDoodle } from "@/components/ui/marker-doodles";
-import { GlowingEffect } from "@/components/ui/glowing-effect";
-import { HoverExpandGallery } from "@/components/ui/expand-on-hover";
-import { BackgroundPaths } from "@/components/ui/background-paths";
-import { TopInstitutes } from "@/components/ui/top-institutes";
+
+const StaggerTestimonials = dynamic(
+  () => import("@/components/ui/stagger-testimonials").then((mod) => mod.StaggerTestimonials),
+  { ssr: true }
+);
+const GlowingEffect = dynamic(
+  () => import("@/components/ui/glowing-effect").then((mod) => mod.GlowingEffect),
+  { ssr: true }
+);
+const HoverExpandGallery = dynamic(
+  () => import("@/components/ui/expand-on-hover").then((mod) => mod.HoverExpandGallery),
+  { ssr: true }
+);
+const BackgroundPaths = dynamic(
+  () => import("@/components/ui/background-paths").then((mod) => mod.BackgroundPaths),
+  { ssr: true }
+);
+const TopInstitutes = dynamic(
+  () => import("@/components/ui/top-institutes").then((mod) => mod.TopInstitutes),
+  { ssr: true }
+);
 
 const abroadPlaces = [
   { src: "https://images.unsplash.com/photo-1503614472-8c93d56e92ce?w=800", alt: "Canada landscape", label: "Canada", href: "/study-abroad" },
@@ -50,13 +66,15 @@ export default function Home() {
             className="flex-shrink-0 relative z-[50]"
           >
             <Image
-              src="/logo.webp"
+              src="/logo-final.png"
               alt="Wisdom Nexus Logo"
-              width={300}
-              height={300}
+              width={340}
+              height={340}
               priority
-              sizes="(max-width: 475px) 180px, (max-width: 640px) 220px, (max-width: 768px) 260px, 300px"
-              className="w-[180px] h-[180px] xs:w-[220px] xs:h-[220px] sm:w-[260px] sm:h-[260px] md:w-[300px] md:h-[300px] object-contain drop-shadow-[0_0_25px_rgba(197,165,90,0.3)]"
+              unoptimized
+              fetchPriority="high"
+              sizes="(max-width: 475px) 200px, (max-width: 640px) 240px, (max-width: 768px) 280px, 340px"
+              className="w-[200px] h-[200px] xs:w-[240px] xs:h-[240px] sm:w-[280px] sm:h-[280px] md:w-[340px] md:h-[340px] object-contain drop-shadow-[0_0_25px_rgba(197,165,90,0.3)]"
             />
           </motion.div>
 

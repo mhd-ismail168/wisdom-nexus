@@ -36,7 +36,7 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "/logo.webp",
+        url: "/logo-final.png",
         width: 1200,
         height: 630,
         alt: "Wisdom Nexus"
@@ -47,7 +47,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Wisdom Nexus",
     description: "Elite Admission Architects",
-    images: ["/logo.webp"]
+    images: ["/logo-final.png"]
   },
   icons: {
     icon: [
@@ -96,7 +96,7 @@ export default function RootLayout({
               "@type": "EducationalOrganization",
               "name": "Wisdom Nexus",
               "url": "https://wisdomnexus.com",
-              "logo": "https://wisdomnexus.com/logo.webp",
+              "logo": "https://wisdomnexus.com/logo-final.png",
               "address": {
                 "@type": "PostalAddress",
                 "addressLocality": "Thiruvananthapuram",

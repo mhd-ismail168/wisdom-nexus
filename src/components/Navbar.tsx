@@ -98,11 +98,13 @@ export default function Navbar() {
         {/* Logo */}
         <Link href="/" className="shrink-0">
           <Image
-            src="/logo.webp"
-            alt="Wisdom Logo"
+            src="/logo-final.png"
+            alt="Wisdom Nexus logo"
             width={44}
             height={44}
             priority
+            unoptimized
+            fetchPriority="high"
             className="w-8 h-8 sm:w-10 sm:h-10 md:w-11 md:h-11 object-contain drop-shadow-[0_0_8px_rgba(197,165,90,0.4)]"
           />
         </Link>
